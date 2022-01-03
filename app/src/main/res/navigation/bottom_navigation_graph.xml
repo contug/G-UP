@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="it.unimib.gup.ui.main.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/account"
+        android:name="it.unimib.gup.ui.main.AccountFragment"
+        android:label=""
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/browse"
+        android:name="it.unimib.gup.ui.main.BrowseFragment"
+        android:label=""
+        tools:layout="@layout/fragment_browse" />
+</navigation>
