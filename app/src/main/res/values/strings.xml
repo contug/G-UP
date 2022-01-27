@@ -3,7 +3,7 @@
     <string name="home" translatable="false">Home</string>
     <string name="browse" translatable="false">Browse</string>
     <string name="account" translatable="false">Account</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_group">Add Group</string>
     <string name="created_groups">Groups you manage</string>
@@ -11,4 +11,14 @@
     <string name="my_activities">My activities</string>
     <string name="create_group">Create group</string>
     <string name="back">Back</string>
+    <string name="name">Name</string>
+    <string name="privacy">Privacy</string>
+    
+    <string-array name="privacy_array">
+        <item>@string/public_group</item>
+        <item>@string/private_group</item>
+    </string-array>
+    <string name="public_group">Public</string>
+    <string name="private_group">Private</string>
+    <string name="name_group">Name your group</string>
 </resources>
