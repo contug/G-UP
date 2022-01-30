@@ -18,7 +18,27 @@
         <item>@string/public_group</item>
         <item>@string/private_group</item>
     </string-array>
+
     <string name="public_group">Public</string>
     <string name="private_group">Private</string>
     <string name="name_group">Name your group</string>
+    <string name="field_of_study">Field of study</string>
+
+    <string-array name="field_of_study_array">
+        <item>@string/fos_computer_science</item>
+        <item>@string/fos_biology</item>
+        <item>@string/fos_literature</item>
+        <item>@string/fos_physics</item>
+        <item>@string/fos_psychology</item>
+        <item>@string/fos_others</item>
+    </string-array>
+
+    <string name="fos_computer_science">Computer Science</string>
+    <string name="fos_biology">Biology</string>
+    <string name="fos_literature">Literature</string>
+    <string name="fos_physics">Physics</string>
+    <string name="fos_psychology">Psychology</string>
+    <string name="fos_others">Others</string>
+    <string name="group_description">Group description</string>
+    <string name="describe_group">Describe your group</string>
 </resources>
