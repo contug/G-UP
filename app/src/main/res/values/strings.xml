@@ -13,14 +13,14 @@
     <string name="back">Back</string>
     <string name="name">Name</string>
     <string name="privacy">Privacy</string>
-    
+
     <string-array name="privacy_array">
         <item>@string/public_group</item>
         <item>@string/private_group</item>
     </string-array>
-
     <string name="public_group">Public</string>
     <string name="private_group">Private</string>
+
     <string name="name_group">Name your group</string>
     <string name="field_of_study">Field of study</string>
 
@@ -39,6 +39,17 @@
     <string name="fos_physics">Physics</string>
     <string name="fos_psychology">Psychology</string>
     <string name="fos_others">Others</string>
+
     <string name="group_description">Group description</string>
     <string name="describe_group">Describe your group</string>
+
+    <string name="email_adress">Email adress</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="group_up">Group Up</string>
+    <string name="hey_get_on_board">Hey, get on board</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or_you_can_also">Or you can also</string>
 </resources>
