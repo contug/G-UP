@@ -20,7 +20,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    FloatingActionButton google;
+    FloatingActionButton google, fb, twitter;
+    float opacityValue = 0;
 
     private String[] tabs = {"Sign In", "Sign Up"};
 
@@ -33,7 +34,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
+
         google = findViewById(R.id.fab_google);
+        fb = findViewById(R.id.fab_facebook);
+        twitter = findViewById(R.id.fab_twitter);
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -46,6 +50,20 @@ public class AuthenticationActivity extends AppCompatActivity {
                 tab.setText(tabs[position]);
             }
         }).attach();
+
+        google.setTranslationY(300);
+        fb.setTranslationY(300);
+        twitter.setTranslationY(300);
+
+        google.setAlpha(opacityValue);
+        fb.setAlpha(opacityValue);
+        twitter.setAlpha(opacityValue);
+
+        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(200).start();
+        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(300).start();
+        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+
+
     }
 
 

@@ -11,7 +11,6 @@
     <string name="my_activities">My activities</string>
     <string name="create_group">Create group</string>
     <string name="back">Back</string>
-    <string name="name">Name</string>
     <string name="privacy">Privacy</string>
 
     <string-array name="privacy_array">
