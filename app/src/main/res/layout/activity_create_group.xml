@@ -24,14 +24,16 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInput_group_description"
         android:layout_width="364dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/home_fragment_preview_details_shape_background"
         android:hint="@string/describe_group"
-        android:minLines="4"
+        android:maxLength="100"
+        android:maxLines="4"
+        android:minHeight="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_group_description"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_group_description" />
 
     <TextView
         android:id="@+id/textview_group_description"
@@ -120,6 +122,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/home_fragment_preview_details_shape_background"
             android:hint="@string/name_group"
+            android:maxLength="30"
             android:minHeight="52dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
