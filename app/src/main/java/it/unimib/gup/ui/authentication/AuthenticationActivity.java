@@ -2,12 +2,10 @@ package it.unimib.gup.ui.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +19,8 @@ import it.unimib.gup.adapter.LoginAdapter;
  * Activity to manage the login and registration of a user.
  */
 public class AuthenticationActivity extends AppCompatActivity {
+
+    private static final String TAG = "AuthenticationActivity";
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
@@ -67,8 +67,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(200).start();
         google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(300).start();
         twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-
     }
-
 
 }

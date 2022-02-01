@@ -24,8 +24,7 @@
 
         <activity
             android:name=".ui.authentication.AuthenticationActivity"
-            android:exported="false"
-            android:noHistory="true"/>
+            android:exported="false" />
 
         <activity
             android:name=".ui.main.CreateGroupActivity"

@@ -60,6 +60,7 @@ public class RegisterFragment extends Fragment {
                 if (authenticationResponse != null) {
                     if (authenticationResponse.isSucces()) {
                         startActivity(new Intent(requireActivity(), MainActivity.class));
+                        requireActivity().finish();
                     } else {
                         updateUIForFailure(authenticationResponse.getMessage());
                     }
