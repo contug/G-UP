@@ -1,5 +1,6 @@
 package it.unimib.gup.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -37,9 +38,19 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.home_fragment_menu, menu);
         // Non sono sicuro se il super serva oppure no, ginelli l'ha tolto
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.home_fragment_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Listener for the items in the custom menu
+        if (item.getItemId() == R.id.add_group) {
+            Intent intent = new Intent(requireActivity(), CreateGroupActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

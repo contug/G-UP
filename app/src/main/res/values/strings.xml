@@ -52,4 +52,5 @@
     <string name="or_you_can_also">Or you can also</string>
     <string name="authentication_failure">An error occurred</string>
     <string name="invalid_auth_input">Insert Email and Password</string>
+    <string name="logout">Logout</string>
 </resources>

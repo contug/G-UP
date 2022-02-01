@@ -28,4 +28,8 @@ public class SharedPreferencesProvider {
         editor.putString(Constants.USER_ID, userId);
         editor.apply();
     }
+
+    public void deleteAll() {
+        sharedPreferences.edit().clear().apply();
+    }
 }

@@ -23,6 +23,8 @@ public class CreateGroupActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_create_group);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        // Check actionBar != null
+        assert actionBar != null;
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
