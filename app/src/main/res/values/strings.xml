@@ -41,8 +41,7 @@
 
     <string name="group_description">Group description</string>
     <string name="describe_group">Describe your group</string>
-
-    <string name="email_adress">Email adress</string>
+    <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="group_up">Group Up</string>
@@ -51,4 +50,5 @@
     <string name="surname">Surname</string>
     <string name="sign_up">Sign Up</string>
     <string name="or_you_can_also">Or you can also</string>
+    <string name="registration_failure">An error occurred</string>
 </resources>

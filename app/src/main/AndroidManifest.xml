@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GUP">
+
         <activity
-            android:name=".ui.authentication.AuthenticationActivity"
+            android:name=".ui.LaunchScreenActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,18 +22,19 @@
 
         </activity>
 
+        <activity
+            android:name=".ui.authentication.AuthenticationActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".ui.main.CreateGroupActivity"
             android:exported="false"
             android:theme="@style/Theme.CreateGroupActivity" />
 
-
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false">
+            android:exported="false"/>
 
-        </activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package it.unimib.gup.ui.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 
@@ -16,6 +17,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.LoginAdapter;
 
+/**
+ * Activity to manage the login and registration of a user.
+ */
 public class AuthenticationActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
@@ -59,9 +63,11 @@ public class AuthenticationActivity extends AppCompatActivity {
         fb.setAlpha(opacityValue);
         twitter.setAlpha(opacityValue);
 
+
         fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(200).start();
         google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(300).start();
         twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+
 
 
     }
