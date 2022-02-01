@@ -41,7 +41,39 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public MutableLiveData<AuthenticationResponse> signInWithEmail(String email, String password) {
-        return null;
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+        if (email != null && !email.isEmpty() && password != null && !password.isEmpty())  {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(ContextCompat.getMainExecutor(mApplication), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "signInWithEmail: success");
+                                authenticationResponse.setSucces(true);
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
+                                    mSharedPreferencesProvider.setUserId(user.getUid());
+                                }
+                            } else {
+                                Log.d(TAG, "signInWithEmail: failure", task.getException());
+                                authenticationResponse.setSucces(false);
+                                if (task.getException() != null) {
+                                    authenticationResponse.setMessage(task.getException().getLocalizedMessage());
+                                } else {
+                                    authenticationResponse.setMessage(mApplication.getString(R.string.authentication_failure));
+                                }
+                            }
+                            mAuthenticationResponseLiveData.postValue(authenticationResponse);
+                        }
+                    });
+        } else {
+            Log.d(TAG, "signInWithEmail: no input");
+            authenticationResponse.setSucces(false);
+            authenticationResponse.setMessage(mApplication.getString(R.string.invalid_auth_input));
+            mAuthenticationResponseLiveData.postValue(authenticationResponse);
+        }
+        return mAuthenticationResponseLiveData;
     }
 
     @Override
@@ -51,15 +83,14 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public MutableLiveData<AuthenticationResponse> createUserWithEmail(String name, String surname, String email, String password) {
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
         if (email != null && !email.isEmpty() && password != null && !password.isEmpty()) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(ContextCompat.getMainExecutor(mApplication), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            AuthenticationResponse authenticationResponse;
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "createUserWithEmail: success");
-                                authenticationResponse = new AuthenticationResponse();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 authenticationResponse.setSucces(true);
                                 if (user != null) {
@@ -68,17 +99,21 @@ public class UserRepository implements IUserRepository {
                                 }
                             } else {
                                 Log.d(TAG, "createUserWithEmail: failure", task.getException());
-                                authenticationResponse = new AuthenticationResponse();
                                 authenticationResponse.setSucces(false);
                                 if (task.getException() != null) {
                                     authenticationResponse.setMessage(task.getException().getLocalizedMessage());
                                 } else {
-                                    authenticationResponse.setMessage(mApplication.getString(R.string.registration_failure));
+                                    authenticationResponse.setMessage(mApplication.getString(R.string.authentication_failure));
                                 }
                             }
                             mAuthenticationResponseLiveData.postValue(authenticationResponse);
                         }
                     });
+        } else {
+            Log.d(TAG, "createUserWithEmail: no input");
+            authenticationResponse.setSucces(false);
+            authenticationResponse.setMessage(mApplication.getString(R.string.invalid_auth_input));
+            mAuthenticationResponseLiveData.postValue(authenticationResponse);
         }
 
         return mAuthenticationResponseLiveData;

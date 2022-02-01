@@ -68,8 +68,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(300).start();
         twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
 
-
-
     }
 
 

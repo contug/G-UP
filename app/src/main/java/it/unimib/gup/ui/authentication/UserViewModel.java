@@ -24,7 +24,7 @@ public class UserViewModel extends AndroidViewModel {
         this.mUserRepository = new UserRepository(application);
     }
 
-    public MutableLiveData<AuthenticationResponse> signInWithEmail(String name, String surname, String email, String password) {
+    public MutableLiveData<AuthenticationResponse> signInWithEmail(String email, String password) {
         mAuthenticationResponseLiveData = mUserRepository.signInWithEmail(email, password);
         return mAuthenticationResponseLiveData;
     }

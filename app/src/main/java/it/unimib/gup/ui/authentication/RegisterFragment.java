@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import it.unimib.gup.R;
@@ -44,14 +44,14 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_register, container, false);
+        View root = inflater.inflate(R.layout.fragment_register, container, false);
 
-        final EditText editTextName = view.findViewById(R.id.name);
-        final EditText editTextSurname = view.findViewById(R.id.surname);
-        final EditText editTextEmail = view.findViewById(R.id.email_reg);
-        final EditText editTextPassword = view.findViewById(R.id.password_reg);
+        final EditText editTextName = root.findViewById(R.id.name);
+        final EditText editTextSurname = root.findViewById(R.id.surname);
+        final EditText editTextEmail = root.findViewById(R.id.email_reg);
+        final EditText editTextPassword = root.findViewById(R.id.password_reg);
 
-        final Button buttonRegister = view.findViewById(R.id.button_sign_up);
+        final Button buttonRegister = root.findViewById(R.id.button_sign_up);
 
         // The Observer associated with the LiveData AuthenticationResponse
         final Observer<AuthenticationResponse> observer = new Observer<AuthenticationResponse>() {
@@ -79,7 +79,7 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        return view;
+        return root;
     }
 
     /**
@@ -87,7 +87,28 @@ public class RegisterFragment extends Fragment {
      * @param message The warning message to be shown in the Snackbar.
      */
     private void updateUIForFailure(String message) {
-        Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+        final FloatingActionButton buttonGoogle = requireActivity().findViewById(R.id.fab_google);
+        final FloatingActionButton buttonFacebook = requireActivity().findViewById(R.id.fab_facebook);
+        final FloatingActionButton buttonTwitter = requireActivity().findViewById(R.id.fab_twitter);
+
+        final Snackbar snack = Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT);
+
+        snack.addCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                buttonFacebook.setVisibility(View.VISIBLE);
+                buttonGoogle.setVisibility(View.VISIBLE);
+                buttonTwitter.setVisibility((View.VISIBLE));
+            }
+            @Override
+            public void onShown(Snackbar snackbar) {
+                buttonFacebook.setVisibility(View.INVISIBLE);
+                buttonGoogle.setVisibility(View.INVISIBLE);
+                buttonTwitter.setVisibility((View.INVISIBLE));
+            }
+        });
+
+        snack.show();
         mUserViewModel.clear();
     }
 }

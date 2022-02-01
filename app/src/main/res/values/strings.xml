@@ -50,5 +50,6 @@
     <string name="surname">Surname</string>
     <string name="sign_up">Sign Up</string>
     <string name="or_you_can_also">Or you can also</string>
-    <string name="registration_failure">An error occurred</string>
+    <string name="authentication_failure">An error occurred</string>
+    <string name="invalid_auth_input">Insert Email and Password</string>
 </resources>
