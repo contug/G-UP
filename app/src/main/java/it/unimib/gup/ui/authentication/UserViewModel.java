@@ -2,6 +2,7 @@ package it.unimib.gup.ui.authentication;
 
 import android.app.Application;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -24,6 +25,8 @@ public class UserViewModel extends AndroidViewModel {
         this.mUserRepository = new UserRepository(application);
     }
 
+    // The association between mAuthLiveData from the Repository and the mAuthLivedData in UserViewModel occurs only ONCE
+    // in AuthenticationActivity. So no need to see if it's null in this case
     public MutableLiveData<AuthenticationResponse> signInWithEmail(String email, String password) {
         mAuthenticationResponseLiveData = mUserRepository.signInWithEmail(email, password);
         return mAuthenticationResponseLiveData;
@@ -40,7 +43,9 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public void clear() {
-        mAuthenticationResponseLiveData.postValue(null);
+        if (mAuthenticationResponseLiveData != null) {
+            mAuthenticationResponseLiveData.postValue(null);
+        }
     }
 
 

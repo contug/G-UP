@@ -76,7 +76,11 @@ public class RegisterFragment extends Fragment {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                mUserViewModel.signUpWithEmail(name, surname, email, password).observe(getViewLifecycleOwner(), observer);
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    mUserViewModel.signUpWithEmail(name, surname, email, password).observe(getViewLifecycleOwner(), observer);
+                } else {
+                    updateUIForFailure(requireActivity().getApplication().getString(R.string.invalid_auth_input));
+                }
             }
         });
 
