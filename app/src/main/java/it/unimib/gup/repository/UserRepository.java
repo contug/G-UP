@@ -8,11 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.AuthenticationResponse;
@@ -42,7 +47,6 @@ public class UserRepository implements IUserRepository {
     @Override
     public MutableLiveData<AuthenticationResponse> signInWithEmail(String email, String password) {
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-        if (email != null && !email.isEmpty() && password != null && !password.isEmpty())  {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(ContextCompat.getMainExecutor(mApplication), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -67,24 +71,55 @@ public class UserRepository implements IUserRepository {
                             mAuthenticationResponseLiveData.postValue(authenticationResponse);
                         }
                     });
-        } else {
-            Log.d(TAG, "signInWithEmail: no input");
-            authenticationResponse.setSucces(false);
-            authenticationResponse.setMessage(mApplication.getString(R.string.invalid_auth_input));
-            mAuthenticationResponseLiveData.postValue(authenticationResponse);
-        }
         return mAuthenticationResponseLiveData;
     }
 
     @Override
     public MutableLiveData<AuthenticationResponse> createUserWithGoogle(Intent data) {
-        return null;
+        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+        try {
+            // Google Sign In was successful, authenticate with Firebase
+            GoogleSignInAccount account = task.getResult(ApiException.class);
+            Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
+
+            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+            mAuth.signInWithCredential(credential)
+                    .addOnCompleteListener(ContextCompat.getMainExecutor(mApplication), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+                            if (task.isSuccessful()) {
+                                //Sign in success, updateUI with the signed-in user's information
+                                Log.d(TAG, "signInWithCredential: success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                authenticationResponse.setSucces(true);
+                                if (user != null) {
+                                    mSharedPreferencesProvider.
+                                            setAuthenticationToken(user.getIdToken(false).getResult().getToken());
+                                    mSharedPreferencesProvider.setUserId(user.getUid());
+                                }
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                authenticationResponse.setSucces(false);
+                                if (task.getException() != null) {
+                                    authenticationResponse.setMessage(task.getException().getLocalizedMessage());
+                                } else {
+                                    authenticationResponse.setMessage(mApplication.getString(R.string.authentication_failure));
+                                }
+                            }
+                            mAuthenticationResponseLiveData.postValue(authenticationResponse);
+                        }
+                    });
+        } catch (ApiException e) {
+            // Google Sign In failed, update UI appropriately
+            Log.w(TAG, "Google sign in failed", e);
+        }
+        return mAuthenticationResponseLiveData;
     }
 
     @Override
     public MutableLiveData<AuthenticationResponse> createUserWithEmail(String name, String surname, String email, String password) {
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-        if (email != null && !email.isEmpty() && password != null && !password.isEmpty()) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(ContextCompat.getMainExecutor(mApplication), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -109,13 +144,6 @@ public class UserRepository implements IUserRepository {
                             mAuthenticationResponseLiveData.postValue(authenticationResponse);
                         }
                     });
-        } else {
-            Log.d(TAG, "createUserWithEmail: no input");
-            authenticationResponse.setSucces(false);
-            authenticationResponse.setMessage(mApplication.getString(R.string.invalid_auth_input));
-            mAuthenticationResponseLiveData.postValue(authenticationResponse);
-        }
-
         return mAuthenticationResponseLiveData;
     }
 }
