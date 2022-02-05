@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import it.unimib.gup.R;
 import it.unimib.gup.ui.authentication.AuthenticationActivity;
+import it.unimib.gup.ui.settings.SettingsActivity;
 import it.unimib.gup.utils.SharedPreferencesProvider;
 
 public class AccountFragment extends Fragment {
@@ -65,6 +66,8 @@ public class AccountFragment extends Fragment {
             sharedPreferencesProvider.deleteAll();
             startActivity(new Intent(requireActivity(), AuthenticationActivity.class));
             requireActivity().finish();
+        } else if (item.getItemId() == R.id.settings) {
+            startActivity(new Intent(requireActivity(), SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
