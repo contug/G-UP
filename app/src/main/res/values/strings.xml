@@ -55,6 +55,6 @@
     <string name="logout">Logout</string>
     <string name="settings">Settings</string>
 
-    <string name="fos_selection_title">Welcome, Jack!</string>
+    <string name="fos_selection_title">Setting up</string>
     <string name="fos_selection_subtitle">Select one or more disciplines</string>
 </resources>

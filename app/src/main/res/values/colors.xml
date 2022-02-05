@@ -14,6 +14,17 @@
 
     <color name="gup_color">#29ABE2</color>
 
+    <color name="slate_50">#f8fafc</color>
+    <color name="slate_100">#f1f5f9</color>
+    <color name="slate_200">#e2e8f0</color>
+    <color name="slate_300">#cbd5e1</color>
+    <color name="slate_400">#94a3b8</color>
+    <color name="slate_500">#64748b</color>
+    <color name="slate_600">#475569</color>
+    <color name="slate_700">#334155</color>
+    <color name="slate_800">#334155</color>
+    <color name="slate_900">#0f172a</color>
+
     <color name="fos_computer_science">#22c55e</color>
     <color name="fos_biology">#eab308</color>
     <color name="fos_literature">#06b6d4</color>
