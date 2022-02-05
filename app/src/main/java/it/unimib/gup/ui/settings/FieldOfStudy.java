@@ -6,11 +6,38 @@ import android.os.Parcelable;
 public class FieldOfStudy implements Parcelable {
     private String name;
     private String color;
+    private Boolean isSelected;
+
+    public FieldOfStudy(String name, String color, Boolean isSelected) {
+        this.name = name;
+        this.color = color;
+        this.isSelected = isSelected;
+    }
 
     public FieldOfStudy(String name, String color) {
         this.name = name;
         this.color = color;
+        this.isSelected = false;
     }
+
+    protected FieldOfStudy(Parcel in) {
+        name = in.readString();
+        color = in.readString();
+        byte tmpIsSelected = in.readByte();
+        isSelected = tmpIsSelected == 0 ? null : tmpIsSelected == 1;
+    }
+
+    public static final Creator<FieldOfStudy> CREATOR = new Creator<FieldOfStudy>() {
+        @Override
+        public FieldOfStudy createFromParcel(Parcel in) {
+            return new FieldOfStudy(in);
+        }
+
+        @Override
+        public FieldOfStudy[] newArray(int size) {
+            return new FieldOfStudy[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -18,6 +45,10 @@ public class FieldOfStudy implements Parcelable {
 
     public String getColor() {
         return color;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
     }
 
     public void setName(String name) {
@@ -28,14 +59,9 @@ public class FieldOfStudy implements Parcelable {
         this.color = color;
     }
 
-    @Override
-    public String toString() {
-        return "FieldOfStudy{" +
-                "name='" + name + '\'' +
-                ", color=" + color +
-                '}';
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
     }
-
 
     @Override
     public int describeContents() {
@@ -44,24 +70,9 @@ public class FieldOfStudy implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeString(this.color);
+        dest.writeString(name);
+        dest.writeString(color);
+        dest.writeByte((byte) (isSelected == null ? 0 : isSelected ? 1 : 2));
     }
-
-    protected FieldOfStudy(Parcel in) {
-        this.name = in.readString();
-        this.color = in.readString();
-    }
-
-    public static final Creator<FieldOfStudy> CREATOR = new Creator<FieldOfStudy>() {
-        @Override
-        public FieldOfStudy createFromParcel(Parcel source) {
-            return new FieldOfStudy(source);
-        }
-
-        @Override
-        public FieldOfStudy[] newArray(int size) {
-            return new FieldOfStudy[size];
-        }
-    };
 }
+
