@@ -22,13 +22,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        fieldOfStudies = new FieldOfStudy[4];
+        fieldOfStudies = new FieldOfStudy[6];
 
-        fieldOfStudies[0] = new FieldOfStudy("Biology", "#666666");
-        fieldOfStudies[1] = new FieldOfStudy("Filosophy", "#333333");
-        fieldOfStudies[2] = new FieldOfStudy("Computer Science", "#666666");
-        fieldOfStudies[3] = new FieldOfStudy("Other", "#333333");
-
+        fieldOfStudies[0] = new FieldOfStudy("Biology", "#22c55e");
+        fieldOfStudies[1] = new FieldOfStudy("Filosophy", "#eab308");
+        fieldOfStudies[2] = new FieldOfStudy("Computer Science", "#06b6d4");
+        fieldOfStudies[3] = new FieldOfStudy("Literature", "#3b82f6");
+        fieldOfStudies[4] = new FieldOfStudy("Physics", "#f97316");
+        fieldOfStudies[5] = new FieldOfStudy("Other", "#64748b");
 
         GridView mFieldOfStudyGridView = findViewById(R.id.fos_selection_grid);
 
