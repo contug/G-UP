@@ -43,15 +43,18 @@ public class SettingsFieldOfStudyAdapter extends ArrayAdapter<FieldOfStudy>{
         Context context = getContext();
 
         String name = mFieldOfStudy[position].getName();
-
-        ((TextView) convertView.findViewById(R.id.setting_field_of_study_name))
-                .setText(name);
+        TextView mLabel = (TextView) convertView.findViewById(R.id.setting_field_of_study_name);
+        mLabel.setText(name);
 
 
         String color = mFieldOfStudy[position].getColor();
+        CardView mListItem = (CardView)convertView.findViewById(R.id.setting_field_of_study_option);
+        mListItem.setCardBackgroundColor(Color.parseColor(color));
 
-        ((CardView)convertView.findViewById(R.id.setting_field_of_study_option))
-                .setBackgroundColor(Color.parseColor(color));
+
+        mListItem.setOnClickListener(v -> {
+            Log.d(TAG, "Clicked " + name);
+        });
 
 
         return convertView;

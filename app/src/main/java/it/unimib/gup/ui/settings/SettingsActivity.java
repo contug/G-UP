@@ -24,12 +24,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         fieldOfStudies = new FieldOfStudy[6];
 
-        fieldOfStudies[0] = new FieldOfStudy("Biology", "#22c55e");
-        fieldOfStudies[1] = new FieldOfStudy("Filosophy", "#eab308");
-        fieldOfStudies[2] = new FieldOfStudy("Computer Science", "#06b6d4");
-        fieldOfStudies[3] = new FieldOfStudy("Literature", "#3b82f6");
-        fieldOfStudies[4] = new FieldOfStudy("Physics", "#f97316");
-        fieldOfStudies[5] = new FieldOfStudy("Other", "#64748b");
+        fieldOfStudies[0] = new FieldOfStudy("Biology", "#00CFB9");
+        fieldOfStudies[1] = new FieldOfStudy("Filosophy", "#FE4C6A");
+        fieldOfStudies[2] = new FieldOfStudy("Computer Science", "#FECB70");
+        fieldOfStudies[3] = new FieldOfStudy("Literature", "#433CA2");
+        fieldOfStudies[4] = new FieldOfStudy("Physics", "#20569A");
+        fieldOfStudies[5] = new FieldOfStudy("Other", "#58CCEE");
 
         GridView mFieldOfStudyGridView = findViewById(R.id.fos_selection_grid);
 
