@@ -10,8 +10,8 @@
         android:id="@+id/text_view_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/group_up"
-        android:textColor="@color/indigo"
+        android:text="@string/login_text_view"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,12 +20,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/login_sub_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_signin" />
+
     <EditText
         android:id="@+id/email_log"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_shape"
-        android:hint="@string/email_address"
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="20dp"

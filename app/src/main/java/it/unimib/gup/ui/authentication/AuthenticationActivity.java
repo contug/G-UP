@@ -27,7 +27,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     FloatingActionButton google, fb, twitter;
     float opacityValue = 0;
 
-    private String[] tabs = {"Sign In", "Sign Up"};
+    private String[] tabs = {"Login", "Create account"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
