@@ -3,39 +3,39 @@ package it.unimib.gup.ui.settings;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FieldOfStudy implements Parcelable {
+public class CategoryItems implements Parcelable {
     private String name;
     private String color;
     private Boolean isSelected;
 
-    public FieldOfStudy(String name, String color, Boolean isSelected) {
+    public CategoryItems(String name, String color, Boolean isSelected) {
         this.name = name;
         this.color = color;
         this.isSelected = isSelected;
     }
 
-    public FieldOfStudy(String name, String color) {
+    public CategoryItems(String name, String color) {
         this.name = name;
         this.color = color;
         this.isSelected = false;
     }
 
-    protected FieldOfStudy(Parcel in) {
+    protected CategoryItems(Parcel in) {
         name = in.readString();
         color = in.readString();
         byte tmpIsSelected = in.readByte();
         isSelected = tmpIsSelected == 0 ? null : tmpIsSelected == 1;
     }
 
-    public static final Creator<FieldOfStudy> CREATOR = new Creator<FieldOfStudy>() {
+    public static final Creator<CategoryItems> CREATOR = new Creator<CategoryItems>() {
         @Override
-        public FieldOfStudy createFromParcel(Parcel in) {
-            return new FieldOfStudy(in);
+        public CategoryItems createFromParcel(Parcel in) {
+            return new CategoryItems(in);
         }
 
         @Override
-        public FieldOfStudy[] newArray(int size) {
-            return new FieldOfStudy[size];
+        public CategoryItems[] newArray(int size) {
+            return new CategoryItems[size];
         }
     };
 

@@ -28,6 +28,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/home_fragment_preview_details_shape_background"
         android:hint="@string/describe_group"
+        android:paddingStart="15dp"
         android:maxLength="100"
         android:maxLines="4"
         android:minHeight="52dp"

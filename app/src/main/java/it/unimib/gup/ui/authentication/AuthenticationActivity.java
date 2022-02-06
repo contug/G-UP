@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import it.unimib.gup.R;
-import it.unimib.gup.adapter.LoginAdapter;
+import it.unimib.gup.adapter.AuthenticationAdapter;
 
 /**
  * Activity to manage the login and registration of a user.
@@ -45,8 +45,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        LoginAdapter loginAdapter = new LoginAdapter(this, 2);
-        viewPager.setAdapter(loginAdapter);
+        AuthenticationAdapter authenticationAdapter = new AuthenticationAdapter(this, 2);
+        viewPager.setAdapter(authenticationAdapter);
 
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

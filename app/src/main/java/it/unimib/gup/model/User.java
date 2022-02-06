@@ -6,30 +6,49 @@ public class User {
 
     private String name;
     private String surname;
-    private String uId;
+    private String userId;
     private String email;
-    private List<Category> preferences;
+    private List<String> groupsAdminId;
+    private List<String> groupsPartOfId;
+    private List<String> userPreferences;
 
     public User() {
+        // For JSON mapping
     }
 
-    public List<Category> getPreferences() {
-        return preferences;
-    }
-
-    public void setPreferences(List<Category> preferences) {
-        this.preferences = preferences;
-    }
-
-    public User(String name, String uId) {
+    public User(String name, String userId) {
         this.name = name;
     }
 
-    public User(String name, String surname, String uId, String email) {
+    public User(String name, String surname, String userId, String email) {
         this.name = name;
         this.surname = surname;
-        this.uId = uId;
+        this.userId = userId;
         this.email = email;
+    }
+
+    public List<String> getUserPreferences() {
+        return userPreferences;
+    }
+
+    public void setUserPreferences(List<String> userPreferences) {
+        this.userPreferences = userPreferences;
+    }
+
+    public List<String> getGroupsAdminId() {
+        return groupsAdminId;
+    }
+
+    public void setGroupsAdminId(List<String> groupsAdminId) {
+        this.groupsAdminId = groupsAdminId;
+    }
+
+    public List<String> getGroupsPartOfId() {
+        return groupsPartOfId;
+    }
+
+    public void setGroupsPartOfId(List<String> groupsPartOfId) {
+        this.groupsPartOfId = groupsPartOfId;
     }
 
     public String getSurname() {
@@ -44,8 +63,8 @@ public class User {
         return name;
     }
 
-    public String getuId() {
-        return uId;
+    public String getUserId() {
+        return userId;
     }
 
     public String getEmail() {
@@ -56,8 +75,8 @@ public class User {
         this.name = name;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setEmail(String email) {
@@ -69,8 +88,9 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", uId='" + uId + '\'' +
+                ", userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
+                ", userPreferences=" + userPreferences +
                 '}';
     }
 }

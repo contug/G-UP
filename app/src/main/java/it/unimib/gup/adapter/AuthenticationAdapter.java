@@ -10,11 +10,11 @@ import it.unimib.gup.R;
 import it.unimib.gup.ui.authentication.LoginFragment;
 import it.unimib.gup.ui.authentication.RegisterFragment;
 
-public class LoginAdapter extends FragmentStateAdapter {
+public class AuthenticationAdapter extends FragmentStateAdapter {
 
     int totalTabs;
 
-    public LoginAdapter(@NonNull FragmentActivity fragmentActivity, int totalTabs) {
+    public AuthenticationAdapter(@NonNull FragmentActivity fragmentActivity, int totalTabs) {
         super(fragmentActivity);
         this.totalTabs = totalTabs;
     }

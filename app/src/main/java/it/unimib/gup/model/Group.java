@@ -5,18 +5,29 @@ import java.util.List;
 
 public class Group {
 
+    private String groupId;
     private String name;
-    private Category category;
     private String subCategory;
-    private ArrayList<User> groupMembers;
-    private ArrayList<Event> events;
+    private List<String> groupMembersId;
+    private List<Event> events;
 
-    public Group(String name, Category category, String subCategory, ArrayList<User> groupMembers, ArrayList<Event> events) {
+    public Group() {
+        // For JSON mapping
+    }
+
+    public Group(String name, String subCategory, List<String> groupMembersId, ArrayList<Event> events) {
         this.name = name;
-        this.category = category;
         this.subCategory = subCategory;
-        this.groupMembers = groupMembers;
+        this.groupMembersId = groupMembersId;
         this.events = events;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getName() {
@@ -27,14 +38,6 @@ public class Group {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public String getSubCategory() {
         return subCategory;
     }
@@ -43,19 +46,21 @@ public class Group {
         this.subCategory = subCategory;
     }
 
-    public ArrayList<User> getGroupMembers() {
-        return groupMembers;
+    public List<String> getGroupMembersId() {
+        return groupMembersId;
     }
 
-    public void setGroupMembers(ArrayList<User> groupMembers) {
-        this.groupMembers = groupMembers;
+    public void setGroupMembersId(List<String> groupMembersId) {
+        this.groupMembersId = groupMembersId;
     }
 
-    public ArrayList<Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(ArrayList<Event> events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+
 }

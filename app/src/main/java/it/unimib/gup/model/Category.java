@@ -8,6 +8,10 @@ public class Category {
     private List<Group> groups;
     private int numGroups;
 
+    public Category() {
+        // For JSON mapping
+    }
+
     public Category(String name, List<Group> groups) {
         this.name = name;
         this.groups = groups;

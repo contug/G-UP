@@ -10,12 +10,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/setting_field_of_study_option"
+        android:id="@+id/setting_category_option"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_columnWeight="1"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:cardCornerRadius="4dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
@@ -23,7 +24,7 @@
         >
 
         <TextView
-            android:id="@+id/setting_field_of_study_name"
+            android:id="@+id/setting_category_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
