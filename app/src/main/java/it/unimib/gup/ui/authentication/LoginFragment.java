@@ -83,24 +83,24 @@ public class LoginFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
 
         float opacityValue = 0;
-        final TextView textViewGroupUp = root.findViewById(R.id.text_view_signin);
+        //final TextView textViewGroupUp = root.findViewById(R.id.text_view_signin);
         final EditText editTextEmail = root.findViewById(R.id.email_log);
         final EditText editTextPassword = root.findViewById(R.id.password_log);
         final Button buttonLogin = root.findViewById(R.id.button_login);
 
         final FloatingActionButton buttonGoogle = requireActivity().findViewById(R.id.fab_google);
 
-        textViewGroupUp.setTranslationX(800);
+        //textViewGroupUp.setTranslationX(800);
         editTextEmail.setTranslationX(800);
         editTextPassword.setTranslationX(800);
         buttonLogin.setTranslationX(800);
 
-        textViewGroupUp.setAlpha(opacityValue);
+        //textViewGroupUp.setAlpha(opacityValue);
         editTextEmail.setAlpha(opacityValue);
         editTextPassword.setAlpha(opacityValue);
         buttonLogin.setAlpha(opacityValue);
 
-        textViewGroupUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+        //textViewGroupUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(100).start();
         editTextEmail.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(200).start();
         editTextPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(300).start();
         buttonLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();

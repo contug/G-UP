@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/textView"
@@ -27,9 +27,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/signup_sub_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_on_board" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_on_board"
+        app:layout_constraintVertical_bias="0"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_undraw_create_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="1" />
 
     <EditText
         android:id="@+id/name"
@@ -38,26 +54,26 @@
         android:background="@drawable/edit_text_shape"
         android:hint="@string/name"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:minHeight="40dp"
         android:paddingStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.08"
         app:layout_constraintWidth_percent="0.8" />
 
     <EditText
         android:id="@+id/surname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_shape"
         android:paddingStart="20dp"
         android:hint="@string/surname"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:minHeight="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,12 +86,12 @@
         android:id="@+id/email_reg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_shape"
         android:paddingStart="20dp"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+        android:minHeight="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,12 +104,12 @@
         android:id="@+id/password_reg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_shape"
         android:paddingStart="20dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:minHeight="48dp"
+        android:minHeight="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -109,12 +125,13 @@
         android:text="@string/sign_up"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_reg"
         app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

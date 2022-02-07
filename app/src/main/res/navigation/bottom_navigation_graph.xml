@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/browse"
         android:name="it.unimib.gup.ui.main.BrowseFragment"
-        android:label=""
+        android:label="Browse"
         tools:layout="@layout/fragment_browse" />
 </navigation>

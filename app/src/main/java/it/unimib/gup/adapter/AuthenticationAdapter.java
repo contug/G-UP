@@ -12,7 +12,7 @@ import it.unimib.gup.ui.authentication.RegisterFragment;
 
 public class AuthenticationAdapter extends FragmentStateAdapter {
 
-    int totalTabs;
+    private int totalTabs;
 
     public AuthenticationAdapter(@NonNull FragmentActivity fragmentActivity, int totalTabs) {
         super(fragmentActivity);

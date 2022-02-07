@@ -15,6 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -38,10 +40,11 @@
         android:elevation="35dp"
         android:src="@drawable/googleg_standard_color_18"
         app:backgroundTint="@color/white"
+        app:fabCustomSize="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="30dp"
+        app:maxImageSize="25dp"
         app:tint="@null"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -54,6 +57,7 @@
         android:elevation="35dp"
         android:src="@drawable/ic_icons8_facebook"
         app:backgroundTint="@color/white"
+        app:fabCustomSize="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fab_google"
         app:layout_constraintHorizontal_bias="1"
@@ -71,6 +75,7 @@
         android:elevation="35dp"
         android:src="@drawable/ic_icons8_twitter_circled"
         app:backgroundTint="@color/white"
+        app:fabCustomSize="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
