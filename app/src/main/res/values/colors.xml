@@ -27,11 +27,11 @@
 
     <color name="gup_primary">#3b82f6</color>
 
-    <color name="fos_computer_science">#22c55e</color>
-    <color name="fos_biology">#eab308</color>
-    <color name="fos_literature">#06b6d4</color>
-    <color name="fos_physics">#3b82f6</color>
-    <color name="fos_psychology">#f97316</color>
+    <color name="fos_natural_sciences_color">#22c55e</color>
+    <color name="fos_humanities_color">#eab308</color>
+    <color name="fos_formal_sciences_color">#06b6d4</color>
+    <color name="fos_social_sciences_color">#3b82f6</color>
+    <color name="fos_professions_color">#f97316</color>
     <color name="fos_others">#64748b</color>
 
 </resources>

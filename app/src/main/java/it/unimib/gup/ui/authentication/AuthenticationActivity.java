@@ -45,15 +45,18 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        // The adapter displays the 2 fragments
         AuthenticationAdapter authenticationAdapter = new AuthenticationAdapter(this, 2);
         viewPager.setAdapter(authenticationAdapter);
 
+        // Links the TabLayout with the ViePager
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 tab.setText(tabs[position]);
             }
         }).attach();
+
 
         google.setTranslationY(300);
         fb.setTranslationY(300);
