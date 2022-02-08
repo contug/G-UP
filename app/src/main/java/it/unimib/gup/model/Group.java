@@ -1,33 +1,39 @@
 package it.unimib.gup.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
 
-    private String groupId;
+    private String id;
     private String name;
-    private String subCategory;
-    private List<String> groupMembersId;
-    private List<Event> events;
+    private String description;
+    private Category category;
+    private List<String> members;
+    private List<Meeting> meetings;
+    private List<Note> notes;
+    private String color;
 
     public Group() {
         // For JSON mapping
     }
 
-    public Group(String name, String subCategory, List<String> groupMembersId, ArrayList<Event> events) {
+    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Note> notes, String color) {
+        this.id = id;
         this.name = name;
-        this.subCategory = subCategory;
-        this.groupMembersId = groupMembersId;
-        this.events = events;
+        this.description = description;
+        this.category = category;
+        this.members = members;
+        this.meetings = meetings;
+        this.notes = notes;
+        this.color = color;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getId() {
+        return id;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,29 +44,51 @@ public class Group {
         this.name = name;
     }
 
-    public String getSubCategory() {
-        return subCategory;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public List<String> getGroupMembersId() {
-        return groupMembersId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setGroupMembersId(List<String> groupMembersId) {
-        this.groupMembersId = groupMembersId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<String> getMembers() {
+        return members;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setMembers(List<String> members) {
+        this.members = members;
     }
 
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
 
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings = meetings;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

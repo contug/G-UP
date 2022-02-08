@@ -4,93 +4,61 @@ import java.util.List;
 
 public class User {
 
-    private String name;
-    private String surname;
-    private String userId;
+    private String id;
+    private String firstName;
+    private String lastName;
     private String email;
-    private List<String> groupsAdminId;
-    private List<String> groupsPartOfId;
-    private List<String> userPreferences;
+    private List<String> groupSubscriptions;
 
     public User() {
         // For JSON mapping
     }
 
-    public User(String name, String userId) {
-        this.name = name;
-    }
-
-    public User(String name, String surname, String userId, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.userId = userId;
+    public User(String id, String firstName, String lastName, String email, List<String> groupSubscriptions) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
+        this.groupSubscriptions = groupSubscriptions;
     }
 
-    public List<String> getUserPreferences() {
-        return userPreferences;
+    public String getId() {
+        return id;
     }
 
-    public void setUserPreferences(List<String> userPreferences) {
-        this.userPreferences = userPreferences;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public List<String> getGroupsAdminId() {
-        return groupsAdminId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setGroupsAdminId(List<String> groupsAdminId) {
-        this.groupsAdminId = groupsAdminId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public List<String> getGroupsPartOfId() {
-        return groupsPartOfId;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setGroupsPartOfId(List<String> groupsPartOfId) {
-        this.groupsPartOfId = groupsPartOfId;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUserId() {
-        return userId;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", userId='" + userId + '\'' +
-                ", email='" + email + '\'' +
-                ", userPreferences=" + userPreferences +
-                '}';
+    public List<String> getGroupSubscriptions() {
+        return groupSubscriptions;
+    }
+
+    public void setGroupSubscriptions(List<String> groupSubscriptions) {
+        this.groupSubscriptions = groupSubscriptions;
     }
 }

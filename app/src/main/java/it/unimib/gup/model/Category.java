@@ -5,25 +5,15 @@ import java.util.List;
 public class Category {
 
     private String name;
-    private List<Group> groups;
-    private int numGroups;
+    private String color;
 
     public Category() {
         // For JSON mapping
     }
 
-    public Category(String name, List<Group> groups) {
+    public Category(String name, String color) {
         this.name = name;
-        this.groups = groups;
-        this.numGroups = 0;
-    }
-
-    public int getNumGroups() {
-        return numGroups;
-    }
-
-    public void setNumGroups(int numGroups) {
-        this.numGroups = numGroups;
+        this.color = color;
     }
 
     public String getName() {
@@ -34,11 +24,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public String getColor() {
+        return color;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setColor(String color) {
+        this.color = color;
     }
 }
