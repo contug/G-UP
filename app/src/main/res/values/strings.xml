@@ -32,14 +32,14 @@
         <item>@string/fos_others</item>
     </string-array>
 
-    <string name="fos_natural_sciences">Natural-science</string>
+    <string name="fos_natural_sciences">Natural Science</string>
     <string name="fos_humanities">Humanities</string>
-    <string name="fos_formal_sciences">Formal-sciences</string>
+    <string name="fos_formal_sciences">Formal Sciences</string>
     <string name="fos_professions">Professions</string>
-    <string name="fos_social_sciences">Social-sciences</string>
+    <string name="fos_social_sciences">Social Sciences</string>
     <string name="fos_others">Others</string>
 
-    <string name="group_description">Group description</string>
+    <string name="description">Description</string>
     <string name="describe_group">Describe your group</string>
     <string name="email_hint">E-mail</string>
     <string name="password">Password</string>
@@ -59,5 +59,7 @@
 
     <string name="fos_selection_title">Setting up</string>
     <string name="fos_selection_subtitle">Select one or more disciplines</string>
+    <string name="category">Category</string>
+    <string name="create">Create</string>
 
 </resources>

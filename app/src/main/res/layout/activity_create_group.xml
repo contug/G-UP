@@ -19,57 +19,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Spinner
-                android:id="@+id/privacy_spinner"
-                android:layout_width="364dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:entries="@array/privacy_array"
-                android:minHeight="52dp"
-                android:spinnerMode="dropdown"
-                app:layout_constraintBottom_toTopOf="@+id/view3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_privacy" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_group_description"
-                android:layout_width="364dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/home_fragment_preview_details_shape_background"
-                android:hint="@string/describe_group"
-                android:paddingStart="15dp"
-                android:maxLength="100"
-                android:maxLines="4"
-                android:minHeight="52dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_group_description" />
-
-            <TextView
-                android:id="@+id/textview_group_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/group_description"
-                android:textColor="@color/black"
-                android:textSize="21sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="24dp"
-                android:background="#B5B5B5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fos_spinner" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_create_group"
@@ -107,109 +56,90 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/toolbar_create_group" />
 
-            <TextView
-                android:id="@+id/textview_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:text="@string/name"
-                android:textColor="@color/black"
-                android:textSize="21sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_create_group" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:boxBackgroundColor="@color/white"
+            <ImageView
+                android:id="@+id/image_create_group"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/edittext_group_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_name">
+                app:layout_constraintTop_toBottomOf="@id/view"
+                app:srcCompat="@drawable/ic_undraw_conversation_re_c26v" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_group_name"
-                    android:layout_width="364dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/home_fragment_preview_details_shape_background"
-                    android:hint="@string/name_group"
-                    android:maxLength="30"
-                    android:minHeight="52dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="24dp"
-                android:background="#B5B5B5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-            <TextView
-                android:id="@+id/textview_privacy"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edittext_group_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/privacy"
-                android:textColor="@color/black"
-                android:textSize="21sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <View
-                android:id="@+id/view3"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="24dp"
-                android:background="#B5B5B5"
+                android:layout_marginTop="250dp"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/name"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/privacy_spinner" />
-
-            <TextView
-                android:id="@+id/textview_fieldofstudy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/field_of_study"
-                android:textColor="@color/black"
-                android:textSize="21sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:layout_constraintVertical_bias="0.05"
+                app:layout_constraintWidth_percent="0.8" />
 
             <Spinner
-                android:id="@+id/fos_spinner"
-                android:layout_width="364dp"
+                android:id="@+id/spinner_category"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="Category"
+                android:background="@drawable/edit_text_shape"
                 android:entries="@array/field_of_study_array"
-                android:minHeight="52dp"
+                android:minHeight="48dp"
+                android:prompt="@string/category"
                 android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="@+id/edittext_group_name"
+                app:layout_constraintStart_toStartOf="@+id/edittext_group_name"
+                app:layout_constraintTop_toBottomOf="@+id/edittext_group_name" />
+
+            <ImageView
+                android:id="@+id/spinner_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_category"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_category"
+                app:layout_constraintTop_toTopOf="@+id/spinner_category"
+                app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+            <EditText
+                android:id="@+id/edittext_group_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/description"
+                android:lines="6"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_fieldofstudy" />
+                app:layout_constraintTop_toBottomOf="@id/spinner_category"
+                app:layout_constraintVertical_bias="0.05"
+                app:layout_constraintWidth_percent="0.8" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="182dp"
-                android:minHeight="52dp"
-                android:text="@string/create_group"
+                android:layout_marginTop="20dp"
+                android:text="@string/create"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_group_description" />
+                app:layout_constraintTop_toBottomOf="@+id/edittext_group_description" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
