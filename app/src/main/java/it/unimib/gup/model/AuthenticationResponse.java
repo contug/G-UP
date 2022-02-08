@@ -6,23 +6,23 @@ package it.unimib.gup.model;
  */
 public class AuthenticationResponse {
 
-    private boolean succes;
+    private boolean success;
     private String message;
 
     public AuthenticationResponse() {
 
     }
 
-    public void setSucces(boolean succes) {
-        this.succes = succes;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public boolean isSucces() {
-        return succes;
+    public boolean isSuccess() {
+        return success;
     }
 
     public String getMessage() {
@@ -32,7 +32,7 @@ public class AuthenticationResponse {
     @Override
     public String toString() {
         return "AuthenticationResponse{" +
-                "succes=" + succes +
+                "success=" + success +
                 ", message='" + message + '\'' +
                 '}';
     }

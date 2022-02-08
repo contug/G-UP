@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -61,7 +60,7 @@ public class LoginFragment extends Fragment {
                         mUserViewModel.signUpWithGoogle(data).observe(getViewLifecycleOwner(), new Observer<AuthenticationResponse>() {
                             @Override
                             public void onChanged(AuthenticationResponse authenticationResponse) {
-                                if (authenticationResponse.isSucces()) {
+                                if (authenticationResponse.isSuccess()) {
                                     startActivity(new Intent(requireActivity(), MainActivity.class));
                                     requireActivity().finish();
                                 } else {
@@ -110,7 +109,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(AuthenticationResponse authenticationResponse) {
                 if (authenticationResponse != null) {
-                    if (authenticationResponse.isSucces()) {
+                    if (authenticationResponse.isSuccess()) {
                         startActivity(new Intent(requireActivity(), MainActivity.class));
                         requireActivity().finish();
                     } else {

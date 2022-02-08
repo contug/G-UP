@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import it.unimib.gup.model.AuthenticationResponse;
+import it.unimib.gup.model.User;
 import it.unimib.gup.repository.IUserRepository;
 import it.unimib.gup.repository.UserRepository;
 
@@ -18,6 +19,7 @@ import it.unimib.gup.repository.UserRepository;
 public class UserViewModel extends AndroidViewModel {
 
     private MutableLiveData<AuthenticationResponse> mAuthenticationResponseLiveData;
+    private MutableLiveData<Boolean> mSaveUserLiveData;
     private final IUserRepository mUserRepository;
 
     public UserViewModel(@NonNull Application application) {
@@ -40,6 +42,11 @@ public class UserViewModel extends AndroidViewModel {
     public MutableLiveData<AuthenticationResponse> signUpWithEmail(String name, String surname, String email, String password) {
         mAuthenticationResponseLiveData = mUserRepository.createUserWithEmail(name, surname, email, password);
         return mAuthenticationResponseLiveData;
+    }
+
+    public MutableLiveData<Boolean> saveUser(User user) {
+        mSaveUserLiveData = mUserRepository.saveUserOnFirebase(user);
+        return  mSaveUserLiveData;
     }
 
     public void clear() {

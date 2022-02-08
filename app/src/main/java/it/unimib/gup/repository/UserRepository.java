@@ -18,9 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.AuthenticationResponse;
+import it.unimib.gup.model.User;
+import it.unimib.gup.utils.Constants;
 import it.unimib.gup.utils.SharedPreferencesProvider;
 
 /**
@@ -31,17 +35,23 @@ public class UserRepository implements IUserRepository {
     private static final String TAG = "UserRepository";
 
     private final FirebaseAuth mAuth;
+    private final DatabaseReference mFirebaseDatabase;
+
 
     private final Application mApplication;
     SharedPreferencesProvider mSharedPreferencesProvider;
 
     private final MutableLiveData<AuthenticationResponse> mAuthenticationResponseLiveData;
+    private final MutableLiveData<Boolean> mSaveUserLiveData;
 
     public UserRepository(Application application) {
         mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
         mApplication = application;
         mAuthenticationResponseLiveData = new MutableLiveData<>();
+        mSaveUserLiveData = new MutableLiveData<>();
         mSharedPreferencesProvider = new SharedPreferencesProvider(application);
+
     }
 
     @Override
@@ -53,7 +63,7 @@ public class UserRepository implements IUserRepository {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "signInWithEmail: success");
-                                authenticationResponse.setSucces(true);
+                                authenticationResponse.setSuccess(true);
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
                                     mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
@@ -61,7 +71,7 @@ public class UserRepository implements IUserRepository {
                                 }
                             } else {
                                 Log.d(TAG, "signInWithEmail: failure", task.getException());
-                                authenticationResponse.setSucces(false);
+                                authenticationResponse.setSuccess(false);
                                 if (task.getException() != null) {
                                     authenticationResponse.setMessage(task.getException().getLocalizedMessage());
                                 } else {
@@ -92,7 +102,7 @@ public class UserRepository implements IUserRepository {
                                 //Sign in success, updateUI with the signed-in user's information
                                 Log.d(TAG, "signInWithCredential: success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                authenticationResponse.setSucces(true);
+                                authenticationResponse.setSuccess(true);
                                 if (user != null) {
                                     mSharedPreferencesProvider.
                                             setAuthenticationToken(user.getIdToken(false).getResult().getToken());
@@ -100,7 +110,7 @@ public class UserRepository implements IUserRepository {
                                 }
                             } else {
                                 // If sign in fails, display a message to the user.
-                                authenticationResponse.setSucces(false);
+                                authenticationResponse.setSuccess(false);
                                 if (task.getException() != null) {
                                     authenticationResponse.setMessage(task.getException().getLocalizedMessage());
                                 } else {
@@ -127,14 +137,15 @@ public class UserRepository implements IUserRepository {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "createUserWithEmail: success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                authenticationResponse.setSucces(true);
+                                authenticationResponse.setSuccess(true);
                                 if (user != null) {
                                     mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
+
                                 }
                             } else {
                                 Log.d(TAG, "createUserWithEmail: failure", task.getException());
-                                authenticationResponse.setSucces(false);
+                                authenticationResponse.setSuccess(false);
                                 if (task.getException() != null) {
                                     authenticationResponse.setMessage(task.getException().getLocalizedMessage());
                                 } else {
@@ -145,5 +156,23 @@ public class UserRepository implements IUserRepository {
                         }
                     });
         return mAuthenticationResponseLiveData;
+    }
+
+    public MutableLiveData<Boolean> saveUserOnFirebase(User user) {
+        if (user != null) {
+
+            mFirebaseDatabase.child("users").child(user.getId()).setValue(user).
+                    addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                mSaveUserLiveData.postValue(true);
+                            } else {
+                                mSaveUserLiveData.postValue(false);
+                            }
+                        }
+                    });
+        }
+        return mSaveUserLiveData;
     }
 }
