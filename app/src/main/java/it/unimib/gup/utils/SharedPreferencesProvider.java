@@ -29,6 +29,13 @@ public class SharedPreferencesProvider {
         editor.apply();
     }
 
+    public void setUserNameSurname(String firstName, String lastName) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Constants.USER_NAME, firstName);
+        editor.putString(Constants.USER_SURNAME, lastName);
+        editor.apply();
+    }
+
     public void deleteAll() {
         sharedPreferences.edit().clear().apply();
     }

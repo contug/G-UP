@@ -17,11 +17,9 @@ import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.AuthenticationResponse;
-import it.unimib.gup.model.User;
 import it.unimib.gup.ui.MainActivity;
 
 /**
@@ -32,9 +30,11 @@ public class RegisterFragment extends Fragment {
     private static final String TAG = "RegisterFragment";
 
     private UserViewModel mUserViewModel;
-    private FirebaseAuth mAuth;
 
-    private User mUser;
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -44,7 +44,6 @@ public class RegisterFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
-        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -60,28 +59,12 @@ public class RegisterFragment extends Fragment {
 
         final Button buttonRegister = root.findViewById(R.id.button_sign_up);
 
-        // The Observer associated with the LiveData Boolean to see if user was saved on the Database
-        final Observer<Boolean> observerSaveUserOnFirebaseDatabase = new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean response) {
-                if (response) {
-                    Log.d(TAG, "User saved on Firebase");
-                } else {
-                    Log.d(TAG, "User not saved on Firebase");
-                }
-            }
-        };
-
         // The Observer associated with the LiveData AuthenticationResponse
         final Observer<AuthenticationResponse> observerSaveUserOnFirebaseAuth = new Observer<AuthenticationResponse>() {
             @Override
             public void onChanged(AuthenticationResponse authenticationResponse) {
                 if (authenticationResponse != null) {
                     if (authenticationResponse.isSuccess()) {
-                        mUser = new User();
-                        mUser.setId(mAuth.getUid());
-                        mUser.setEmail(mAuth.getCurrentUser().getEmail());
-                        mUserViewModel.saveUser(mUser).observe(getViewLifecycleOwner(), observerSaveUserOnFirebaseDatabase);
                         startActivity(new Intent(requireActivity(), MainActivity.class));
                         requireActivity().finish();
                     } else {
@@ -91,17 +74,16 @@ public class RegisterFragment extends Fragment {
             }
         };
 
-
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = editTextName.getText().toString();
-                String surname = editTextSurname.getText().toString();
-                String email = editTextEmail.getText().toString();
-                String password = editTextPassword.getText().toString();
+                firstName = editTextName.getText().toString();
+                lastName = editTextSurname.getText().toString();
+                email = editTextEmail.getText().toString();
+                password = editTextPassword.getText().toString();
 
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    mUserViewModel.signUpWithEmail(name, surname, email, password).observe(getViewLifecycleOwner(), observerSaveUserOnFirebaseAuth);
+                    mUserViewModel.signUpWithEmail(firstName, lastName, email, password).observe(getViewLifecycleOwner(), observerSaveUserOnFirebaseAuth);
                 } else {
                     updateUIForFailure(requireActivity().getApplication().getString(R.string.invalid_auth_input));
                 }

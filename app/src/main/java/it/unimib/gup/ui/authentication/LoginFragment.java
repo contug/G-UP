@@ -134,7 +134,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        // Listener for FloatinActionButton SignUp With Google
+        // Listener for FloatingActionButton SignUp With Google
         buttonGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

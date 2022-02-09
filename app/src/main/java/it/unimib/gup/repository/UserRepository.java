@@ -37,19 +37,16 @@ public class UserRepository implements IUserRepository {
     private final FirebaseAuth mAuth;
     private final DatabaseReference mFirebaseDatabase;
 
-
     private final Application mApplication;
-    SharedPreferencesProvider mSharedPreferencesProvider;
+    private final SharedPreferencesProvider mSharedPreferencesProvider;
 
     private final MutableLiveData<AuthenticationResponse> mAuthenticationResponseLiveData;
-    private final MutableLiveData<Boolean> mSaveUserLiveData;
 
     public UserRepository(Application application) {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
         mApplication = application;
         mAuthenticationResponseLiveData = new MutableLiveData<>();
-        mSaveUserLiveData = new MutableLiveData<>();
         mSharedPreferencesProvider = new SharedPreferencesProvider(application);
 
     }
@@ -104,6 +101,14 @@ public class UserRepository implements IUserRepository {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 authenticationResponse.setSuccess(true);
                                 if (user != null) {
+                                    User mUser = new User();
+                                    mUser.setId(user.getUid());
+                                    mUser.setEmail(user.getEmail());
+                                    mUser.setFirstName(account.getGivenName());
+                                    mUser.setLastName(account.getFamilyName());
+                                    // Save user on Firebase Database
+                                    mFirebaseDatabase.child(Constants.USER_COLLECTION).child(mUser.getId()).setValue(mUser);
+
                                     mSharedPreferencesProvider.
                                             setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
@@ -139,9 +144,16 @@ public class UserRepository implements IUserRepository {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 authenticationResponse.setSuccess(true);
                                 if (user != null) {
+                                    User mUser = new User();
+                                    mUser.setId(user.getUid());
+                                    mUser.setEmail(user.getEmail());
+                                    mUser.setFirstName(name);
+                                    mUser.setLastName(surname);
+                                    // Save user on Firebase Database
+                                    mFirebaseDatabase.child(Constants.USER_COLLECTION).child(mUser.getId()).setValue(mUser);
+
                                     mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
-
                                 }
                             } else {
                                 Log.d(TAG, "createUserWithEmail: failure", task.getException());
@@ -158,21 +170,4 @@ public class UserRepository implements IUserRepository {
         return mAuthenticationResponseLiveData;
     }
 
-    public MutableLiveData<Boolean> saveUserOnFirebase(User user) {
-        if (user != null) {
-
-            mFirebaseDatabase.child("users").child(user.getId()).setValue(user).
-                    addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                mSaveUserLiveData.postValue(true);
-                            } else {
-                                mSaveUserLiveData.postValue(false);
-                            }
-                        }
-                    });
-        }
-        return mSaveUserLiveData;
-    }
 }

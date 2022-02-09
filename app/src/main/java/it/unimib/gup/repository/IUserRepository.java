@@ -14,6 +14,4 @@ public interface IUserRepository {
     MutableLiveData<AuthenticationResponse> signInWithEmail(String email, String password);
     MutableLiveData<AuthenticationResponse> createUserWithGoogle(Intent data);
     MutableLiveData<AuthenticationResponse> createUserWithEmail(String name, String surname, String email, String password);
-
-    MutableLiveData<Boolean> saveUserOnFirebase(User user);
 }

@@ -19,7 +19,6 @@ import it.unimib.gup.repository.UserRepository;
 public class UserViewModel extends AndroidViewModel {
 
     private MutableLiveData<AuthenticationResponse> mAuthenticationResponseLiveData;
-    private MutableLiveData<Boolean> mSaveUserLiveData;
     private final IUserRepository mUserRepository;
 
     public UserViewModel(@NonNull Application application) {
@@ -44,16 +43,10 @@ public class UserViewModel extends AndroidViewModel {
         return mAuthenticationResponseLiveData;
     }
 
-    public MutableLiveData<Boolean> saveUser(User user) {
-        mSaveUserLiveData = mUserRepository.saveUserOnFirebase(user);
-        return  mSaveUserLiveData;
-    }
-
     public void clear() {
         if (mAuthenticationResponseLiveData != null) {
             mAuthenticationResponseLiveData.postValue(null);
         }
     }
-
 
 }

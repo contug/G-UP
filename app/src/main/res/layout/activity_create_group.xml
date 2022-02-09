@@ -62,14 +62,14 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@id/edittext_group_name"
+                app:layout_constraintBottom_toTopOf="@id/edit_text_group_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view"
                 app:srcCompat="@drawable/ic_undraw_conversation_re_c26v" />
 
             <EditText
-                android:id="@+id/edittext_group_name"
+                android:id="@+id/edit_text_group_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="250dp"
@@ -96,9 +96,9 @@
                 android:minHeight="48dp"
                 android:prompt="@string/category"
                 android:spinnerMode="dropdown"
-                app:layout_constraintEnd_toEndOf="@+id/edittext_group_name"
-                app:layout_constraintStart_toStartOf="@+id/edittext_group_name"
-                app:layout_constraintTop_toBottomOf="@+id/edittext_group_name" />
+                app:layout_constraintEnd_toEndOf="@+id/edit_text_group_name"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_group_name"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_group_name" />
 
             <ImageView
                 android:id="@+id/spinner_arrow"
@@ -111,7 +111,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <EditText
-                android:id="@+id/edittext_group_description"
+                android:id="@+id/edit_text_group_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -129,7 +129,7 @@
                 app:layout_constraintWidth_percent="0.8" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_create_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -137,7 +137,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edittext_group_description" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_group_description" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
