@@ -1,5 +1,6 @@
 package it.unimib.gup.ui.main;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,7 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +39,9 @@ public class BrowseFragment extends Fragment {
     private List<Group> mGroups;
     /* --------- */
 
+    private BrowseGroupsRecyclerViewAdapter adapter;
+    private SearchView searchView;
+
     public BrowseFragment() {
         // Required empty public constructor
     }
@@ -52,7 +59,7 @@ public class BrowseFragment extends Fragment {
 
         tmpNotes = Arrays.asList(new Note("note_id_1", "user_id_1", "Note text 1"), new Note("note_id_2", "user_id_2", "Note text 2"));
 
-        mGroups = Arrays.asList(new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"));
+        mGroups = Arrays.asList(new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"));
 
         Log.d("###", mGroups.toString());
         /* --------- */
@@ -68,7 +75,7 @@ public class BrowseFragment extends Fragment {
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.browse_groups_recycler_view);
         mBrowseGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        BrowseGroupsRecyclerViewAdapter adapter = new BrowseGroupsRecyclerViewAdapter(mGroups,
+        adapter = new BrowseGroupsRecyclerViewAdapter(mGroups,
                 new BrowseGroupsRecyclerViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Group group) {
@@ -76,6 +83,21 @@ public class BrowseFragment extends Fragment {
                     }
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
+
+        searchView = view.findViewById(R.id.searchView);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.setFilteredList(newText);
+                return true;
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

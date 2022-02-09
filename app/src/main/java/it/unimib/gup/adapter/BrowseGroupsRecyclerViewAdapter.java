@@ -3,6 +3,7 @@ package it.unimib.gup.adapter;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimib.gup.R;
@@ -24,12 +26,32 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
         void onItemClick(Group group);
     }
 
-    private final List<Group> mGroupList;
+    private List<Group> mGroupList;
+    private List<Group> mGroupListAll;
     private final OnItemClickListener mOnItemClickListener;
 
     public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener) {
         this.mGroupList = groupList;
+        mGroupListAll = new ArrayList<>(mGroupList);
         this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setFilteredList(String text) {
+        List<Group> filteredList = new ArrayList<>();
+        if (text.isEmpty()) {
+            filteredList.addAll(mGroupListAll);
+        } else {
+            for (Group group : mGroupListAll) {
+                if (group.getName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(group);
+                }
+            }
+        }
+
+        if (!filteredList.isEmpty()) {
+            mGroupList = filteredList;
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull

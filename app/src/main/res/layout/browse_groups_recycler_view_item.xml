@@ -14,7 +14,7 @@
         android:paddingHorizontal="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/group_backround"
+        android:background="@drawable/group_background"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

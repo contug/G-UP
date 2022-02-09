@@ -34,6 +34,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        // The keyboard won't make the other views to go up
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         tabLayout = findViewById(R.id.tab_layout);
