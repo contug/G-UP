@@ -90,9 +90,12 @@ public class LoginFragment extends Fragment {
         final FloatingActionButton buttonGoogle = requireActivity().findViewById(R.id.fab_google);
 
         //textViewGroupUp.setTranslationX(800);
-        editTextEmail.setTranslationX(800);
-        editTextPassword.setTranslationX(800);
-        buttonLogin.setTranslationX(800);
+        editTextEmail.setScaleX(0.5F);
+        editTextEmail.setScaleY(0.5F);
+        editTextPassword.setScaleX(0.5F);
+        editTextPassword.setScaleY(0.5F);
+        buttonLogin.setScaleX(0.5F);
+        buttonLogin.setScaleY(0.5F);
 
         //textViewGroupUp.setAlpha(opacityValue);
         editTextEmail.setAlpha(opacityValue);
@@ -100,9 +103,12 @@ public class LoginFragment extends Fragment {
         buttonLogin.setAlpha(opacityValue);
 
         //textViewGroupUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(100).start();
-        editTextEmail.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(200).start();
-        editTextPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(300).start();
-        buttonLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        editTextEmail.animate().scaleX(1).alpha(1).setDuration(400).setStartDelay(50).start();
+        editTextEmail.animate().scaleY(1).alpha(1).setDuration(400).setStartDelay(50).start();
+        editTextPassword.animate().scaleX(1).alpha(1).setDuration(400).setStartDelay(100).start();
+        editTextPassword.animate().scaleY(1).alpha(1).setDuration(400).setStartDelay(100).start();
+        buttonLogin.animate().scaleX(1).alpha(1).setDuration(400).setStartDelay(150).start();
+        buttonLogin.animate().scaleY(1).alpha(1).setDuration(400).setStartDelay(150).start();
 
         // The observer associated with the LiveData AuthenticationResponse
         Observer<AuthenticationResponse> observer = new Observer<AuthenticationResponse>() {

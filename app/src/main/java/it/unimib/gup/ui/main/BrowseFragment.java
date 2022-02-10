@@ -29,7 +29,7 @@ import it.unimib.gup.model.Note;
 
 public class BrowseFragment extends Fragment {
 
-    private static final String TAG = "BrowseFragmentFragment";
+    private static final String TAG = "BrowseFragment";
 
     /* ELIMINARE */
     private Category tmpCategory;
@@ -69,7 +69,6 @@ public class BrowseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("###", mGroups.toString());
         View view = inflater.inflate(R.layout.fragment_browse, container, false);
 
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.browse_groups_recycler_view);
@@ -95,6 +94,11 @@ public class BrowseFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.setFilteredList(newText);
+                if (adapter.getItemCount() == 0) {
+                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
+                } else {
+                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
+                }
                 return true;
             }
         });

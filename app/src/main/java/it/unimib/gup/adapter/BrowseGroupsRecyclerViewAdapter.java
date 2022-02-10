@@ -3,6 +3,7 @@ package it.unimib.gup.adapter;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,28 +31,26 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     private List<Group> mGroupListAll;
     private final OnItemClickListener mOnItemClickListener;
 
+
     public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener) {
         this.mGroupList = groupList;
         mGroupListAll = new ArrayList<>(mGroupList);
         this.mOnItemClickListener = onItemClickListener;
     }
 
-    public void setFilteredList(String text) {
+    public int setFilteredList(String text) {
         List<Group> filteredList = new ArrayList<>();
-        if (text.isEmpty()) {
-            filteredList.addAll(mGroupListAll);
-        } else {
-            for (Group group : mGroupListAll) {
-                if (group.getName().toLowerCase().contains(text.toLowerCase())) {
-                    filteredList.add(group);
-                }
+
+        for (Group group : mGroupListAll) {
+            if (group.getName().toLowerCase().startsWith(text.toLowerCase()) || group.getCategory().getName().toLowerCase().startsWith(text.toLowerCase()) ) {
+                filteredList.add(group);
             }
         }
 
-        if (!filteredList.isEmpty()) {
-            mGroupList = filteredList;
-            notifyDataSetChanged();
-        }
+        mGroupList = filteredList;
+        notifyDataSetChanged();
+
+        return filteredList.size();
     }
 
     @NonNull
@@ -93,6 +92,7 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.category = itemView.findViewById(R.id.browse_groups_category_text);
             this.categoryContainer = itemView.findViewById(R.id.browse_groups_category_container);
             this.subscribeButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
+
         }
 
         public void bind(Group group) {
@@ -101,6 +101,8 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.category.setText(group.getCategory().getName());
             this.description.setText(group.getDescription());
             this.categoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
+
+
 
             this.subscribeButton.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -39,6 +39,13 @@
     <string name="fos_social_sciences">Social Sciences</string>
     <string name="fos_others">Others</string>
 
+    <string name="home_no_results">No groups found, create one\nor find one in the browse section!</string>
+
+    <string name="create_group_button">Create group</string>
+
+    <string name="browse_no_results">No groups found.</string>
+    <string name="browse_reclycler_view_item_description_label">Description</string>
+
     <string name="description">Description</string>
     <string name="describe_group">Describe your group</string>
     <string name="email_hint">E-mail</string>
@@ -52,6 +59,8 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="sign_up">Sign Up</string>
+
+
 
     <string name="authentication_failure">An error occurred</string>
     <string name="invalid_auth_input">Insert Email and Password</string>
