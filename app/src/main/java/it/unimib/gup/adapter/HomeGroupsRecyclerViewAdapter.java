@@ -89,6 +89,13 @@ public class HomeGroupsRecyclerViewAdapter extends RecyclerView.Adapter<HomeGrou
                     mOnItemClickListener.onItemClick(group);
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(group);
+                }
+            });
         }
     }
 }

@@ -1,8 +1,11 @@
 package it.unimib.gup.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Group {
+public class Group implements Parcelable {
 
     private String id;
     private String name;
@@ -90,5 +93,15 @@ public class Group {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

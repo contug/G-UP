@@ -61,7 +61,6 @@
     <string name="sign_up">Sign Up</string>
 
 
-
     <string name="authentication_failure">An error occurred</string>
     <string name="invalid_auth_input">Insert Email and Password</string>
     <string name="logout">Logout</string>
@@ -70,5 +69,8 @@
     <string name="fos_selection_subtitle">Select one or more disciplines</string>
     <string name="category">Category</string>
     <string name="create">Create</string>
+    <string name="subscriber_count">Subscriber count</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create account</string>
 
 </resources>

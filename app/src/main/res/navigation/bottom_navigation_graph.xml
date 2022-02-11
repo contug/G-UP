@@ -9,7 +9,11 @@
         android:id="@+id/home"
         android:name="it.unimib.gup.ui.main.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/account"
         android:name="it.unimib.gup.ui.main.AccountFragment"
@@ -19,5 +23,18 @@
         android:id="@+id/browse"
         android:name="it.unimib.gup.ui.main.BrowseFragment"
         android:label="Browse"
-        tools:layout="@layout/fragment_browse" />
+        tools:layout="@layout/fragment_browse" >
+        <action
+            android:id="@+id/action_browse_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupDetailsFragment"
+        android:name="it.unimib.gup.ui.main.GroupDetailsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_group_details" >
+        <argument
+            android:name="group"
+            app:argType="it.unimib.gup.model.Group" />
+    </fragment>
 </navigation>

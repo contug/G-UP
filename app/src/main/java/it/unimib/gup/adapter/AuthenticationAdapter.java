@@ -12,7 +12,7 @@ import it.unimib.gup.ui.authentication.RegisterFragment;
 
 public class AuthenticationAdapter extends FragmentStateAdapter {
 
-    private int totalTabs;
+    private final int totalTabs;
 
     public AuthenticationAdapter(@NonNull FragmentActivity fragmentActivity, int totalTabs) {
         super(fragmentActivity);
@@ -25,11 +25,9 @@ public class AuthenticationAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                LoginFragment loginFragment = new LoginFragment();
-                return loginFragment;
+                return new LoginFragment();
             case 1:
-                RegisterFragment registerFragment = new RegisterFragment();
-                return registerFragment;
+                return new RegisterFragment();
             default:
                 return null;
         }

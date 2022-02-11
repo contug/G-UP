@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,6 +87,9 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
+                        HomeFragmentDirections.ActionHomeToGroupDetailsFragment
+                                action = HomeFragmentDirections.actionHomeToGroupDetailsFragment(group);
+                        Navigation.findNavController(view).navigate(action);
                     }
                 });
         mHomeGroupsRecyclerView.setAdapter(adapter);

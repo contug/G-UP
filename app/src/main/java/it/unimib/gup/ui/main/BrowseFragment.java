@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,6 +79,9 @@ public class BrowseFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
+                        BrowseFragmentDirections.ActionBrowseToGroupDetailsFragment
+                                action = BrowseFragmentDirections.actionBrowseToGroupDetailsFragment(group);
+                        Navigation.findNavController(view).navigate(action);
                     }
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
