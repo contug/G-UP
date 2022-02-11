@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "487544540532-cej5lg1ga81eo0qt2gre40jdhv72cbg3.apps.googleusercontent.com",
+          "client_id": "487544540532-ughkrl528t53b42aj4dkl9ahn09m52e6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "it.unimib.gup",
-            "certificate_hash": "51b24ec21518697b7c705f99fb6ed6a33105f637"
+            "certificate_hash": "1003545955f60fcf8bf501e71948ed658d02731b"
           }
         },
         {
