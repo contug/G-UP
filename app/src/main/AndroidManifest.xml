@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GUP">
         <activity
-            android:name=".ui.main.group.CreateMeeting"
-            android:exported="false" />
-        <activity
             android:name=".ui.main.group.CreatePost"
             android:exported="false" />
         <activity

@@ -26,6 +26,16 @@
         <item>@string/fos_others</item>
     </string-array>
 
+    <string name="online_meeting">Online</string>
+    <string name="offline_meeting">In person</string>
+    <string name="choose_meeting_type">Meeting type</string>
+
+    <string-array name="meeting_type">
+        <item>@string/choose_meeting_type</item>
+        <item>@string/online_meeting</item>
+        <item>@string/offline_meeting</item>
+    </string-array>
+
     <string name="fos_natural_sciences">Natural Science</string>
     <string name="fos_humanities">Humanities</string>
     <string name="fos_formal_sciences">Formal Sciences</string>
@@ -66,5 +76,8 @@
     <string name="details_groups_subscribers">Subscribers</string>
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create account</string>
+    <string name="link_or_address">Link or Address</string>
+    <string name="date">Date</string>
+    <string name="publish">Publish</string>
 
 </resources>
