@@ -4,14 +4,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,6 +53,20 @@ public class CreateGroupActivity extends AppCompatActivity {
         final EditText editTextNameGroup = findViewById(R.id.create_group_name_edit_text);
         final Spinner spinnerCategoryGroup = findViewById(R.id.create_group_category_spinner);
         final EditText descriptionGroup = findViewById(R.id.create_group_description_edit_text);
+
+        spinnerCategoryGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    TextView textView = (TextView)view;
+                    textView.setTextColor(Color.GRAY);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         // --------- Prova salvataggio di un gruppo sul database
         Group group = new Group();

@@ -11,19 +11,13 @@
     <string name="my_activities">My activities</string>
     <string name="create_group">Create group</string>
     <string name="back">Back</string>
-    <string name="privacy">Privacy</string>
-
-    <string-array name="privacy_array">
-        <item>@string/public_group</item>
-        <item>@string/private_group</item>
-    </string-array>
-    <string name="public_group">Public</string>
-    <string name="private_group">Private</string>
 
     <string name="name_group">Name your group</string>
+    <string name="choose_fos">Choose a discipline</string>
     <string name="field_of_study">Field of study</string>
 
     <string-array name="field_of_study_array">
+        <item>@string/choose_fos</item>
         <item>@string/fos_natural_sciences</item>
         <item>@string/fos_humanities</item>
         <item>@string/fos_formal_sciences</item>

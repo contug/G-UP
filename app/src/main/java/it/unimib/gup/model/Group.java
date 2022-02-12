@@ -31,6 +31,27 @@ public class Group implements Parcelable {
         this.color = color;
     }
 
+    protected Group(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        category = in.readParcelable(Category.class.getClassLoader());
+        members = in.createStringArrayList();
+        color = in.readString();
+    }
+
+    public static final Creator<Group> CREATOR = new Creator<Group>() {
+        @Override
+        public Group createFromParcel(Parcel in) {
+            return new Group(in);
+        }
+
+        @Override
+        public Group[] newArray(int size) {
+            return new Group[size];
+        }
+    };
+
     public String getId() {
         return id;
     }
@@ -102,6 +123,11 @@ public class Group implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeParcelable(category, flags);
+        dest.writeStringList(members);
+        dest.writeString(color);
     }
 }
