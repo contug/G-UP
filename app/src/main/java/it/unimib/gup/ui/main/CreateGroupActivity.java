@@ -52,7 +52,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         final Button buttonCreateGroup = findViewById(R.id.button_create_group);
         final EditText editTextNameGroup = findViewById(R.id.create_group_name_edit_text);
         final Spinner spinnerCategoryGroup = findViewById(R.id.spinner_create_group_category);
-        final EditText descriptionGroup = findViewById(R.id.create_group_description_edit_text);
+        final EditText descriptionGroup = findViewById(R.id.create_post_edittext);
 
         spinnerCategoryGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
