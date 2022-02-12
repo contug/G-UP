@@ -1,11 +1,11 @@
 package it.unimib.gup.model;
 
-public class Note {
+public class Post {
     private String id;
     private String authorId;
     private String text;
 
-    public Note(String id, String authorId, String text) {
+    public Post(String id, String authorId, String text) {
         this.id = id;
         this.authorId = authorId;
         this.text = text;
@@ -33,6 +33,15 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id='" + id + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
 

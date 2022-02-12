@@ -69,7 +69,7 @@
     <string name="fos_selection_subtitle">Select one or more disciplines</string>
     <string name="category">Category</string>
     <string name="create">Create</string>
-    <string name="subscriber_count">Subscriber count</string>
+    <string name="details_groups_subscribers">Subscribers</string>
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create account</string>
 

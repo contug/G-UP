@@ -6,12 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.GroupDetailsFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/study"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:foreground="#BB000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/details_tab_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/details_groups_recycler_view_item"
+        android:id="@+id/details_groups_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="12dp"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
@@ -33,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/manrope_semibold"
-            android:textColor="@color/gray_800"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/details_groups_group_circle"
             app:layout_constraintLeft_toRightOf="@+id/details_groups_group_circle"
             app:layout_constraintTop_toTopOf="@+id/details_groups_group_circle" />
@@ -61,14 +75,14 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/edit_text_subscriber_count"
+            android:id="@+id/details_groups_subscribers_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/manrope_medium"
-            android:text="@string/subscriber_count"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/manrope_semibold"
+            android:text="@string/details_groups_subscribers"
             android:textAllCaps="true"
-            android:textColor="@color/gray_400"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/details_groups_group_circle" />
@@ -77,28 +91,26 @@
             android:id="@+id/subscriber_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/manrope_medium"
+            android:fontFamily="@font/manrope_regular"
             android:textAllCaps="true"
-            android:textColor="@color/gray_400"
-            android:textSize="12sp"
+            android:textColor="@color/white"
             app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/edit_text_subscriber_count"
-            app:layout_constraintTop_toBottomOf="@id/details_groups_category_container" />
+            app:layout_constraintTop_toTopOf="@id/details_groups_subscribers_label"
+            app:layout_constraintBottom_toBottomOf="@id/details_groups_subscribers_label"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/details_groups_description_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/manrope_medium"
+            android:fontFamily="@font/manrope_semibold"
             android:text="@string/description"
             android:textAllCaps="true"
-            android:textColor="@color/gray_400"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_text_subscriber_count" />
+            app:layout_constraintTop_toBottomOf="@id/details_groups_subscribers_label" />
 
         <TextView
             android:id="@+id/details_groups_description"
@@ -106,8 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/manrope_regular"
+            android:textSize="14dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas augue metus, pharetre t ortor eu, scelerisque eleifend turpis. Etiam sed semper dui, id lobortis risus. Quisque vitae lorem tempus, dictum libero et, ultricies ante. Aenean ultricies arcu eleifend, placerat tortor id, viverra mauris."
-            android:textColor="@color/gray_600"
+            android:textColor="@color/white"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,11 +132,12 @@
         android:id="@+id/details_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:background="@drawable/group_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_groups_recycler_view_item"
+        app:layout_constraintTop_toBottomOf="@+id/details_groups_container"
         app:tabIndicatorHeight="3dp"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Body2">
 

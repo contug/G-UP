@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,19 +17,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
-import it.unimib.gup.adapter.BrowseGroupsRecyclerViewAdapter;
 import it.unimib.gup.adapter.HomeGroupsRecyclerViewAdapter;
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.Meeting;
-import it.unimib.gup.model.Note;
+import it.unimib.gup.model.Post;
 
 public class HomeFragment extends Fragment {
 
@@ -40,7 +37,7 @@ public class HomeFragment extends Fragment {
     private Category tmpCategory;
     private List<String> tmpUsersIds;
     private List<Meeting> tmpMeetingIds;
-    private List<Note> tmpNotes;
+    private List<Post> tmpPosts;
     private List<Group> mGroups;
     /* --------- */
 
@@ -64,9 +61,9 @@ public class HomeFragment extends Fragment {
 
         tmpMeetingIds = Arrays.asList(new Meeting(Meeting.MeetingType.offline, new Date(), "maps"), new Meeting(Meeting.MeetingType.online, new Date(), "url"));
 
-        tmpNotes = Arrays.asList(new Note("note_id_1", "user_id_1", "Note text 1"), new Note("note_id_2", "user_id_2", "Note text 2"));
+        tmpPosts = Arrays.asList(new Post("note_id_1", "user_id_1", "Post text 1"), new Post("note_id_2", "user_id_2", "Post text 2"));
 
-        mGroups = Arrays.asList(new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpNotes, "#22C55E"));
+        mGroups = Arrays.asList(new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"), new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"));
 
         Log.d("###", mGroups.toString());
         /* --------- */

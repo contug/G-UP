@@ -13,21 +13,21 @@ public class Group implements Parcelable {
     private Category category;
     private List<String> members;
     private List<Meeting> meetings;
-    private List<Note> notes;
+    private List<Post> posts;
     private String color;
 
     public Group() {
         // For JSON mapping
     }
 
-    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Note> notes, String color) {
+    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Post> posts, String color) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
         this.members = members;
         this.meetings = meetings;
-        this.notes = notes;
+        this.posts = posts;
         this.color = color;
     }
 
@@ -79,12 +79,12 @@ public class Group implements Parcelable {
         this.meetings = meetings;
     }
 
-    public List<Note> getNotes() {
-        return notes;
+    public List<Post> getNotes() {
+        return posts;
     }
 
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
+    public void setNotes(List<Post> posts) {
+        this.posts = posts;
     }
 
     public String getColor() {

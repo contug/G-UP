@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GUP">
-
+        <activity
+            android:name=".ui.main.group.CreateMeeting"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.group.CreatePost"
+            android:exported="false" />
         <activity
             android:name=".ui.LaunchScreenActivity"
             android:exported="true">
@@ -19,11 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.authentication.AuthenticationActivity"
             android:exported="false"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.main.CreateGroupActivity"
             android:exported="false"
