@@ -55,7 +55,7 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
     public class HomePostsListViewHolder extends RecyclerView.ViewHolder {
 
         private final View postContainer;
-        private final View circle;
+        private final View bar;
         // private final TextView groupId;
         private final TextView groupName;
         private final TextView author;
@@ -65,14 +65,14 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
         public HomePostsListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.postContainer = itemView.findViewById(R.id.home_post_recycler_view_item);
-            this.circle = itemView.findViewById(R.id.home_post_group_circle);
+            this.bar = itemView.findViewById(R.id.home_post_group_color_bar);
             this.groupName = itemView.findViewById(R.id.home_post_group_name);
             this.author = itemView.findViewById(R.id.home_post_author);
             this.text = itemView.findViewById(R.id.home_post_text);
         }
 
         public void bind(HomePost post) {
-            this.circle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(post.getGroupColor())));
+            this.bar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(post.getGroupColor())));
             this.groupName.setText(post.getGroupName());
             this.author.setText(post.getAuthor());
             this.text.setText(post.getText());

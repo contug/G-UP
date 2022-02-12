@@ -55,9 +55,9 @@ public class HomeFragment extends Fragment {
 
         mHomePosts = Arrays.asList(
                 new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
-                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
-                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
-                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()));
+                new HomePost("group_id", "GoGet'Em",  "#7E57C2", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
+                new HomePost("group_id", "GoGet'Em",  "#FDD835", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
+                new HomePost("group_id", "GoGet'Em",  "#F50057", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()));
 
         Log.d("###", mHomePosts.toString());
         /* --------- */
