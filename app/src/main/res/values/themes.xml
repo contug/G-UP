@@ -2,11 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.GUP" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/indigo</item>
-        <item name="colorPrimaryVariant">@color/indigo_dark</item>
+        <item name="colorPrimary">@color/gup_primary</item>
+        <item name="colorPrimaryVariant">@color/gup_primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/my_blue</item>
+        <item name="colorSecondary">@color/gup_primary</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -23,7 +23,7 @@
     <style name="Theme.CreateGroupActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/indigo</item>
-        <item name="colorPrimaryVariant">@color/indigo_dark</item>
+        <item name="colorPrimaryVariant">@color/gup_primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/my_blue</item>
