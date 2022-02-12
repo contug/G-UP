@@ -23,9 +23,10 @@ import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
-import it.unimib.gup.adapter.HomeGroupsRecyclerViewAdapter;
+import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.Category;
-import it.unimib.gup.model.Group;
+import it.unimib.gup.model.Post;
+import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Meeting;
 import it.unimib.gup.model.Post;
 
@@ -34,14 +35,10 @@ public class HomeFragment extends Fragment {
     private static final String TAG ="HoveFragment";
 
     /* ELIMINARE */
-    private Category tmpCategory;
-    private List<String> tmpUsersIds;
-    private List<Meeting> tmpMeetingIds;
-    private List<Post> tmpPosts;
-    private List<Group> mGroups;
+    private List<HomePost> mHomePosts;
     /* --------- */
 
-    private HomeGroupsRecyclerViewAdapter adapter;
+    private HomePostsRecyclerViewAdapter adapter;
 
 
     public HomeFragment() {
@@ -55,17 +52,14 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
 
         /* ELIMINARE */
-        tmpCategory = new Category("SCIENCE", "#F43F5E");
 
-        tmpUsersIds = Arrays.asList("user_id_1", "user_id_2", "user_id_3");
+        mHomePosts = Arrays.asList(
+                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
+                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
+                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()),
+                new HomePost("group_id", "GoGet'Em",  "#22C55E", "Luca Micheletto", "Messaggio del post ashdyi hagiodhioahdoi agdog asodgioasgdoiagsogvasdioy gaodg !", new Date()));
 
-        tmpMeetingIds = Arrays.asList(new Meeting(Meeting.MeetingType.offline, new Date(), "maps"), new Meeting(Meeting.MeetingType.online, new Date(), "url"));
-
-        tmpPosts = Arrays.asList(new Post("note_id_1", "user_id_1", "Post text 1"), new Post("note_id_2", "user_id_2", "Post text 2"));
-
-        mGroups = Arrays.asList(new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"), new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"), new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"));
-
-        Log.d("###", mGroups.toString());
+        Log.d("###", mHomePosts.toString());
         /* --------- */
     }
 
@@ -76,20 +70,17 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView mHomeGroupsRecyclerView = view.findViewById(R.id.home_groups_recycler_view);
-        mHomeGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView mHomePostsRecyclerView = view.findViewById(R.id.home_posts_recycler_view);
+        mHomePostsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new HomeGroupsRecyclerViewAdapter(mGroups,
-                new HomeGroupsRecyclerViewAdapter.OnItemClickListener() {
+        adapter = new HomePostsRecyclerViewAdapter(mHomePosts,
+                new HomePostsRecyclerViewAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(Group group) {
-                        Log.d(TAG, "onItemClick: " + group);
-                        HomeFragmentDirections.ActionHomeToGroupDetailsFragment
-                                action = HomeFragmentDirections.actionHomeToGroupDetailsFragment(group);
-                        Navigation.findNavController(view).navigate(action);
+                    public void onItemClick(HomePost post) {
+                        Log.d(TAG, "onItemClick: " + post);
                     }
                 });
-        mHomeGroupsRecyclerView.setAdapter(adapter);
+        mHomePostsRecyclerView.setAdapter(adapter);
 
         if(adapter.getItemCount() == 0){
             view.findViewById(R.id.home_no_results_container).setVisibility(View.VISIBLE);
