@@ -75,7 +75,7 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
         public void bind(Group group) {
             this.imageContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getColor())));
             //this.image.setImageBitmap(group.getName());
-            this.name.setText(group.getCategory().getName());
+            this.name.setText(group.getName());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
