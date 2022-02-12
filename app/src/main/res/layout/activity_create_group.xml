@@ -109,7 +109,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <EditText
-                android:id="@+id/create_group_description_edit_text"
+                android:id="@+id/create_post_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -142,7 +142,7 @@
                 android:letterSpacing="0.05"
 
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_group_description_edit_text"
+                app:layout_constraintTop_toBottomOf="@+id/create_post_edittext"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

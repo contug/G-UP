@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/create_post"
+    android:paddingHorizontal="16dp"
+    tools:context=".ui.main.group.CreatePostFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_create_post"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_undraw_create_post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/create_post_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edit_text_shape"
+            android:fontFamily="@font/manrope_regular"
+            android:gravity="top"
+            android:hint="@string/type_message"
+            android:inputType="text|textMultiLine"
+            android:lines="6"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_create_post" />
+
+        <Button
+            android:id="@+id/button_create_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingVertical="8dp"
+            android:backgroundTint="@color/gup_primary"
+            android:fontFamily="@font/manrope_semibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/create_post"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_post_edittext" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

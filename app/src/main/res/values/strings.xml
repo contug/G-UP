@@ -79,5 +79,7 @@
     <string name="link_or_address">Link or Address</string>
     <string name="date">Date</string>
     <string name="publish">Publish</string>
+    <string name="create_post">Create Post</string>
+    <string name="type_message">Type your message</string>
 
 </resources>
