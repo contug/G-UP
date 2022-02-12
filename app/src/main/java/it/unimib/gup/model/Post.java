@@ -2,12 +2,12 @@ package it.unimib.gup.model;
 
 public class Post {
     private String id;
-    private String authorId;
+    private String author;
     private String text;
 
-    public Post(String id, String authorId, String text) {
+    public Post(String id, String author, String text) {
         this.id = id;
-        this.authorId = authorId;
+        this.author = author;
         this.text = text;
     }
 
@@ -19,12 +19,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getText() {
@@ -39,7 +39,7 @@ public class Post {
     public String toString() {
         return "Post{" +
                 "id='" + id + '\'' +
-                ", authorId='" + authorId + '\'' +
+                ", author='" + author + '\'' +
                 ", text='" + text + '\'' +
                 '}';
     }

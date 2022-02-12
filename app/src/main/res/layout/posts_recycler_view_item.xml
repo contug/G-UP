@@ -45,6 +45,7 @@
             android:layout_marginStart="8dp"
             android:paddingBottom="6dp"
             android:text="Testo di prova un po' lungo ma non troppo"
+            android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
             android:textColor="@color/gray_600"
             app:layout_constraintTop_toBottomOf="@id/post_author"

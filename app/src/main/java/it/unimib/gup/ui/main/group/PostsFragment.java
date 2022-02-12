@@ -42,15 +42,15 @@ public class PostsFragment extends Fragment {
 
         /* ELIMINARE */
         mPosts = Arrays.asList(
-                new Post("note_id_1", "author_id_1", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_1"),
-                new Post("note_id_2", "author_id_2", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_2"),
-                new Post("note_id_3", "author_id_3", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_3"),
-                new Post("note_id_4", "author_id_4", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_4"),
-                new Post("note_id_5", "author_id_5", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_5"),
-                new Post("note_id_6", "author_id_6", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_6"),
-                new Post("note_id_7", "author_id_7", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_7"),
-                new Post("note_id_8", "author_id_8", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_8"),
-                new Post("note_id_9", "author_id_9", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_9")
+                new Post("note_id_1", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_1"),
+                new Post("note_id_2", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_2"),
+                new Post("note_id_3", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_3"),
+                new Post("note_id_4", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_4"),
+                new Post("note_id_5", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_5"),
+                new Post("note_id_6", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_6"),
+                new Post("note_id_7", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_7"),
+                new Post("note_id_8", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_8"),
+                new Post("note_id_9", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_9")
         );
         /* --------- */
     }

@@ -65,7 +65,7 @@ public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<PostsRecycler
         }
 
         public void bind(Post post) {
-            this.author.setText(post.getAuthorId());
+            this.author.setText(post.getAuthor());
             this.text.setText(post.getText());
 
             itemView.setOnClickListener(new View.OnClickListener() {
