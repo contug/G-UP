@@ -1,52 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.authentication.RegisterFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.LoginFragment">
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="80dp"
+    android:id="@+id/fragment_login">
 
     <TextView
-        android:id="@+id/text_view_on_board"
+        android:id="@+id/create_account_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/signup_text_view"
-        android:textColor="@color/black"
+        android:textColor="@color/gray_800"
         android:textSize="24sp"
         android:fontFamily="@font/manrope_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/create_account_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:text="@string/signup_sub_text"
         android:fontFamily="@font/manrope_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_account_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_on_board"
-        app:layout_constraintVertical_bias="0"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/create_account_image"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/ic_undraw_create_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintTop_toBottomOf="@id/create_account_subtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="1" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/name"
@@ -54,18 +53,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_shape"
-        android:fontFamily="@font/manrope_regular"
         android:hint="@string/name"
         android:inputType="textPersonName"
+        android:fontFamily="@font/manrope_regular"
         android:minHeight="48dp"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/create_account_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/surname"
@@ -73,18 +68,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/edit_text_shape"
-        android:fontFamily="@font/manrope_regular"
         android:hint="@string/surname"
+        android:fontFamily="@font/manrope_regular"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/email_reg"
@@ -92,18 +83,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/edit_text_shape"
-        android:fontFamily="@font/manrope_regular"
         android:hint="@string/email_hint"
+        android:fontFamily="@font/manrope_regular"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/surname"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surname"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/password_reg"
@@ -111,36 +98,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/edit_text_shape"
-        android:fontFamily="@font/manrope_regular"
         android:hint="@string/password"
+        android:fontFamily="@font/manrope_regular"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/email_reg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_reg"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/button_sign_up"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:paddingVertical="8dp"
         android:backgroundTint="@color/gup_primary"
         android:fontFamily="@font/manrope_semibold"
-        android:letterSpacing="0.05"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/sign_up"
-        android:textSize="16sp"
+
+        android:letterSpacing="0.05"
+
         app:cornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/password_reg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_reg"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

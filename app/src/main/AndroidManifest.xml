@@ -27,8 +27,7 @@
         <activity
             android:name=".ui.authentication.AuthenticationActivity"
             android:exported="false"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.main.CreateGroupActivity"
             android:exported="false"
