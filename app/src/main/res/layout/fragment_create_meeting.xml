@@ -67,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/edit_text_shape"
+            android:fontFamily="@font/manrope_regular"
             android:hint="@string/date"
             android:inputType="date"
             android:minHeight="48dp"

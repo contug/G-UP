@@ -33,6 +33,8 @@ public class GroupDetailsFragment extends Fragment {
 
     private final String[] tabs = {"Posts", "Meetings"};
 
+    private TextView textViewToolbar;
+
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -40,6 +42,8 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
+        textViewToolbar.setVisibility(View.GONE);
     }
 
     @Override
@@ -104,5 +108,9 @@ public class GroupDetailsFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        textViewToolbar.setVisibility(View.VISIBLE);
+    }
 }

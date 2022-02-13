@@ -98,9 +98,9 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
-                  /*      BrowseFragmentDirections.ActionBrowseToGroupDetailsFragment
-                                action = BrowseFragmentDirections.actionBrowseToGroupDetailsFragment(group);
-                        Navigation.findNavController(f).navigate(action);*/
+                        AccountFragmentDirections.ActionAccountToGroupDetailsFragment
+                                action = AccountFragmentDirections.actionAccountToGroupDetailsFragment(group);
+                        Navigation.findNavController(view).navigate(action);
                     }
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);

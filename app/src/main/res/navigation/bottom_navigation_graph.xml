@@ -17,8 +17,12 @@
     <fragment
         android:id="@+id/account"
         android:name="it.unimib.gup.ui.main.AccountFragment"
-        android:label=""
-        tools:layout="@layout/fragment_account" />
+        android:label="Profile"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_account_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/browse"
         android:name="it.unimib.gup.ui.main.BrowseFragment"
@@ -31,7 +35,7 @@
     <fragment
         android:id="@+id/groupDetailsFragment"
         android:name="it.unimib.gup.ui.main.GroupDetailsFragment"
-        android:label=""
+        android:label="Group"
         tools:layout="@layout/fragment_group_details" >
         <argument
             android:name="group"
@@ -46,7 +50,7 @@
     <fragment
         android:id="@+id/createPostFragment"
         android:name="it.unimib.gup.ui.main.group.CreatePostFragment"
-        android:label="fragment_create_post"
+        android:label="Create post"
         tools:layout="@layout/fragment_create_post" >
         <argument
             android:name="group"
@@ -55,7 +59,7 @@
     <fragment
         android:id="@+id/createMeetingFragment"
         android:name="it.unimib.gup.ui.main.group.CreateMeetingFragment"
-        android:label="fragment_create_meeting"
+        android:label="Create meeting"
         tools:layout="@layout/fragment_create_meeting" >
         <argument
             android:name="group"

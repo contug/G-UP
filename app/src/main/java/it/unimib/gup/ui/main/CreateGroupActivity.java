@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -55,11 +56,12 @@ public class CreateGroupActivity extends AppCompatActivity {
         final EditText descriptionGroup = findViewById(R.id.create_post_edittext);
 
         spinnerCategoryGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     TextView textView = (TextView)view;
-                    textView.setTextColor(Color.GRAY);
+                    textView.setTextColor(R.color.hint_color);
                 }
             }
             @Override
