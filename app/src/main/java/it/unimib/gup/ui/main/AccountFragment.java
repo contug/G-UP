@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ import it.unimib.gup.model.Group;
 import it.unimib.gup.model.Meeting;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.ui.authentication.AuthenticationActivity;
+import it.unimib.gup.ui.authentication.UserViewModel;
 import it.unimib.gup.utils.SharedPreferencesProvider;
 
 public class AccountFragment extends Fragment {
@@ -41,6 +43,8 @@ public class AccountFragment extends Fragment {
     private static final String TAG = "AccountFragment";
 
     private TextView textViewToolbar;
+
+    private UserViewModel mUserViewModel;
 
     /* ELIMINARE */
     private Category tmpCategory;
@@ -61,7 +65,7 @@ public class AccountFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
-
+        mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
 
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
@@ -117,6 +121,10 @@ public class AccountFragment extends Fragment {
         PopupMenu popupMenu = new PopupMenu(requireActivity(), requireView());
         popupMenu.setGravity(Gravity.BOTTOM);
         inflater.inflate(R.menu.account_fragment_menu, menu);
+        if (mUserViewModel.getAuthWithGoogle()) {
+            menu.getItem(0).setVisible(false);
+        }
+
     }
 
     @Override

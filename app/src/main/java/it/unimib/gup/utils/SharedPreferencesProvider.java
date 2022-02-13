@@ -36,6 +36,16 @@ public class SharedPreferencesProvider {
         editor.apply();
     }
 
+    public void setAuthWithGoogle(Boolean authWithGoogle) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Constants.AUTH_WITH_GOOGLE, authWithGoogle);
+        editor.apply();
+    }
+
+    public boolean getAuthWithGoogle() {
+        return sharedPreferences.getBoolean(Constants.AUTH_WITH_GOOGLE, false);
+    }
+
     public void deleteAll() {
         sharedPreferences.edit().clear().apply();
     }

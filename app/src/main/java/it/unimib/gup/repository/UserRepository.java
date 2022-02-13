@@ -65,6 +65,7 @@ public class UserRepository implements IUserRepository {
                                 if (user != null) {
                                     mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
+                                    mSharedPreferencesProvider.setAuthWithGoogle(false);
                                 }
                             } else {
                                 Log.d(TAG, "signInWithEmail: failure", task.getException());
@@ -112,6 +113,7 @@ public class UserRepository implements IUserRepository {
                                     mSharedPreferencesProvider.
                                             setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
+                                    mSharedPreferencesProvider.setAuthWithGoogle(true);
                                 }
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -154,6 +156,7 @@ public class UserRepository implements IUserRepository {
 
                                     mSharedPreferencesProvider.setAuthenticationToken(user.getIdToken(false).getResult().getToken());
                                     mSharedPreferencesProvider.setUserId(user.getUid());
+                                    mSharedPreferencesProvider.setAuthWithGoogle(false);
                                 }
                             } else {
                                 Log.d(TAG, "createUserWithEmail: failure", task.getException());

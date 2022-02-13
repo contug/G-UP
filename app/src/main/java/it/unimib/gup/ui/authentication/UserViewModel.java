@@ -12,6 +12,7 @@ import it.unimib.gup.model.AuthenticationResponse;
 import it.unimib.gup.model.User;
 import it.unimib.gup.repository.IUserRepository;
 import it.unimib.gup.repository.UserRepository;
+import it.unimib.gup.utils.SharedPreferencesProvider;
 
 /**
  * ViewModel to manage the user authentication.
@@ -21,9 +22,12 @@ public class UserViewModel extends AndroidViewModel {
     private MutableLiveData<AuthenticationResponse> mAuthenticationResponseLiveData;
     private final IUserRepository mUserRepository;
 
+    private SharedPreferencesProvider sharedPreferencesProvider;
+
     public UserViewModel(@NonNull Application application) {
         super(application);
         this.mUserRepository = new UserRepository(application);
+        sharedPreferencesProvider = new SharedPreferencesProvider(application);
     }
 
     // The association between mAuthLiveData from the Repository and the mAuthLivedData in UserViewModel occurs only ONCE
@@ -47,6 +51,10 @@ public class UserViewModel extends AndroidViewModel {
         if (mAuthenticationResponseLiveData != null) {
             mAuthenticationResponseLiveData.postValue(null);
         }
+    }
+
+    public boolean getAuthWithGoogle() {
+        return sharedPreferencesProvider.getAuthWithGoogle();
     }
 
 }
