@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import it.unimib.gup.R;
+import it.unimib.gup.model.Group;
 
 public class CreateMeetingFragment extends Fragment {
 
@@ -21,6 +22,8 @@ public class CreateMeetingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_create_meeting, container, false);
+        Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
+        return view;
     }
 }

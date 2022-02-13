@@ -2,13 +2,20 @@ package it.unimib.gup.ui.main.group;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import it.unimib.gup.R;
+import it.unimib.gup.model.Group;
 
 
 public class CreatePostFragment extends Fragment {
@@ -20,12 +27,15 @@ public class CreatePostFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("CreatePost", "onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_post, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_post, container, false);
+        Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
+
+        return view;
     }
 }

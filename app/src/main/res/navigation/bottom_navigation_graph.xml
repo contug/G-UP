@@ -36,5 +36,29 @@
         <argument
             android:name="group"
             app:argType="it.unimib.gup.model.Group" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_createMeetingFragment"
+            app:destination="@id/createMeetingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="it.unimib.gup.ui.main.group.CreatePostFragment"
+        android:label="fragment_create_post"
+        tools:layout="@layout/fragment_create_post" >
+        <argument
+            android:name="group"
+            app:argType="it.unimib.gup.model.Group" />
+    </fragment>
+    <fragment
+        android:id="@+id/createMeetingFragment"
+        android:name="it.unimib.gup.ui.main.group.CreateMeetingFragment"
+        android:label="fragment_create_meeting"
+        tools:layout="@layout/fragment_create_meeting" >
+        <argument
+            android:name="group"
+            app:argType="it.unimib.gup.model.Group" />
     </fragment>
 </navigation>

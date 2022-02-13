@@ -22,13 +22,14 @@
 
 
         <TextView
+            android:id="@+id/toolbar_text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:fontFamily="@font/manrope_semibold"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="32sp"
-            android:fontFamily="@font/manrope_semibold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
