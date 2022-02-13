@@ -38,7 +38,7 @@ public class CreateMeetingFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     TextView textView = (TextView)view;
-                    textView.setTextColor(R.color.hint_color);
+                    textView.setTextColor(Color.GRAY);
                 }
             }
             @Override
