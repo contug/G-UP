@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -74,6 +76,28 @@ public class GroupDetailsFragment extends Fragment {
                 tab.setText(tabs[position]);
             }
         }).attach();
+
+        FloatingActionButton fab = view.findViewById(R.id.fab_group_details);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = tabLayout.getSelectedTabPosition();
+                Log.d("Position: ", String.valueOf(position));
+
+                if(position == 0) {
+                    GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreatePostFragment action =
+                            GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreatePostFragment(group);
+                    Navigation.findNavController(view).navigate(action);
+                }
+                else {
+                    GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreateMeetingFragment
+                            action = GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreateMeetingFragment(group);
+                    Navigation.findNavController(view).navigate(action);
+                }
+            }
+        });
+
 
 
         // Inflate the layout for this fragment
