@@ -1,4 +1,4 @@
-package it.unimib.gup.ui.main;
+package it.unimib.gup.ui.main.group;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

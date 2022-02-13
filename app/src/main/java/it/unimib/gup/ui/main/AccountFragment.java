@@ -5,9 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,9 +19,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -31,7 +29,6 @@ import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.AccountGroupsRecyclerViewAdapter;
-import it.unimib.gup.adapter.BrowseGroupsRecyclerViewAdapter;
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.Meeting;
@@ -42,6 +39,8 @@ import it.unimib.gup.utils.SharedPreferencesProvider;
 public class AccountFragment extends Fragment {
 
     private static final String TAG = "AccountFragment";
+
+    private TextView textViewToolbar;
 
     /* ELIMINARE */
     private Category tmpCategory;
@@ -61,8 +60,11 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // It is necessary to specify that the toolbar has a custom menu
+        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
 
+
+        // It is necessary to specify that the toolbar has a custom menu
+        setHasOptionsMenu(true);
 
         /* ELIMINARE */
         tmpCategory = new Category("SCIENCE", "#F43F5E");
@@ -81,7 +83,6 @@ public class AccountFragment extends Fragment {
         Log.d("###", mGroups.toString());
         /* --------- */
 
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -98,6 +99,7 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
+                        textViewToolbar.setVisibility(View.GONE);
                         AccountFragmentDirections.ActionAccountToGroupDetailsFragment
                                 action = AccountFragmentDirections.actionAccountToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);
@@ -119,13 +121,17 @@ public class AccountFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.logout) {
+        if (item.getItemId() == R.id.menu_item_logout) {
             Log.d(TAG, "onOptionsItemSelected: Logout");
             FirebaseAuth.getInstance().signOut();
             SharedPreferencesProvider sharedPreferencesProvider = new SharedPreferencesProvider(requireActivity().getApplication());
             sharedPreferencesProvider.deleteAll();
             startActivity(new Intent(requireActivity(), AuthenticationActivity.class));
             requireActivity().finish();
+        } else if (item.getItemId() == R.id.menu_item_edit_profile) {
+            Log.d(TAG, "onOptionsItemSelected: Edit profile");
+            textViewToolbar.setVisibility(View.GONE);
+            Navigation.findNavController(getView()).navigate(R.id.modifyAccount);
         }
         return super.onOptionsItemSelected(item);
     }

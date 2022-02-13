@@ -9,10 +9,10 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingHorizontal="16dp"
     android:paddingBottom="80dp"
-    android:id="@+id/fragment_login">
+    android:id="@+id/modify_account_constraint_layout">
 
     <TextView
         android:id="@+id/create_account_title"

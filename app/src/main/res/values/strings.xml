@@ -81,5 +81,8 @@
     <string name="publish">Publish</string>
     <string name="create_post">Create Post</string>
     <string name="type_message">Type your message</string>
+    <string name="apply">Apply</string>
+    <string name="edit_your_account">Edit your account</string>
+    <string name="edit_profile">Edit profile</string>
 
 </resources>

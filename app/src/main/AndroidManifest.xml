@@ -23,7 +23,7 @@
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ui.main.CreateGroupActivity"
+            android:name=".ui.main.group.CreateGroupActivity"
             android:exported="false"
             android:theme="@style/Theme.CreateGroupActivity" />
         <activity

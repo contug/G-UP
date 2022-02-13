@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.ModifyAccount"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="80dp"
+        android:id="@+id/modify_account_constraint_layout">
+
+        <TextView
+            android:id="@+id/edit_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/edit_your_account"
+            android:textColor="@color/gray_800"
+            android:textSize="24sp"
+            android:fontFamily="@font/manrope_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/edit_credentials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_regular"
+            android:text="Insert your new credentials"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_account_title" />
+
+        <ImageView
+            android:id="@+id/modify_account_image"
+            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:src="@drawable/ic_undraw_personal_info_re_ur1n"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_credentials" />
+
+        <EditText
+            android:id="@+id/name_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:fontFamily="@font/manrope_regular"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/modify_account_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/surname_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/surname"
+            android:fontFamily="@font/manrope_regular"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/name_modify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/email_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="@string/email_hint"
+            android:fontFamily="@font/manrope_regular"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/surname_modify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/button_modify_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gup_primary"
+            android:fontFamily="@font/manrope_semibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:letterSpacing="0.05"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/apply"
+
+            app:cornerRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_modify" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

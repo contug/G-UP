@@ -1,4 +1,4 @@
-package it.unimib.gup.ui.main;
+package it.unimib.gup.ui.main.group;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -43,7 +43,6 @@ public class GroupDetailsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
-        textViewToolbar.setVisibility(View.GONE);
     }
 
     @Override

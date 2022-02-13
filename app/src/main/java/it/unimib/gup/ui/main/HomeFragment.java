@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,15 +23,12 @@ import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
-import it.unimib.gup.model.Category;
-import it.unimib.gup.model.Post;
 import it.unimib.gup.model.HomePost;
-import it.unimib.gup.model.Meeting;
-import it.unimib.gup.model.Post;
+import it.unimib.gup.ui.main.group.CreateGroupActivity;
 
 public class HomeFragment extends Fragment {
 
-    private static final String TAG ="HoveFragment";
+    private static final String TAG ="HomeFragment";
 
     /* ELIMINARE */
     private List<HomePost> mHomePosts;

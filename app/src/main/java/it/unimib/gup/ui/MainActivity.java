@@ -8,10 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
@@ -19,7 +16,6 @@ import android.view.WindowManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import it.unimib.gup.R;
-import it.unimib.gup.ui.main.CreateGroupActivity;
 
 public class MainActivity extends AppCompatActivity {
 

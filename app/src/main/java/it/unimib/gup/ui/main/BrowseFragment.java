@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -28,6 +29,8 @@ import it.unimib.gup.model.Post;
 public class BrowseFragment extends Fragment {
 
     private static final String TAG = "BrowseFragment";
+
+    private TextView textViewToolbar;
 
     /* ELIMINARE */
     private Category tmpCategory;
@@ -47,6 +50,7 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
 
         /* ELIMINARE */
         tmpCategory = new Category("SCIENCE", "#F43F5E");
@@ -80,6 +84,7 @@ public class BrowseFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
+                        textViewToolbar.setVisibility(View.GONE);
                         BrowseFragmentDirections.ActionBrowseToGroupDetailsFragment
                                 action = BrowseFragmentDirections.actionBrowseToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);
