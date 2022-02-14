@@ -83,7 +83,7 @@
             android:layout_marginTop="4dp"
             android:textColor="@color/gray_600"
             android:fontFamily="@font/manrope_regular"
-            android:text="Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc..."
+            android:text=""
 
             app:layout_constraintTop_toBottomOf="@+id/browse_groups_description_label"
             app:layout_constraintStart_toStartOf="parent"

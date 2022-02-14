@@ -34,6 +34,7 @@ public class BrowseFragment extends Fragment {
 
     /* ELIMINARE */
     private Category tmpCategory;
+    private Category tmpCategory2;
     private List<String> tmpUsersIds;
     private List<Meeting> tmpMeetingIds;
     private List<Post> tmpPosts;
@@ -53,7 +54,8 @@ public class BrowseFragment extends Fragment {
         textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
 
         /* ELIMINARE */
-        tmpCategory = new Category("SCIENCE", "#F43F5E");
+        tmpCategory = new Category("Formal Sciences", "#F43F5E");
+        tmpCategory2 = new Category("Humanities", "#c2410c");
 
         tmpUsersIds = Arrays.asList("user_id_1", "user_id_2", "user_id_3");
 
@@ -62,9 +64,10 @@ public class BrowseFragment extends Fragment {
         tmpPosts = Arrays.asList(new Post("note_id_1", "user_id_1", "Post text 1"), new Post("note_id_2", "user_id_2", "Post text 2"));
 
         mGroups = Arrays.asList(
-                new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"),
-                new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"),
-                new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"));
+                new Group("group_id", "Appzoid", "Sviluppo di un'applicazione per la per l'organizzazione di studio di gruppo", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#38a9ff"),
+                new Group("group_id", "Readers", "Ragazzi a cui piace leggere libri", tmpCategory2, tmpUsersIds, tmpMeetingIds, tmpPosts, "#fbbf24"),
+                new Group("group_id", "Analisi 2", "Gruppo studio per analisi 2 dell'Università di Milano-Bicocca", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E")
+        );
 
         Log.d("###", mGroups.toString());
         /* --------- */

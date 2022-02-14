@@ -116,6 +116,7 @@
                 android:background="@drawable/edit_text_shape"
                 android:gravity="top"
                 android:hint="@string/description"
+                android:maxLength="128"
                 android:inputType="text|textMultiLine"
                 android:lines="6"
                 android:minHeight="48dp"

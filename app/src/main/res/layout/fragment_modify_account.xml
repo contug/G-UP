@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingBottom="80dp"
+        android:paddingBottom="16dp"
         android:id="@+id/modify_account_constraint_layout">
 
         <TextView
@@ -96,7 +96,7 @@
             android:id="@+id/button_modify_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gup_primary"
+            android:backgroundTint="?colorPrimary"
             android:fontFamily="@font/manrope_semibold"
             android:insetTop="0dp"
             android:insetBottom="0dp"
