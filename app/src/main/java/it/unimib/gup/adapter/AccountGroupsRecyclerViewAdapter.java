@@ -58,14 +58,12 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
 
     public class BrowseGroupsListViewHolder extends RecyclerView.ViewHolder {
 
-        private final View imageContainer;
         private final ImageView image;
         private final TextView name;
 
 
         public BrowseGroupsListViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.imageContainer = itemView.findViewById(R.id.account_group_image_container);
             this.image = itemView.findViewById(R.id.account_group_image);
             this.name = itemView.findViewById(R.id.account_group_name);
 
@@ -73,7 +71,6 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
         }
 
         public void bind(Group group) {
-            this.imageContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getColor())));
             //this.image.setImageBitmap(group.getName());
             this.name.setText(group.getName());
 

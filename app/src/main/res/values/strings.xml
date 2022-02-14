@@ -36,7 +36,7 @@
         <item>@string/offline_meeting</item>
     </string-array>
 
-    <string name="fos_natural_sciences">Natural Science</string>
+    <string name="fos_natural_sciences">Natural Sciences</string>
     <string name="fos_humanities">Humanities</string>
     <string name="fos_formal_sciences">Formal Sciences</string>
     <string name="fos_professions">Professions</string>

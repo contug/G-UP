@@ -41,6 +41,8 @@
             app:layout_constraintStart_toEndOf="@id/meeting_online_gray_bar"
             />
 
+
+
         <TextView
             android:id="@+id/meeting_online_text"
             android:layout_width="wrap_content"
@@ -50,9 +52,30 @@
             android:text="https://unimib.webex.com/webappng/sites/unimib/dashboard/pmr/marco.mobilio"
             android:fontFamily="@font/manrope_regular"
             android:textColor="@color/gray_600"
-            app:layout_constraintTop_toBottomOf="@id/meeting_online_author"
+            app:layout_constraintTop_toBottomOf="@id/meeting_online_calendar_icon"
             app:layout_constraintStart_toEndOf="@id/meeting_online_gray_bar"
             />
+
+        <ImageView
+            android:id="@+id/meeting_online_calendar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar_today"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/gray_600"
+            app:layout_constraintTop_toBottomOf="@id/meeting_online_author"
+            app:layout_constraintStart_toEndOf="@id/meeting_online_gray_bar" />
+
+        <TextView
+            android:id="@+id/meeting_online_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14 Febbraio 2022"
+            android:fontFamily="@font/manrope_regular"
+            android:textColor="@color/gray_600"
+            app:layout_constraintTop_toTopOf="@+id/meeting_online_calendar_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/meeting_online_calendar_icon"
+            app:layout_constraintStart_toEndOf="@+id/meeting_online_calendar_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -82,12 +105,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginStart="8dp"
-            android:text="Offline"
+            android:text="In person"
             android:fontFamily="@font/manrope_medium"
             android:textColor="@color/gray_800"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/meeting_offline_gray_bar"
             />
+
+        <ImageView
+            android:id="@+id/meeting_offline_calendar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar_today"
+            android:layout_marginStart="6dp"
+            tools:layout_editor_absoluteX="94dp"
+            app:layout_constraintTop_toBottomOf="@id/meeting_offline_author"
+            app:layout_constraintStart_toEndOf="@id/meeting_offline_gray_bar" />
+
+        <TextView
+            android:id="@+id/meeting_offline_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14 Febbraio 2022"
+            android:fontFamily="@font/manrope_regular"
+            android:textColor="@color/gray_600"
+            app:layout_constraintTop_toTopOf="@+id/meeting_offline_calendar_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/meeting_offline_calendar_icon"
+            app:layout_constraintStart_toEndOf="@+id/meeting_offline_calendar_icon" />
 
         <TextView
             android:id="@+id/meeting_offline_text"
@@ -98,7 +142,7 @@
             android:text="Via Brombeis, 69"
             android:fontFamily="@font/manrope_regular"
             android:textColor="@color/gray_600"
-            app:layout_constraintTop_toBottomOf="@id/meeting_offline_author"
+            app:layout_constraintTop_toBottomOf="@id/meeting_offline_calendar_icon"
             app:layout_constraintStart_toEndOf="@id/meeting_offline_gray_bar"
             />
 

@@ -96,7 +96,7 @@
             android:layout_marginTop="16dp"
             android:paddingVertical="8dp"
             android:minHeight="0dp"
-            android:backgroundTint="@color/gup_primary"
+            android:backgroundTint="?colorPrimary"
             android:fontFamily="@font/manrope_medium"
             android:insetTop="0dp"
             android:insetBottom="0dp"

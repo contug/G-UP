@@ -170,7 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/gup_color"
+        android:backgroundTint="?colorPrimary"
         app:tint="@color/white"
         android:clickable="true"
         android:src="@drawable/ic_baseline_add_24"
