@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
 
         mHomePosts = Arrays.asList(
             new HomePost("group_id", "Appzoid",  "#38a9ff", "Luca Micheletto", "Qualcuno ha gli appunti per Programmazione di Dispositivi mobili?", new Date()),
-            new HomePost("group_id", "Readers",  "#fbbf24", "Pietro Smusi", "Ragazzi dovete assolutamente leggere La Scara Bibbia è veramente un bel libro, peccato che mi abbiano spoilerato la fine...", new Date()),
+            new HomePost("group_id", "Readers",  "#fbbf24", "Pietro Smusi", "Ragazzi dovete assolutamente leggere Moby Dick è veramente un bel libro, peccato che mi abbiano spoilerato la fine...", new Date()),
             new HomePost("group_id", "Appzoid",  "#38a9ff", "Giacomo Contu", "Potete cambiare la schermata di creazione dell'account da Activity a Fragment?", new Date())
         );
 
