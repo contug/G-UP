@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
             android:paddingBottom="6dp"
             android:text="Testo di prova un po' lungo ma non troppo"
             android:textSize="14sp"
