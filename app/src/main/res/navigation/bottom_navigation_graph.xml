@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_to_groupDetailsFragment"
             app:destination="@id/groupDetailsFragment" />
+        <action
+            android:id="@+id/action_home_to_createGroupFragment"
+            app:destination="@id/createGroupFragment" />
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -73,4 +76,9 @@
         android:name="it.unimib.gup.ui.main.ModifyAccount"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_modify_account" />
+    <fragment
+        android:id="@+id/createGroupFragment"
+        android:name="it.unimib.gup.ui.main.group.CreateGroupFragment"
+        android:label="Create group"
+        tools:layout="@layout/fragment_create_group" />
 </navigation>

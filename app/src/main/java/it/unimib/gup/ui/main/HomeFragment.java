@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -24,11 +26,13 @@ import java.util.List;
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.HomePost;
-import it.unimib.gup.ui.main.group.CreateGroupActivity;
+import it.unimib.gup.ui.main.group.CreateGroupFragment;
 
 public class HomeFragment extends Fragment {
 
     private static final String TAG ="HomeFragment";
+
+    private TextView textViewToolbar;
 
     /* ELIMINARE */
     private List<HomePost> mHomePosts;
@@ -44,6 +48,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
 
@@ -96,10 +101,12 @@ public class HomeFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: ");
+        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         // Listener for the items in the custom menu
         if (item.getItemId() == R.id.add_group) {
-            Intent intent = new Intent(requireActivity(), CreateGroupActivity.class);
-            startActivity(intent);
+            textViewToolbar.setVisibility(View.GONE);
+            Navigation.findNavController(getView()).navigate(R.id.createGroupFragment);
         }
         return super.onOptionsItemSelected(item);
     }
