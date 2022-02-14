@@ -42,23 +42,21 @@
             />
 
 
-
         <TextView
             android:id="@+id/meeting_online_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:paddingBottom="6dp"
-            android:breakStrategy="simple"
             android:layout_marginStart="8dp"
-            android:text="https://unimib.webex.com/webappng/sites/unimib/dashboard/pmr/marco.mobilio"
+            android:layout_marginTop="6dp"
+            android:breakStrategy="simple"
             android:fontFamily="@font/manrope_regular"
+            android:paddingBottom="6dp"
+            android:text="https://unimib.webex.com/webappng/sites/unimib/dashboard/pmr/pietro.smusi"
             android:textColor="@color/gray_600"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/meeting_online_title"
-            app:layout_constraintStart_toEndOf="@id/meeting_online_gray_bar"
             app:layout_constraintEnd_toEndOf="parent "
-            />
+            app:layout_constraintStart_toEndOf="@id/meeting_online_gray_bar"
+            app:layout_constraintTop_toBottomOf="@id/meeting_online_title" />
 
         <ImageView
             android:id="@+id/meeting_online_calendar_icon"
@@ -143,16 +141,15 @@
             android:id="@+id/meeting_offline_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:layout_marginStart="8dp"
-            android:paddingBottom="6dp"
-            android:text="Via Brombeis, 69"
-            android:textSize="14sp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/manrope_regular"
+            android:paddingBottom="6dp"
+            android:text="Via Cesare Battisti, 11"
             android:textColor="@color/gray_600"
-            app:layout_constraintTop_toBottomOf="@id/meeting_offline_title"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/meeting_offline_gray_bar"
-            />
+            app:layout_constraintTop_toBottomOf="@id/meeting_offline_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
