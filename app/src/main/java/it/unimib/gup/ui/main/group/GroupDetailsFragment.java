@@ -64,7 +64,7 @@ public class GroupDetailsFragment extends Fragment {
         viewGroupColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getColor())));
         frameLayoutCategoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
         textViewGroupCategory.setText(group.getCategory().getName());
-        textViewSubCount.setText("0");
+        textViewSubCount.setText("3");
         textViewGroupDescription.setText(group.getDescription());
 
         final TabLayout tabLayout = view.findViewById(R.id.details_tab_layout);

@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.PostsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.ui.main.BrowseFragmentDirections;
 
@@ -42,15 +44,8 @@ public class PostsFragment extends Fragment {
 
         /* ELIMINARE */
         mPosts = Arrays.asList(
-                new Post("note_id_1", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_1"),
-                new Post("note_id_2", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_2"),
-                new Post("note_id_3", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_3"),
-                new Post("note_id_4", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_4"),
-                new Post("note_id_5", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_5"),
-                new Post("note_id_6", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_6"),
-                new Post("note_id_7", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_7"),
-                new Post("note_id_8", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_8"),
-                new Post("note_id_9", "Author_name", "Post molto lungo per capire se va a capo, asdasdasd asd as das d asdasd asd as  note_text_9")
+                new Post("group_id", "Luca Micheletto", "Qualcuno ha gli appunti per Programmazione di Dispositivi mobili?"),
+                new Post("group_id", "Giacomo Contu", "Potete cambiare la schermata di creazione dell'account da Activity a Fragment?")
         );
         /* --------- */
     }

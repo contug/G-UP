@@ -23,10 +23,6 @@
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ui.main.group.CreateGroupFragment"
-            android:exported="false"
-            android:theme="@style/Theme.CreateGroupActivity" />
-        <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
     </application>
