@@ -73,7 +73,7 @@
     <string name="fos_selection_subtitle">Select one or more disciplines</string>
     <string name="category">Category</string>
     <string name="create">Create</string>
-    <string name="details_groups_subscribers">Subscribers</string>
+    <string name="details_groups_subscribers">Members</string>
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create account</string>
     <string name="link_or_address">Link or Address</string>
