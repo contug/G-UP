@@ -1,0 +1,24 @@
+package it.unimib.gup.ui.main.group;
+
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+
+import it.unimib.gup.model.Category;
+import it.unimib.gup.repository.groups.GroupsRepository;
+import it.unimib.gup.repository.groups.IGroupsRepository;
+
+public class GroupViewModel extends AndroidViewModel {
+
+    private final IGroupsRepository mGroupsRepository;
+
+    public GroupViewModel(@NonNull Application application) {
+        super(application);
+        mGroupsRepository = new GroupsRepository(application);
+    }
+
+    public void saveGroup(String id, String name, String description, Category category, String color) {
+        mGroupsRepository.saveGroup(id, name, description, category, color);
+    }
+}

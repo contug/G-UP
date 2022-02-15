@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -52,25 +53,7 @@ public class BrowseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
-
-        /* ELIMINARE */
-        tmpCategory = new Category("Formal Sciences", "#F43F5E");
-        tmpCategory2 = new Category("Humanities", "#c2410c");
-
-        tmpUsersIds = Arrays.asList("user_id_1", "user_id_2", "user_id_3");
-
-        tmpMeetingIds = Arrays.asList(new Meeting(Meeting.MeetingType.offline, new Date(), "maps"), new Meeting(Meeting.MeetingType.online, new Date(), "url"));
-
-        tmpPosts = Arrays.asList(new Post("note_id_1", "user_id_1", "Post text 1"), new Post("note_id_2", "user_id_2", "Post text 2"));
-
-        mGroups = Arrays.asList(
-                new Group("group_id", "Appzoid", "Sviluppo di un'applicazione per la per l'organizzazione di studio di gruppo", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#38a9ff"),
-                new Group("group_id", "Readers", "Ragazzi a cui piace leggere libri", tmpCategory2, tmpUsersIds, tmpMeetingIds, tmpPosts, "#fbbf24"),
-                new Group("group_id", "Analisi 2", "Gruppo studio per analisi 2 dell'Università di Milano-Bicocca", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E")
-        );
-
-        Log.d("###", mGroups.toString());
-        /* --------- */
+        mGroups = new ArrayList<>();
     }
 
     @Override
@@ -94,6 +77,12 @@ public class BrowseFragment extends Fragment {
                     }
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
+
+        if (adapter.getItemCount() == 0) {
+            view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
+        }
 
         searchView = view.findViewById(R.id.searchView);
         searchView.clearFocus();

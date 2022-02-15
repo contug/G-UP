@@ -1,4 +1,4 @@
-package it.unimib.gup.repository;
+package it.unimib.gup.repository.user;
 
 import android.content.Intent;
 

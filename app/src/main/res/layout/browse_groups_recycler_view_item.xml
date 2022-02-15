@@ -33,11 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:fontFamily="@font/manrope_semibold"
+            android:text="Group Name"
             android:textColor="@color/gray_800"
-            app:layout_constraintTop_toTopOf="@+id/browse_groups_group_circle"
-            app:layout_constraintLeft_toRightOf="@+id/browse_groups_group_circle"
             app:layout_constraintBottom_toBottomOf="@+id/browse_groups_group_circle"
-            android:text="Appzoid" />
+            app:layout_constraintLeft_toRightOf="@+id/browse_groups_group_circle"
+            app:layout_constraintTop_toTopOf="@+id/browse_groups_group_circle" />
 
         <FrameLayout
             android:id="@+id/browse_groups_category_container"

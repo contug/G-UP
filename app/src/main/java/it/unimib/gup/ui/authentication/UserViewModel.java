@@ -2,16 +2,14 @@ package it.unimib.gup.ui.authentication;
 
 import android.app.Application;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import it.unimib.gup.model.AuthenticationResponse;
-import it.unimib.gup.model.User;
-import it.unimib.gup.repository.IUserRepository;
-import it.unimib.gup.repository.UserRepository;
+import it.unimib.gup.repository.user.IUserRepository;
+import it.unimib.gup.repository.user.UserRepository;
 import it.unimib.gup.utils.SharedPreferencesProvider;
 
 /**

@@ -43,7 +43,7 @@
     <string name="fos_social_sciences">Social Sciences</string>
     <string name="fos_others">Others</string>
 
-    <string name="home_no_results">No groups found, create one\nor find one in the browse section!</string>
+    <string name="home_no_results">No posts found...</string>
 
     <string name="create_group_button">Create group</string>
 
@@ -84,5 +84,10 @@
     <string name="apply">Apply</string>
     <string name="edit_your_account">Edit your account</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="you_are_member_container">You are member</string>
+    <string name="not_a_member">You are not part of any group. Go find one!</string>
+    <string name="member_of_some_groups">You are member of</string>
+    <string name="group">group</string>
+    <string name="groups">groups</string>
 
 </resources>

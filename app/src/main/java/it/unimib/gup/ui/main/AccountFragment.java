@@ -43,16 +43,11 @@ public class AccountFragment extends Fragment {
     private static final String TAG = "AccountFragment";
 
     private TextView textViewToolbar;
+    private TextView textViewAccountFragment;
 
     private UserViewModel mUserViewModel;
 
-    /* ELIMINARE */
-    private Category tmpCategory;
-    private List<String> tmpUsersIds;
-    private List<Meeting> tmpMeetingIds;
-    private List<Post> tmpPosts;
     private List<Group> mGroups;
-    /* --------- */
 
 
     private AccountGroupsRecyclerViewAdapter adapter;
@@ -70,23 +65,6 @@ public class AccountFragment extends Fragment {
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
 
-        /* ELIMINARE */
-        tmpCategory = new Category("SCIENCE", "#F43F5E");
-
-        tmpUsersIds = Arrays.asList("user_id_1", "user_id_2", "user_id_3");
-
-        tmpMeetingIds = Arrays.asList(new Meeting(Meeting.MeetingType.offline, new Date(), "maps"), new Meeting(Meeting.MeetingType.online, new Date(), "url"));
-
-        tmpPosts = Arrays.asList(new Post("note_id_1", "user_id_1", "Post text 1"), new Post("note_id_2", "user_id_2", "Post text 2"));
-
-        mGroups = Arrays.asList(
-                new Group("group_id", "GoGet'Em", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"),
-                new Group("group_id", "Meta", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"),
-                new Group("group_id", "Appzoid", "Descrizione del gruppo non troppo lunga altrimenti è brutta da vedere sulla schermata di home e viene tronc...", tmpCategory, tmpUsersIds, tmpMeetingIds, tmpPosts, "#22C55E"));
-
-        Log.d("###", mGroups.toString());
-        /* --------- */
-
     }
 
     @Override
@@ -94,6 +72,8 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        textViewAccountFragment = view.findViewById(R.id.text_view_account_fragment);
 
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.account_your_groups_recycler_view);
         mBrowseGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -110,6 +90,14 @@ public class AccountFragment extends Fragment {
                     }
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
+
+        if (adapter.getItemCount() == 0) {
+            textViewAccountFragment.setText(R.string.not_a_member);
+        } else if (adapter.getItemCount() == 1) {
+            textViewAccountFragment.setText(R.string.member_of_some_groups + 1 + R.string.group);
+        } else {
+            textViewAccountFragment.setText(R.string.member_of_some_groups + adapter.getItemCount() + R.string.groups);
+        }
 
         return view;
 

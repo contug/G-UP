@@ -27,7 +27,7 @@
                 app:srcCompat="@drawable/ic_undraw_conversation_re_c26v" />
 
             <EditText
-                android:id="@+id/create_group_name_edit_text"
+                android:id="@+id/edit_text_create_group_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -53,7 +53,7 @@
                 android:theme="@style/SpinnerTheme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/create_group_name_edit_text" />
+                app:layout_constraintTop_toBottomOf="@id/edit_text_create_group_name" />
 
             <ImageView
                 android:id="@+id/create_group_category_spinner_arrow"
@@ -66,7 +66,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <EditText
-                android:id="@+id/create_post_edittext"
+                android:id="@+id/edit_text_create_group_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -102,7 +102,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_post_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_create_group_description" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
