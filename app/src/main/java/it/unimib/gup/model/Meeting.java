@@ -1,5 +1,6 @@
 package it.unimib.gup.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Meeting {
@@ -10,14 +11,14 @@ public class Meeting {
     }
 
     private MeetingType type;
-    private Date date;
+    private String date;
     private String url;
 
     public Meeting() {
         // For JSON mapping
     }
 
-    public Meeting(MeetingType type, Date date, String url) {
+    public Meeting(MeetingType type, String date, String url) {
         this.type = type;
         this.date = date;
         this.url = url;
@@ -31,11 +32,11 @@ public class Meeting {
         this.type = type;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -46,4 +47,5 @@ public class Meeting {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }
