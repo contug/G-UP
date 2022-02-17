@@ -42,7 +42,6 @@ public class AccountFragment extends Fragment {
 
     private static final String TAG = "AccountFragment";
 
-    private TextView textViewToolbar;
     private TextView textViewAccountFragment;
 
     private UserViewModel mUserViewModel;
@@ -59,7 +58,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
 
         // It is necessary to specify that the toolbar has a custom menu
@@ -83,7 +81,7 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
-                        textViewToolbar.setVisibility(View.GONE);
+                        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                         AccountFragmentDirections.ActionAccountToGroupDetailsFragment
                                 action = AccountFragmentDirections.actionAccountToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);
@@ -126,7 +124,7 @@ public class AccountFragment extends Fragment {
             requireActivity().finish();
         } else if (item.getItemId() == R.id.menu_item_edit_profile) {
             Log.d(TAG, "onOptionsItemSelected: Edit profile");
-            textViewToolbar.setVisibility(View.GONE);
+            requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
             Navigation.findNavController(getView()).navigate(R.id.modifyAccount);
         }
         return super.onOptionsItemSelected(item);

@@ -31,8 +31,6 @@ public class BrowseFragment extends Fragment {
 
     private static final String TAG = "BrowseFragment";
 
-    private TextView textViewToolbar;
-
     /* ELIMINARE */
     private Category tmpCategory;
     private Category tmpCategory2;
@@ -52,7 +50,6 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         mGroups = new ArrayList<>();
     }
 
@@ -70,7 +67,7 @@ public class BrowseFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
-                        textViewToolbar.setVisibility(View.GONE);
+                        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                         BrowseFragmentDirections.ActionBrowseToGroupDetailsFragment
                                 action = BrowseFragmentDirections.actionBrowseToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);

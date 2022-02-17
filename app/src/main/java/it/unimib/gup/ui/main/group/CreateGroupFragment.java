@@ -32,12 +32,10 @@ public class CreateGroupFragment extends Fragment {
     public static final String TAG = "CREATE_GROUP_ACTIVITY";
 
     private GroupViewModel mGroupViewModel;
-    private TextView textViewToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         mGroupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
     }
 
@@ -45,6 +43,7 @@ public class CreateGroupFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_group, container, false);
+
 
         final EditText editTextNameGroup = view.findViewById(R.id.edit_text_create_group_name);
         final Spinner spinnerCategoryGroup = view.findViewById(R.id.spinner_create_group_category);
@@ -105,6 +104,6 @@ public class CreateGroupFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        textViewToolbar.setVisibility(View.VISIBLE);
+        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.VISIBLE);
     }
 }

@@ -34,8 +34,6 @@ public class GroupDetailsFragment extends Fragment {
 
     private final String[] tabs = {"Posts", "Meetings"};
 
-    private TextView textViewToolbar;
-
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -43,7 +41,6 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
     }
 
     @Override
@@ -90,11 +87,13 @@ public class GroupDetailsFragment extends Fragment {
                 Log.d("Position: ", String.valueOf(position));
 
                 if(position == 0) {
+                    requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                     GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreatePostFragment action =
                             GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreatePostFragment(group);
                     Navigation.findNavController(view).navigate(action);
                 }
                 else {
+                    requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                     GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreateMeetingFragment
                             action = GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreateMeetingFragment(group);
                     Navigation.findNavController(view).navigate(action);
@@ -108,9 +107,4 @@ public class GroupDetailsFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        textViewToolbar.setVisibility(View.VISIBLE);
-    }
 }

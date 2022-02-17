@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/groupDetailsFragment"
         android:name="it.unimib.gup.ui.main.group.GroupDetailsFragment"
-        android:label="Group"
+        android:label=""
         tools:layout="@layout/fragment_group_details" >
         <argument
             android:name="group"

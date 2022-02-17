@@ -32,8 +32,6 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG ="HomeFragment";
 
-    private TextView textViewToolbar;
-
     /* ELIMINARE */
     private List<HomePost> mHomePosts;
     /* --------- */
@@ -91,10 +89,9 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: ");
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         // Listener for the items in the custom menu
         if (item.getItemId() == R.id.add_group) {
-            textViewToolbar.setVisibility(View.GONE);
+            requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
             Navigation.findNavController(getView()).navigate(R.id.createGroupFragment);
         }
         return super.onOptionsItemSelected(item);

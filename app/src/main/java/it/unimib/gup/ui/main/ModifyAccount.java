@@ -13,8 +13,6 @@ import it.unimib.gup.R;
 
 public class ModifyAccount extends Fragment {
 
-    private TextView textViewToolbar;
-
     public ModifyAccount() {
         // Required empty public constructor
     }
@@ -22,7 +20,6 @@ public class ModifyAccount extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
     }
 
     @Override
@@ -35,6 +32,6 @@ public class ModifyAccount extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        textViewToolbar.setVisibility(View.VISIBLE);
+        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.VISIBLE);
     }
 }

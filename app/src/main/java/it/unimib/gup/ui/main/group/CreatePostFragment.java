@@ -38,4 +38,10 @@ public class CreatePostFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.VISIBLE);
+    }
 }
