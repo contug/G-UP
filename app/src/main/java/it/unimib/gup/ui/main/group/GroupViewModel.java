@@ -15,10 +15,10 @@ public class GroupViewModel extends AndroidViewModel {
 
     public GroupViewModel(@NonNull Application application) {
         super(application);
-        mGroupsRepository = new GroupsRepository(application);
+        mGroupsRepository = new GroupsRepository();
     }
 
     public void saveGroup(String id, String name, String description, Category category, String color) {
-        mGroupsRepository.saveGroup(id, name, description, category, color);
+        mGroupsRepository.addGroup(name, description, category.toString());
     }
 }

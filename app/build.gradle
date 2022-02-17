@@ -51,4 +51,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
 
     //implementation 'com.google.firebase:firebase-analytics'
+
+    // Test view model
+    def archLifecycleVersion = "1.1.1"
+    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$archLifecycleVersion"
 }

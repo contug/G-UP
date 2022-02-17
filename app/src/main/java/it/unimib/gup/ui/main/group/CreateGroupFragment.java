@@ -19,22 +19,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Category;
+import it.unimib.gup.repository.groups.GroupsRepository;
 
+@IgnoreExtraProperties
 public class CreateGroupFragment extends Fragment {
 
     public static final String TAG = "CREATE_GROUP_ACTIVITY";
 
     private GroupViewModel mGroupViewModel;
     private TextView textViewToolbar;
+    private GroupsRepository mGroupRepository;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
         mGroupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+
+        mGroupRepository = new GroupsRepository();
     }
 
     @Nullable
@@ -69,9 +75,7 @@ public class CreateGroupFragment extends Fragment {
                 String categoryNameGroup = spinnerCategoryGroup.getSelectedItem().toString();
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
-                    // SAVE GROUP ON FIREBASE
-                    // Dobbiamo decidere come quando e come aggiornare il Database Locale
-                    // e aggiornare la UI
+
                 }
             }
         });

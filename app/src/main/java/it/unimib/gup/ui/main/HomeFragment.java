@@ -27,12 +27,15 @@ import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.HomePost;
 import it.unimib.gup.ui.main.group.CreateGroupFragment;
+import it.unimib.gup.viewmodels.HomePostsViewModel;
 
 public class HomeFragment extends Fragment {
 
     private static final String TAG ="HomeFragment";
 
     private TextView textViewToolbar;
+
+    private HomePostsViewModel mHomePostsViewModel;
 
     /* ELIMINARE */
     private List<HomePost> mHomePosts;

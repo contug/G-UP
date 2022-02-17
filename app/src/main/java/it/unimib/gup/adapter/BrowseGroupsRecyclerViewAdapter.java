@@ -1,5 +1,6 @@
 package it.unimib.gup.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;

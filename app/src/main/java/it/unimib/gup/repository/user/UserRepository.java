@@ -49,7 +49,6 @@ public class UserRepository implements IUserRepository {
         mApplication = application;
         mAuthenticationResponseLiveData = new MutableLiveData<>();
         mSharedPreferencesProvider = new SharedPreferencesProvider(application);
-
     }
 
     @Override

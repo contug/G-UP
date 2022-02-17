@@ -42,15 +42,17 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textViewToolbar = requireActivity().findViewById(R.id.toolbar_text_view);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fragment_group_details, container, false);
         Group group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
+        textViewToolbar = getActivity().findViewById(R.id.toolbar_text_view);
+        textViewToolbar.setVisibility(View.GONE);
 
         // --------- Prova di salvataggio sul database ------------
         final TextView textViewGroupName = view.findViewById(R.id.details_groups_group_name);
