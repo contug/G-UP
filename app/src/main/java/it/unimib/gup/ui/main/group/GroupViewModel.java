@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import it.unimib.gup.model.Category;
+import it.unimib.gup.model.Group;
 import it.unimib.gup.repository.groups.GroupsRepository;
 import it.unimib.gup.repository.groups.IGroupsRepository;
 
@@ -19,8 +20,8 @@ public class GroupViewModel extends AndroidViewModel {
         mGroupsRepository = new GroupsRepository(application);
     }
 
-    public void saveGroup(String name, String description, Category category) {
-        mGroupsRepository.saveGroup(name, description, category);
+    public Group saveGroup(String name, String description, Category category) {
+        return mGroupsRepository.saveGroup(name, description, category);
     }
 
 

@@ -80,5 +80,10 @@
         android:id="@+id/createGroupFragment"
         android:name="it.unimib.gup.ui.main.group.CreateGroupFragment"
         android:label="Create group"
-        tools:layout="@layout/fragment_create_group" />
+        tools:layout="@layout/fragment_create_group" >
+        <action
+            app:popUpTo="@id/home"
+            android:id="@+id/action_createGroupFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
 </navigation>

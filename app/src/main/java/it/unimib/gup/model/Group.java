@@ -136,4 +136,6 @@ public class Group implements Parcelable {
         dest.writeStringList(members);
         dest.writeString(color);
     }
+
+
 }

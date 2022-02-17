@@ -2,9 +2,14 @@ package it.unimib.gup.repository.groups;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,21 +41,21 @@ public class GroupsRepository implements IGroupsRepository {
     }
 
     @Override
-    public void saveGroup(String name, String description, Category category) {
+    public Group saveGroup(String name, String description, Category category) {
+
 
         DatabaseReference groupsCollection = mFirebaseDatabase.child(Constants.GROUP_COLLECTION);
+
         DatabaseReference pushedGroup = groupsCollection.push();
 
-
-
-
-        // Sistemare con id utenti, meetings, posts
-        List<String> tmpUsers = Arrays.asList("id_user_2", "id_user_1");
-
-        Group newGroup = new Group(pushedGroup.getKey(), name, description, category, tmpUsers, null, null);
+        Group newGroup = new Group(pushedGroup.getKey(), name, description, category, null, null, null);
 
         pushedGroup.setValue(newGroup);
+
+        return newGroup;
     }
+
+
 
 
 

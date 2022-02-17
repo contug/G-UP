@@ -3,7 +3,10 @@ package it.unimib.gup.ui.main.group;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -22,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Category;
+import it.unimib.gup.model.Group;
 
 public class CreateGroupFragment extends Fragment {
 
@@ -29,8 +33,6 @@ public class CreateGroupFragment extends Fragment {
 
     private GroupViewModel mGroupViewModel;
     private TextView textViewToolbar;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,8 +73,27 @@ public class CreateGroupFragment extends Fragment {
                 String categoryNameGroup = spinnerCategoryGroup.getSelectedItem().toString();
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
+                    Group newGroup = mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
 
-                    mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
+
+
+                    CreateGroupFragmentDirections.ActionCreateGroupFragmentToGroupDetailsFragment action =
+                            CreateGroupFragmentDirections.actionCreateGroupFragmentToGroupDetailsFragment(newGroup);
+                    Navigation.findNavController(view).navigate(action);
+
+                    /*
+                    Bundle bundle = new Bundle();
+                    FragmentManager fm = requireActivity().getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    bundle.putParcelable("group", newGroup);
+                    ft.replace(R.id.fragment_container_view, new GroupDetailsFragment(), bundle.toString()).addToBackStack(null).commit();
+
+
+                    FragmentManager mFragmentManager = requireActivity().getSupportFragmentManager();
+
+                    mFragmentManager.beginTransaction().replace(R.id.fragment_container_view, new GroupDetailsFragment());
+                     */
+
                 }
             }
         });

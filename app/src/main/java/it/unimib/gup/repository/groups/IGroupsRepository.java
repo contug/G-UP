@@ -5,5 +5,5 @@ import it.unimib.gup.model.Group;
 
 public interface IGroupsRepository {
 
-    void saveGroup(String name, String description, Category category);
+    Group saveGroup(String name, String description, Category category);
 }
