@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.List;
+import java.util.Random;
 
 public class Group implements Parcelable {
 
@@ -20,7 +21,7 @@ public class Group implements Parcelable {
         // For JSON mapping
     }
 
-    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Post> posts, String color) {
+    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Post> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -28,7 +29,12 @@ public class Group implements Parcelable {
         this.members = members;
         this.meetings = meetings;
         this.posts = posts;
-        this.color = color;
+
+        Random obj = new Random();
+        int rand_num = obj.nextInt(0xffffff + 1);
+        String colorCode = String.format("#%06x", rand_num);
+
+        this.color = colorCode;
     }
 
     protected Group(Parcel in) {

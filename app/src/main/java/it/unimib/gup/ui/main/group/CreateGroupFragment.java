@@ -30,6 +30,8 @@ public class CreateGroupFragment extends Fragment {
     private GroupViewModel mGroupViewModel;
     private TextView textViewToolbar;
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +71,8 @@ public class CreateGroupFragment extends Fragment {
                 String categoryNameGroup = spinnerCategoryGroup.getSelectedItem().toString();
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
-                    // SAVE GROUP ON FIREBASE
-                    // Dobbiamo decidere come quando e come aggiornare il Database Locale
-                    // e aggiornare la UI
+
+                    mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup, "asd"));
                 }
             }
         });

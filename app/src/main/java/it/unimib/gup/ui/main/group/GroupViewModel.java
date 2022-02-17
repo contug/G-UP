@@ -19,8 +19,8 @@ public class GroupViewModel extends AndroidViewModel {
         mGroupsRepository = new GroupsRepository(application);
     }
 
-    public void saveGroup(String id, String name, String description, Category category, String color) {
-        mGroupsRepository.saveGroup(id, name, description, category, color);
+    public void saveGroup(String name, String description, Category category) {
+        mGroupsRepository.saveGroup(name, description, category);
     }
 
 
