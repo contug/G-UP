@@ -14,9 +14,20 @@ public class Category implements Parcelable {
         // For JSON mapping
     }
 
-    public Category(String name, String color) {
+    public Category(String name) {
         this.name = name;
-        this.color = color;
+        if(this.name.equals("Natural Sciences"))
+            this.color = "#22c55e";
+        if(this.name.equals("Humanities"))
+            this.color = "#0ea5e9";
+        if(this.name.equals("Formal Sciences"))
+            this.color = "#6366f1";
+        if(this.name.equals("Professions"))
+            this.color = "#f59e0b";
+        if(this.name.equals("Social Sciences"))
+            this.color = "#ec4899";
+        if(this.name.equals("Others"))
+            this.color = "#ef4444";
     }
 
     public String getName() {

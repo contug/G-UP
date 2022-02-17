@@ -72,7 +72,7 @@ public class CreateGroupFragment extends Fragment {
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
 
-                    mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup, "asd"));
+                    mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
                 }
             }
         });

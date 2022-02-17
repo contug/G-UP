@@ -50,10 +50,6 @@ public class GroupsRepository implements IGroupsRepository {
         Group newGroup = new Group(pushedGroup.getKey(), name, description, category, tmpUsers, null, null);
 
         pushedGroup.setValue(newGroup);
-
-
-
-
     }
 
 
