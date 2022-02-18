@@ -57,10 +57,6 @@ public class GroupDetailsFragment extends Fragment {
 
         Group group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
 
-        mGroupViewModel.setCurrentGroupId(group.getId());
-
-
-        // --------- Prova di salvataggio sul database ------------
         final TextView textViewGroupName = view.findViewById(R.id.details_groups_group_name);
         final View viewGroupColor = view.findViewById(R.id.details_groups_group_circle);
         final FrameLayout frameLayoutCategoryContainer = view.findViewById(R.id.details_groups_category_container);
@@ -79,7 +75,6 @@ public class GroupDetailsFragment extends Fragment {
         final ViewPager2 viewPager2 = view.findViewById(R.id.details_view_pager);
         DetailsGroupAdapter detailsGroupAdapter = new DetailsGroupAdapter(this, 2);
         viewPager2.setAdapter(detailsGroupAdapter);
-        // ----------- Fino a qua
 
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

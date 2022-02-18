@@ -35,6 +35,7 @@ public class PostsFragment extends Fragment {
     /* ELIMINARE */
     private List<Post> mPosts;
     private GroupViewModel mGroupViewModel;
+    private Group groupBundle;
     /* --------- */
 
     private PostsRecyclerViewAdapter adapter;
@@ -50,6 +51,7 @@ public class PostsFragment extends Fragment {
         mPosts = new ArrayList<>();
 
         mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
+        groupBundle = GroupDetailsFragmentArgs.fromBundle(getParentFragment().getArguments()).getGroup();
     }
 
     @Override
@@ -70,7 +72,7 @@ public class PostsFragment extends Fragment {
                 });
         mPostsRecyclerView.setAdapter(adapter);
 
-        mGroupViewModel.getGroup(mGroupViewModel.getCurrentGroupId()).observe(getViewLifecycleOwner(), new Observer<Group>() {
+        mGroupViewModel.getGroup(groupBundle.getId()).observe(getViewLifecycleOwner(), new Observer<Group>() {
             @Override
             public void onChanged(Group group) {
                 mPosts.clear();

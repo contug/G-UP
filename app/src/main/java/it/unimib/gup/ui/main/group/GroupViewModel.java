@@ -17,7 +17,6 @@ public class GroupViewModel extends AndroidViewModel {
 
     private final IGroupsRepository mGroupsRepository;
     private MutableLiveData<GroupsResponse> mGroupsResponseMutableLiveData;
-    private String mCurrentGroupId;
 
     public GroupViewModel(@NonNull Application application) {
         super(application);
@@ -41,11 +40,4 @@ public class GroupViewModel extends AndroidViewModel {
         mGroupsRepository.addPost(groupId, text);
     }
 
-    public void setCurrentGroupId(String id) {
-        mCurrentGroupId = id;
-    }
-
-    public String getCurrentGroupId() {
-        return mCurrentGroupId;
-    }
 }
