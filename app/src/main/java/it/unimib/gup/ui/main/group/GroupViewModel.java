@@ -6,9 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.GroupsResponse;
@@ -20,33 +17,35 @@ public class GroupViewModel extends AndroidViewModel {
 
     private final IGroupsRepository mGroupsRepository;
     private MutableLiveData<GroupsResponse> mGroupsResponseMutableLiveData;
-
-    private boolean fetchedGroupsFirstTime;
-
+    private String mCurrentGroupId;
 
     public GroupViewModel(@NonNull Application application) {
         super(application);
         mGroupsRepository = new GroupsRepository(application);
-        fetchedGroupsFirstTime = false;
+        mGroupsResponseMutableLiveData = getGroups();
     }
 
     public MutableLiveData<GroupsResponse> getGroups() {
-        if (!fetchedGroupsFirstTime) {
-            mGroupsResponseMutableLiveData = mGroupsRepository.fetchGroups();
-            fetchedGroupsFirstTime = true;
-        }
-        return mGroupsResponseMutableLiveData;
+        return mGroupsRepository.fetchGroups();
     }
 
-    public Group saveGroup(String name, String description, Category category) {
-        return mGroupsRepository.saveGroup(name, description, category);
+    public MutableLiveData<Group> getGroup(String id) {
+        return mGroupsRepository.fetchGroup(id);
     }
 
-    public void savePost(String groupId, Post post) {
-        mGroupsRepository.savePost(groupId, post);
+    public Group addGroup(String name, String description, Category category) {
+        return mGroupsRepository.addGroup(name, description, category);
     }
 
+    public void addPost(String groupId, Post post) {
+        mGroupsRepository.addPost(groupId, post);
+    }
 
+    public void setCurrentGroupId(String id) {
+        mCurrentGroupId = id;
+    }
 
-
+    public String getCurrentGroupId() {
+        return mCurrentGroupId;
+    }
 }

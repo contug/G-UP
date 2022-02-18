@@ -3,6 +3,7 @@ package it.unimib.gup.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -14,14 +15,14 @@ public class Group implements Parcelable {
     private Category category;
     private List<String> members;
     private List<Meeting> meetings;
-    private List<String> posts;
+    private HashMap<String, Post> posts;
     private String color;
 
     public Group() {
         // For JSON mapping
     }
 
-    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<String> posts) {
+    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, HashMap<String, Post> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -44,7 +45,6 @@ public class Group implements Parcelable {
         description = in.readString();
         category = in.readParcelable(Category.class.getClassLoader());
         members = in.createStringArrayList();
-        posts = in.createStringArrayList();
         color = in.readString();
     }
 
@@ -115,11 +115,11 @@ public class Group implements Parcelable {
         this.meetings = meetings;
     }
 
-    public List<String> getPosts() {
+    public HashMap<String, Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<String> posts) {
+    public void setPosts(HashMap<String, Post> posts) {
         this.posts = posts;
     }
 
@@ -143,7 +143,7 @@ public class Group implements Parcelable {
         dest.writeString(description);
         dest.writeParcelable(category, flags);
         dest.writeStringList(members);
-        dest.writeStringList(posts);
+        //dest.writeStringList(posts);
         dest.writeString(color);
     }
 

@@ -9,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -34,6 +37,8 @@ public class GroupDetailsFragment extends Fragment {
 
     private final String[] tabs = {"Posts", "Meetings"};
 
+    private GroupViewModel mGroupViewModel;
+
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -41,6 +46,8 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
     }
 
     @Override
@@ -49,6 +56,9 @@ public class GroupDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_details, container, false);
 
         Group group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
+
+        mGroupViewModel.setCurrentGroupId(group.getId());
+
 
         // --------- Prova di salvataggio sul database ------------
         final TextView textViewGroupName = view.findViewById(R.id.details_groups_group_name);
@@ -86,20 +96,20 @@ public class GroupDetailsFragment extends Fragment {
                 int position = tabLayout.getSelectedTabPosition();
                 Log.d("Position: ", String.valueOf(position));
 
+                requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                 if(position == 0) {
-                    requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                     GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreatePostFragment action =
                             GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreatePostFragment(group);
                     Navigation.findNavController(view).navigate(action);
                 }
                 else {
-                    requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                     GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToCreateMeetingFragment
                             action = GroupDetailsFragmentDirections.actionGroupDetailsFragmentToCreateMeetingFragment(group);
                     Navigation.findNavController(view).navigate(action);
                 }
             }
         });
+
 
 
 

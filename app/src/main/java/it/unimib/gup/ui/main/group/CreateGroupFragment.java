@@ -69,7 +69,7 @@ public class CreateGroupFragment extends Fragment {
                 String categoryNameGroup = spinnerCategoryGroup.getSelectedItem().toString();
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
-                    Group newGroup = mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
+                    Group newGroup = mGroupViewModel.addGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
 
                     CreateGroupFragmentDirections.ActionCreateGroupFragmentToGroupDetailsFragment action =
                             CreateGroupFragmentDirections.actionCreateGroupFragmentToGroupDetailsFragment(newGroup);

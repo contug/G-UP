@@ -36,11 +36,6 @@ public class BrowseFragment extends Fragment {
     private static final String TAG = "BrowseFragment";
 
     /* ELIMINARE */
-    private Category tmpCategory;
-    private Category tmpCategory2;
-    private List<String> tmpUsersIds;
-    private List<Meeting> tmpMeetingIds;
-    private List<Post> tmpPosts;
     private List<Group> mGroups;
     /* --------- */
 
@@ -71,8 +66,6 @@ public class BrowseFragment extends Fragment {
                 new BrowseGroupsRecyclerViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Group group) {
-                        //Log.d(TAG, "onItemClick: " + group);
-                        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                         BrowseFragmentDirections.ActionBrowseToGroupDetailsFragment
                                 action = BrowseFragmentDirections.actionBrowseToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);

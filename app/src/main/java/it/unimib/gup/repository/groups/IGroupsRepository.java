@@ -9,8 +9,14 @@ import it.unimib.gup.model.Post;
 
 public interface IGroupsRepository {
 
-    Group saveGroup(String name, String description, Category category);
-    void savePost(String groupId, Post post);
+    Group addGroup(String name, String description, Category category);
+    void removeGroup(String id);
+
+    void addPost(String groupId, Post post);
+    void removePost(String id);
+
 
     MutableLiveData<GroupsResponse> fetchGroups();
+
+    MutableLiveData<Group> fetchGroup(String id);
 }

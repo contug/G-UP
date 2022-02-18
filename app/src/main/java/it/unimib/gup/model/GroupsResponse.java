@@ -11,6 +11,18 @@ public class GroupsResponse {
         return groups;
     }
 
+    public Group getGroup(String id) {
+        Group tmpGroup = new Group();
+        for (Group group : groups) {
+            if (group.getId().equals(id)) {
+                tmpGroup = group;
+                break;
+            }
+        }
+
+        return tmpGroup;
+    }
+
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }

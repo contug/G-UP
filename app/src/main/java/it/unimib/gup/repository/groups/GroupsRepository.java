@@ -37,6 +37,7 @@ public class GroupsRepository implements IGroupsRepository {
     private final FirebaseAuth mAuth;
     private final DatabaseReference mFirebaseDatabase;
     private final MutableLiveData<GroupsResponse> mGroupsResponseMutableLiveData;
+    private final MutableLiveData<Group> mGroupResponseMutableLiveData;
 
     private final Application mApplication;
 
@@ -45,6 +46,7 @@ public class GroupsRepository implements IGroupsRepository {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
         mGroupsResponseMutableLiveData = new MutableLiveData<>();
+        mGroupResponseMutableLiveData = new MutableLiveData<>();
     }
 
     public MutableLiveData<GroupsResponse> fetchGroups() {
@@ -78,10 +80,15 @@ public class GroupsRepository implements IGroupsRepository {
         return mGroupsResponseMutableLiveData;
     }
 
+    public MutableLiveData<Group> fetchGroup(String id) {
+
+        mGroupResponseMutableLiveData.postValue(mGroupsResponseMutableLiveData.getValue().getGroup(id));
+
+        return  mGroupResponseMutableLiveData;
+    }
+
     @Override
-    public Group saveGroup(String name, String description, Category category) {
-
-
+    public Group addGroup(String name, String description, Category category) {
         DatabaseReference groupsCollection = mFirebaseDatabase.child(Constants.GROUP_COLLECTION);
 
         DatabaseReference pushedGroup = groupsCollection.push();
@@ -93,12 +100,23 @@ public class GroupsRepository implements IGroupsRepository {
         return newGroup;
     }
 
-    public void savePost(String groupId, Post post) {
+    @Override
+    public void removeGroup(String id) {
+
+    }
+
+    public void addPost(String groupId, Post post) {
         DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
                 child(Constants.POST_COLLECTION).push();
         post.setId(pushedPost.getKey());
         pushedPost.setValue(post);
     }
+
+    @Override
+    public void removePost(String id) {
+
+    }
+
 
 
 

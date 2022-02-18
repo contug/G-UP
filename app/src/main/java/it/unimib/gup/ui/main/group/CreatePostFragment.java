@@ -2,7 +2,6 @@ package it.unimib.gup.ui.main.group;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,10 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import it.unimib.gup.R;
@@ -55,7 +51,7 @@ public class CreatePostFragment extends Fragment {
                 String text = postMessage.getText().toString();
                 if(!text.isEmpty()) {
                     Post post = new Post(author, text);
-                    groupViewModel.savePost(group.getId(), post);
+                    groupViewModel.addPost(group.getId(), post);
                 }
 
             }

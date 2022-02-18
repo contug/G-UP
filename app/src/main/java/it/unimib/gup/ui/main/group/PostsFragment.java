@@ -3,6 +3,9 @@ package it.unimib.gup.ui.main.group;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +34,7 @@ public class PostsFragment extends Fragment {
 
     /* ELIMINARE */
     private List<Post> mPosts;
+    private GroupViewModel mGroupViewModel;
     /* --------- */
 
     private PostsRecyclerViewAdapter adapter;
@@ -42,12 +47,9 @@ public class PostsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* ELIMINARE */
-        mPosts = Arrays.asList(
-                new Post("group_id", "Luca Micheletto", "Qualcuno ha gli appunti per Programmazione di Dispositivi mobili?"),
-                new Post("group_id", "Giacomo Contu", "Potete cambiare la schermata di creazione dell'account da Activity a Fragment?")
-        );
-        /* --------- */
+        mPosts = new ArrayList<>();
+
+        mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
     }
 
     @Override
@@ -68,6 +70,18 @@ public class PostsFragment extends Fragment {
                 });
         mPostsRecyclerView.setAdapter(adapter);
 
+        mGroupViewModel.getGroup(mGroupViewModel.getCurrentGroupId()).observe(getViewLifecycleOwner(), new Observer<Group>() {
+            @Override
+            public void onChanged(Group group) {
+                mPosts.clear();
+
+                List<Post> list = new ArrayList<>(group.getPosts().values());
+
+                mPosts.addAll(list);
+
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

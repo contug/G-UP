@@ -5,6 +5,10 @@ public class Post {
     private String author;
     private String text;
 
+    public Post() {
+
+    }
+
     public Post(String id, String author, String text) {
         this.id = id;
         this.author = author;
