@@ -3,15 +3,12 @@ package it.unimib.gup.ui.main.group;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DatabaseReference;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Category;
@@ -48,7 +44,7 @@ public class CreateGroupFragment extends Fragment {
 
         final EditText editTextNameGroup = view.findViewById(R.id.edit_text_create_group_name);
         final Spinner spinnerCategoryGroup = view.findViewById(R.id.spinner_create_group_category);
-        final EditText editTextDescriptionGroup = view.findViewById(R.id.edit_text_create_group_description);
+        final EditText editTextDescriptionGroup = view.findViewById(R.id.edit_text_create_post);
         final Button buttonCreateGroup = view.findViewById(R.id.button_create_group);
 
         spinnerCategoryGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

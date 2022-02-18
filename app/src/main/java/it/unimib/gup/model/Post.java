@@ -11,6 +11,11 @@ public class Post {
         this.text = text;
     }
 
+    public Post(String author, String text) {
+        this.author = author;
+        this.text = text;
+    }
+
     public String getId() {
         return id;
     }

@@ -93,6 +93,13 @@ public class GroupsRepository implements IGroupsRepository {
         return newGroup;
     }
 
+    public void savePost(String groupId, Post post) {
+        DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
+                child(Constants.POST_COLLECTION).push();
+        post.setId(pushedPost.getKey());
+        pushedPost.setValue(post);
+    }
+
 
 
 

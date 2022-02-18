@@ -66,7 +66,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <EditText
-                android:id="@+id/edit_text_create_group_description"
+                android:id="@+id/edit_text_create_post"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -103,7 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_text_create_group_description" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_create_post" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

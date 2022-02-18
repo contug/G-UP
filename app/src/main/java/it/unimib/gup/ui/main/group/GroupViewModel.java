@@ -12,6 +12,7 @@ import java.util.List;
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.GroupsResponse;
+import it.unimib.gup.model.Post;
 import it.unimib.gup.repository.groups.GroupsRepository;
 import it.unimib.gup.repository.groups.IGroupsRepository;
 
@@ -39,6 +40,10 @@ public class GroupViewModel extends AndroidViewModel {
 
     public Group saveGroup(String name, String description, Category category) {
         return mGroupsRepository.saveGroup(name, description, category);
+    }
+
+    public void savePost(String groupId, Post post) {
+        mGroupsRepository.savePost(groupId, post);
     }
 
 
