@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,7 @@ import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.HomePost;
 import it.unimib.gup.ui.main.group.CreateGroupFragment;
+import it.unimib.gup.ui.main.group.GroupViewModel;
 
 public class HomeFragment extends Fragment {
 
@@ -37,6 +39,8 @@ public class HomeFragment extends Fragment {
     /* --------- */
 
     private HomePostsRecyclerViewAdapter adapter;
+
+    private GroupViewModel mGroupViewModel;
 
 
     public HomeFragment() {
@@ -49,6 +53,10 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "onCreate: ");
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
+
+
+        mGroupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+
     }
 
 

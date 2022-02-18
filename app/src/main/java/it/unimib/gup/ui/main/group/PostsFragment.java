@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +16,7 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -26,16 +25,15 @@ import it.unimib.gup.adapter.PostsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
+import it.unimib.gup.model.User;
 import it.unimib.gup.ui.main.BrowseFragmentDirections;
 
 public class PostsFragment extends Fragment {
 
     private static final String TAG = "PostsFragment";
 
-    /* ELIMINARE */
     private List<Post> mPosts;
     private GroupViewModel mGroupViewModel;
-    /* --------- */
 
     private PostsRecyclerViewAdapter adapter;
 
@@ -75,10 +73,17 @@ public class PostsFragment extends Fragment {
             public void onChanged(Group group) {
                 mPosts.clear();
 
-                List<Post> list = new ArrayList<>(group.getPosts().values());
+                if(group.getPosts() != null) {
 
-                mPosts.addAll(list);
+                    List<Post> list = new ArrayList<>(group.getPosts().values());
 
+                    for (Post post : list) {
+                        User tmpUser = mGroupViewModel.getUser(post.getAuthor());
+                        post.setAuthor(tmpUser.getFirstName() + " " + tmpUser.getLastName());
+                    }
+
+                    mPosts.addAll(list);
+                }
                 adapter.notifyDataSetChanged();
             }
         });

@@ -39,6 +39,8 @@ public class GroupDetailsFragment extends Fragment {
 
     private GroupViewModel mGroupViewModel;
 
+    private Group group;
+
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -48,6 +50,10 @@ public class GroupDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
+
+        group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
+
+        mGroupViewModel.setCurrentGroupId(group.getId());
     }
 
     @Override
@@ -55,9 +61,7 @@ public class GroupDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_details, container, false);
 
-        Group group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
 
-        mGroupViewModel.setCurrentGroupId(group.getId());
 
 
         // --------- Prova di salvataggio sul database ------------
@@ -116,5 +120,4 @@ public class GroupDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
 }

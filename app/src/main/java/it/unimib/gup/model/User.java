@@ -61,4 +61,15 @@ public class User {
     public void setGroupSubscriptions(List<String> groupSubscriptions) {
         this.groupSubscriptions = groupSubscriptions;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", groupSubscriptions=" + groupSubscriptions +
+                '}';
+    }
 }

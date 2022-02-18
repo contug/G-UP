@@ -104,12 +104,7 @@ public class BrowseFragment extends Fragment {
                 adapter.setGroupListAll(groupsResponse.getGroups());
                 mGroups.addAll(groupsResponse.getGroups());
 
-                requireActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                adapter.notifyDataSetChanged();
 
                 if (adapter.getItemCount() == 0) {
                    // Log.d(TAG, "onChanged: vuoto");

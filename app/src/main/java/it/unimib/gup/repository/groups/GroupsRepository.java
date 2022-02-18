@@ -38,6 +38,7 @@ public class GroupsRepository implements IGroupsRepository {
     private final DatabaseReference mFirebaseDatabase;
     private final MutableLiveData<GroupsResponse> mGroupsResponseMutableLiveData;
     private final MutableLiveData<Group> mGroupResponseMutableLiveData;
+    private final MutableLiveData<List<User>> mUsersResponseMutableLiveData;
 
     private final Application mApplication;
 
@@ -47,6 +48,7 @@ public class GroupsRepository implements IGroupsRepository {
         mFirebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
         mGroupsResponseMutableLiveData = new MutableLiveData<>();
         mGroupResponseMutableLiveData = new MutableLiveData<>();
+        mUsersResponseMutableLiveData = new MutableLiveData<>();
     }
 
     public MutableLiveData<GroupsResponse> fetchGroups() {
@@ -86,6 +88,35 @@ public class GroupsRepository implements IGroupsRepository {
 
         return  mGroupResponseMutableLiveData;
     }
+
+    @Override
+    public MutableLiveData<List<User>> fetchUsers() {
+        List<User> tmpUsers = new ArrayList<>();
+
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshotChild : snapshot.getChildren()) {
+                    User user = snapshotChild.getValue(User.class);
+                    tmpUsers.add(user);
+                }
+                mUsersResponseMutableLiveData.postValue(tmpUsers);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "Error getting data", error.toException());
+            }
+        });
+
+        return mUsersResponseMutableLiveData;
+    }
+
+    @Override
+    public MutableLiveData<User> fetchUser(String id) {
+        return null;
+    }
+
 
     @Override
     public Group addGroup(String name, String description, Category category) {

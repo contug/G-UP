@@ -2,10 +2,13 @@ package it.unimib.gup.repository.groups;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.GroupsResponse;
 import it.unimib.gup.model.Post;
+import it.unimib.gup.model.User;
 
 public interface IGroupsRepository {
 
@@ -17,6 +20,8 @@ public interface IGroupsRepository {
 
 
     MutableLiveData<GroupsResponse> fetchGroups();
-
     MutableLiveData<Group> fetchGroup(String id);
+
+    MutableLiveData<List<User>> fetchUsers();
+    MutableLiveData<User> fetchUser(String id);
 }
