@@ -14,14 +14,14 @@ public class Group implements Parcelable {
     private Category category;
     private List<String> members;
     private List<Meeting> meetings;
-    private List<Post> posts;
+    private List<String> posts;
     private String color;
 
     public Group() {
         // For JSON mapping
     }
 
-    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<Post> posts) {
+    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, List<String> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,12 +37,14 @@ public class Group implements Parcelable {
         this.color = colorCode;
     }
 
+
     protected Group(Parcel in) {
         id = in.readString();
         name = in.readString();
         description = in.readString();
         category = in.readParcelable(Category.class.getClassLoader());
         members = in.createStringArrayList();
+        posts = in.createStringArrayList();
         color = in.readString();
     }
 
@@ -94,6 +96,13 @@ public class Group implements Parcelable {
         return members;
     }
 
+    public int getMembersCount() {
+        if (members == null) {
+            return 0;
+        }
+        return getMembers().size();
+    }
+
     public void setMembers(List<String> members) {
         this.members = members;
     }
@@ -106,11 +115,11 @@ public class Group implements Parcelable {
         this.meetings = meetings;
     }
 
-    public List<Post> getNotes() {
+    public List<String> getPosts() {
         return posts;
     }
 
-    public void setNotes(List<Post> posts) {
+    public void setPosts(List<String> posts) {
         this.posts = posts;
     }
 
@@ -134,6 +143,7 @@ public class Group implements Parcelable {
         dest.writeString(description);
         dest.writeParcelable(category, flags);
         dest.writeStringList(members);
+        dest.writeStringList(posts);
         dest.writeString(color);
     }
 

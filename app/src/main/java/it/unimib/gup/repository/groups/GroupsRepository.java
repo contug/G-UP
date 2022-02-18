@@ -61,18 +61,10 @@ public class GroupsRepository implements IGroupsRepository {
                 List<Group> groups = new ArrayList<>();
 
                 for (DataSnapshot snapshotChild : snapshot.getChildren()) {
-                    String key = snapshotChild.getKey();
-                    String name = snapshotChild.child("name").getValue().toString();
-                    String description = snapshotChild.child("description").getValue().toString();
-                    Category category = new Category("Formal Sciences");
-                    Group group = new Group();
-                    group.setId(key);
-                    group.setName(name);
-                    group.setDescription(description);
-                    group.setCategory(category);
-                    group.setColor("#38a9ff");
+                    Group group = snapshotChild.getValue(Group.class);
                     groups.add(group);
                 }
+
                 groupsResponse.setGroups(groups);
                 mGroupsResponseMutableLiveData.postValue(groupsResponse);
             }

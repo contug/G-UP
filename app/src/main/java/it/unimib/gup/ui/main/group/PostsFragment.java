@@ -26,7 +26,7 @@ import it.unimib.gup.ui.main.BrowseFragmentDirections;
 
 public class PostsFragment extends Fragment {
 
-    private static final String TAG = "BrowseFragment";
+    private static final String TAG = "PostsFragment";
 
     /* ELIMINARE */
     private List<Post> mPosts;
