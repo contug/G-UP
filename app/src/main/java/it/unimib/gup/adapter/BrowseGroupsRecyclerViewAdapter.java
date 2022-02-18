@@ -34,8 +34,12 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
 
     public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener) {
         this.mGroupList = groupList;
-        mGroupListAll = new ArrayList<>(mGroupList);
+        mGroupListAll = mGroupList;
         this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setGroupListAll(List<Group> groupListAll) {
+        this.mGroupListAll = groupListAll;
     }
 
     public int setFilteredList(String text) {

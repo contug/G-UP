@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 
 import it.unimib.gup.R;
@@ -74,8 +75,6 @@ public class CreateGroupFragment extends Fragment {
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
                     Group newGroup = mGroupViewModel.saveGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
 
-
-
                     CreateGroupFragmentDirections.ActionCreateGroupFragmentToGroupDetailsFragment action =
                             CreateGroupFragmentDirections.actionCreateGroupFragmentToGroupDetailsFragment(newGroup);
                     Navigation.findNavController(view).navigate(action);
@@ -93,6 +92,8 @@ public class CreateGroupFragment extends Fragment {
                     mFragmentManager.beginTransaction().replace(R.id.fragment_container_view, new GroupDetailsFragment());
                      */
 
+                } else {
+                    Snackbar.make(requireActivity().findViewById(android.R.id.content), "Insert Name and Category", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

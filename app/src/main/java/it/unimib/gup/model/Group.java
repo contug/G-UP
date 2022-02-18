@@ -137,5 +137,17 @@ public class Group implements Parcelable {
         dest.writeString(color);
     }
 
-
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", members=" + members +
+                ", meetings=" + meetings +
+                ", posts=" + posts +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

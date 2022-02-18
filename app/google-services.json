@@ -39,6 +39,14 @@
           }
         },
         {
+          "client_id": "487544540532-pc6dpmap7pch7qcc723l7ndm3od4tp3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.unimib.gup",
+            "certificate_hash": "51b24ec21518697b7c705f99fb6ed6a33105f637"
+          }
+        },
+        {
           "client_id": "487544540532-fqfv3a1t80e2j4tt1t5ij6q67tfrlrtu.apps.googleusercontent.com",
           "client_type": 3
         }
