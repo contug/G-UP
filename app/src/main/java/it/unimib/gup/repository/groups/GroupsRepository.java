@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -105,12 +106,26 @@ public class GroupsRepository implements IGroupsRepository {
 
     }
 
-    public void addPost(String groupId, Post post) {
-        DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
-                child(Constants.POST_COLLECTION).push();
-        post.setId(pushedPost.getKey());
-        pushedPost.setValue(post);
+    public void addPost(String groupId, String text) {
+        DatabaseReference mFirebaseDatabase = FirebaseDatabase.
+                getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(mAuth.getUid()).get().
+                addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    @Override
+                    public void onSuccess(@NonNull DataSnapshot snapshot) {
+                        User currentUser = snapshot.getValue(User.class);
+                        if(!text.isEmpty()) {
+                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text);
+                            DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
+                                    child(Constants.POST_COLLECTION).push();
+                            post.setId(pushedPost.getKey());
+                            pushedPost.setValue(post);
+                        }
+                    }
+                });
     }
+
+
 
     @Override
     public void removePost(String id) {

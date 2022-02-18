@@ -37,8 +37,8 @@ public class GroupViewModel extends AndroidViewModel {
         return mGroupsRepository.addGroup(name, description, category);
     }
 
-    public void addPost(String groupId, Post post) {
-        mGroupsRepository.addPost(groupId, post);
+    public void addPost(String groupId, String text) {
+        mGroupsRepository.addPost(groupId, text);
     }
 
     public void setCurrentGroupId(String id) {

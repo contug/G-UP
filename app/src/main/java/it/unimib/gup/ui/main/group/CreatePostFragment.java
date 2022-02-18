@@ -2,6 +2,8 @@ package it.unimib.gup.ui.main.group;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,11 +14,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.Post;
+import it.unimib.gup.model.User;
+import it.unimib.gup.utils.Constants;
 
 
 public class CreatePostFragment extends Fragment {
@@ -47,13 +58,8 @@ public class CreatePostFragment extends Fragment {
         buttonCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String author = mAuth.getUid();
                 String text = postMessage.getText().toString();
-                if(!text.isEmpty()) {
-                    Post post = new Post(author, text);
-                    groupViewModel.addPost(group.getId(), post);
-                }
-
+                groupViewModel.addPost(group.getId(), text);
             }
         });
 

@@ -12,8 +12,9 @@ public interface IGroupsRepository {
     Group addGroup(String name, String description, Category category);
     void removeGroup(String id);
 
-    void addPost(String groupId, Post post);
+    void addPost(String groupId, String text);
     void removePost(String id);
+
 
 
     MutableLiveData<GroupsResponse> fetchGroups();
