@@ -144,7 +144,7 @@ public class Repository {
         HashMap<String, String> members = new HashMap<>();
         members.put(ownerId, ownerId);
 
-        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, null, null, null);
+        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, members, null, null);
         pushedGroup.setValue(newGroup);
         subscribe(pushedGroup.getKey());
 
@@ -172,7 +172,7 @@ public class Repository {
                 removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "onComplete: ciao");
+                Log.d(TAG, "onComplete: membersCount");
             }
         });
     }
@@ -237,5 +237,9 @@ public class Repository {
                     }
                 });
         return responseLiveData;
+    }
+
+    public String getCurrentUserId() {
+        return mAuth.getUid();
     }
 }

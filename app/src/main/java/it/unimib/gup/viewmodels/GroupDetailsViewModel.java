@@ -12,9 +12,11 @@ public class GroupDetailsViewModel extends ViewModel {
 
     private final Repository mRepository;
     private MutableLiveData<GroupResponse> mGroupLiveData;
+    private final String currentUserId;
 
     public GroupDetailsViewModel() {
         mRepository = new Repository();
+        currentUserId = mRepository.getCurrentUserId();
     }
 
     public void fetchGroup(String groupId) {
@@ -28,6 +30,10 @@ public class GroupDetailsViewModel extends ViewModel {
 
     public MutableLiveData<GroupResponse> getGroupNoFetch() {
         return mGroupLiveData;
+    }
+
+    public String getCurrentUserId() {
+        return currentUserId;
     }
 
 }

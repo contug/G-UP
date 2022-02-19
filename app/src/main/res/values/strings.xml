@@ -91,5 +91,6 @@
     <string name="groups">groups</string>
     <string name="no_meetings_found">No meetings found.</string>
     <string name="no_posts_found">No posts found.</string>
+    <string name="edit_group">Edit group</string>
 
 </resources>

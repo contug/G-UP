@@ -14,6 +14,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -42,7 +44,6 @@ public class GroupDetailsFragment extends Fragment {
     private Group group;
 
 
-
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -50,11 +51,12 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
-
         group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
+        if (group.getOwner().equals(mGroupDetailsViewModel.getCurrentUserId())) {
+            setHasOptionsMenu(true);
+            Log.d(TAG, "onCreate: " + mGroupDetailsViewModel.getCurrentUserId());
+        }
     }
 
     @Override
@@ -85,7 +87,7 @@ public class GroupDetailsFragment extends Fragment {
                     viewGroupColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(tmpGroup.getColor())));
                     frameLayoutCategoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(tmpGroup.getCategory().getColor())));
                     textViewGroupCategory.setText(tmpGroup.getCategory().getName());
-                    textViewSubCount.setText(String.valueOf(tmpGroup.getMembersCount()));
+                    textViewSubCount.setText(String.valueOf(tmpGroup.membersCount()));
                     textViewGroupDescription.setText(tmpGroup.getDescription());
                 }
 
@@ -127,8 +129,12 @@ public class GroupDetailsFragment extends Fragment {
                 }
             }
         });
-
-
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.group_details_menu, menu);
     }
 }

@@ -40,7 +40,7 @@ public class Group implements Parcelable {
         this.color = colorCode;
     }
 
-    public int getMembersCount() {
+    public int membersCount() {
         if (members == null) {
             return 0;
         }

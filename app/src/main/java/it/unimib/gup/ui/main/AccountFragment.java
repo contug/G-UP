@@ -99,13 +99,10 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        PopupMenu popupMenu = new PopupMenu(requireActivity(), requireView());
-        popupMenu.setGravity(Gravity.BOTTOM);
         inflater.inflate(R.menu.account_fragment_menu, menu);
         if (mUserViewModel.getAuthWithGoogle()) {
             menu.getItem(0).setVisible(false);
         }
-
     }
 
     @Override
