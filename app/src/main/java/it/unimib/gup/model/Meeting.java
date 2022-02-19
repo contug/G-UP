@@ -43,4 +43,12 @@ public class Meeting {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "type='" + type + '\'' +
+                ", date='" + date + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

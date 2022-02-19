@@ -55,29 +55,27 @@ public class MeetingsFragment extends Fragment {
         mOnlineMeetingInfo = view.findViewById(R.id.meeting_online_text);
 
         mOfflineMeetingContainer = view.findViewById(R.id.meeting_offline);
-        mOnlineMeetingDate = view.findViewById(R.id.meeting_offline_date);
-        mOnlineMeetingInfo = view.findViewById(R.id.meeting_offline_text);
+        mOfflineMeetingDate = view.findViewById(R.id.meeting_offline_date);
+        mOfflineMeetingInfo = view.findViewById(R.id.meeting_offline_text);
 
         mGroupDetailsViewModel.getGroupNoFetch().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @Override
             public void onChanged(GroupResponse groupResponse) {
-                Log.d("@@@", groupResponse.getGroup().toString());
-
                 if(groupResponse.getGroup().getMeetings() != null) {
                     if(groupResponse.getGroup().getMeetings().get("online") != null) {
-                        Log.d("@@@", groupResponse.getGroup().getMeetings().get("online").toString());
-
                         mOnlineMeetingContainer.setVisibility(View.VISIBLE);
+
                         mOnlineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("online").getDate());
-                        mOnlineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("online").getUrl());
+                        mOnlineMeetingInfo.setText(groupResponse.getGroup().getMeetings().get("online").getUrl());
                     } else {
                         mOnlineMeetingContainer.setVisibility(View.GONE);
                     }
 
                     if(groupResponse.getGroup().getMeetings().get("offline") != null) {
                         mOfflineMeetingContainer.setVisibility(View.VISIBLE);
-                        mOfflineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("offline").getDate().toString());
-                        mOfflineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("offline").getUrl());
+
+                        mOfflineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("offline").getDate());
+                        mOfflineMeetingInfo.setText(groupResponse.getGroup().getMeetings().get("offline").getUrl());
                     } else {
                         mOfflineMeetingContainer.setVisibility(View.GONE);
                     }

@@ -54,9 +54,6 @@ public class GroupDetailsFragment extends Fragment {
         mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
 
         group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
-
-        Log.d("@@@", "Gorup bundle " + group.getName());
-
     }
 
     @Override

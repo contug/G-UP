@@ -69,7 +69,12 @@ public class CreateMeetingFragment extends Fragment {
         mCreateMeetngButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String type = spinnerMeetingType.getSelectedItem().toString().toLowerCase();
+                String type = "";
+                if(spinnerMeetingType.getSelectedItemId() == 1) {
+                    type = "online";
+                } else if(spinnerMeetingType.getSelectedItemId() == 2) {
+                    type = "offline";
+                }
                 String info = mMeetingUrl.getText().toString();
                 String date = mMeetingDate.getText().toString();
                 if(!info.isEmpty() && !date.isEmpty() && !type.isEmpty()) {
