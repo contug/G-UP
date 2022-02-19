@@ -71,7 +71,7 @@ public class SubscriptionsResponse {
                 isNew = false;
                 break;
             }
-            groupIdx ++;
+            groupIdx++;
         }
 
         if(isNew) {

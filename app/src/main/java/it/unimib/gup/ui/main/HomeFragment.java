@@ -71,10 +71,11 @@ public class HomeFragment extends Fragment {
 
         mHomePostsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
         mHomeViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
             @Override
             public void onChanged(SubscriptionsResponse subscriptionsResponse) {
+                Log.d("@@@", "Nuovo post!");
+
                 mHomePosts.clear();
 
                 if (subscriptionsResponse.getHomePosts() != null) {

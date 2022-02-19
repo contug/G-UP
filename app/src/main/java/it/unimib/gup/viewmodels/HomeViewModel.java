@@ -11,7 +11,6 @@ public class HomeViewModel extends ViewModel {
 
     private final Repository mRepository;
     private MutableLiveData<SubscriptionsResponse> mSubscriptions;
-    private MutableLiveData<SubscriptionsResponse> mPostsLiveData;
 
     public HomeViewModel() {
         mRepository = new Repository();
@@ -28,5 +27,4 @@ public class HomeViewModel extends ViewModel {
 
         return mSubscriptions;
     }
-
 }

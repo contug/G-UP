@@ -222,6 +222,7 @@ public class Repository {
                                         public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
                                             Group group = snapshotGroup.getValue(Group.class);
                                             response.addSubscription(group);
+                                            responseLiveData.postValue(response);
                                         }
 
                                         @Override
@@ -229,7 +230,6 @@ public class Repository {
                                         }
                                     });
                         }
-                        responseLiveData.postValue(response);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
