@@ -80,6 +80,12 @@ public class HomeFragment extends Fragment {
                 if (subscriptionsResponse.getHomePosts() != null) {
                     mHomePosts.addAll(subscriptionsResponse.getHomePosts());
                 }
+
+                if(adapter.getItemCount() == 0){
+                    view.findViewById(R.id.home_no_results_container).setVisibility(View.VISIBLE);
+                } else {
+                    view.findViewById(R.id.home_no_results_container).setVisibility(View.GONE);
+                }
                 adapter.notifyDataSetChanged();
             }
         });
@@ -94,11 +100,7 @@ public class HomeFragment extends Fragment {
 
         mHomePostsRecyclerView.setAdapter(adapter);
 
-        if(adapter.getItemCount() == 0){
-            view.findViewById(R.id.home_no_results_container).setVisibility(View.VISIBLE);
-        } else {
-            view.findViewById(R.id.home_no_results_container).setVisibility(View.GONE);
-        }
+
 
         return view;
     }
