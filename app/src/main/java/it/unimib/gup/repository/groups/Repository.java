@@ -211,28 +211,25 @@ public class Repository {
         SubscriptionsResponse response = new SubscriptionsResponse();
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
                 addValueEventListener(new ValueEventListener() {
-                    List<String> subscriptions = new ArrayList<String>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if( subscriptions != null) {
-                            for(DataSnapshot snapshotChild : snapshot.getChildren()) {
-                                String groupId = snapshotChild.getKey();
+                        for(DataSnapshot snapshotChild : snapshot.getChildren()) {
+                            String groupId = snapshotChild.getKey();
 
-                                mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
-                                        addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
-                                                Group group = snapshotGroup.getValue(Group.class);
-                                                response.addSubscription(group);
-                                            }
+                            mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
+                                    addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
+                                            Group group = snapshotGroup.getValue(Group.class);
+                                            response.addSubscription(group);
+                                        }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-                                            }
-                                        });
-                            }
-                            responseLiveData.postValue(response);
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
                         }
+                        responseLiveData.postValue(response);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {

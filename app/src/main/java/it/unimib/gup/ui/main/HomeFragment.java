@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment {
                 } else {
                     view.findViewById(R.id.home_no_results_container).setVisibility(View.GONE);
                 }
+
                 adapter.notifyDataSetChanged();
             }
         });

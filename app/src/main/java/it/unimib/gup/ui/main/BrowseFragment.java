@@ -55,11 +55,12 @@ public class BrowseFragment extends Fragment {
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.browse_groups_recycler_view);
         mBrowseGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final Observer<GroupListResponse> observer = new Observer<GroupListResponse>() {
+        mBrowseGroupViewModel.getGroups().observe(getViewLifecycleOwner(), new Observer<GroupListResponse>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(GroupListResponse listGroupResponse) {
                 mGroups.clear();
+
                 if (listGroupResponse.getGroups() != null) {
                     mGroups.addAll(listGroupResponse.getGroups());
                     adapter.setGroupListAll(listGroupResponse.getGroups());
@@ -69,13 +70,13 @@ public class BrowseFragment extends Fragment {
 
                 if (adapter.getItemCount() == 0) {
                     view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
+
                 } else {
                     view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
+
                 }
             }
-        };
-
-        mBrowseGroupViewModel.getGroups().observe(getViewLifecycleOwner(), observer);
+        });
 
         adapter = new BrowseGroupsRecyclerViewAdapter(mGroups,
                 new BrowseGroupsRecyclerViewAdapter.OnItemClickListener() {

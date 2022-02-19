@@ -2,6 +2,7 @@ package it.unimib.gup.model.responses;
 
 import android.util.Log;
 
+import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class SubscriptionsResponse {
         return subscriptions;
     }
 
-    public List<Post>  getPosts() {
+    public List<Post> getPosts() {
         List<Post> posts = new ArrayList<Post>();
 
         for (Group tmpGroup : subscriptions) {
@@ -36,18 +37,6 @@ public class SubscriptionsResponse {
 
         return posts;
     }
-
-                        /*
-
-    public HomePost(String groupId, String groupName, String groupColor, String author, String text, Date date) {
-                        this.groupId = groupId;
-                        this.groupName = groupName;
-                        this.groupColor = groupColor;
-                        this.author = author;
-                        this.text = text;
-                        this.date = date;
-                    }
-                     */
 
     public List<HomePost> getHomePosts() {
         List<HomePost> homePosts = new ArrayList<HomePost>();
@@ -61,34 +50,33 @@ public class SubscriptionsResponse {
                             tmpGroup.getColor(),
                             tmpPost.getAuthor(),
                             tmpPost.getText(),
-                            new Date());
+                            new Date()
+                    );
 
                     homePosts.add(tmpHomePost);
                 }
             }
-
         }
 
         return homePosts;
     }
 
-    /*
-    public void setSubscriptions(HashMap<String, Group> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-
-
-     */
-
     public void addSubscription (Group group) {
-        this.subscriptions.add(group);
+        boolean isNew = true;
 
-        /*
+        int groupIdx = 0;
+        for(Group tmpGroup : subscriptions) {
+            if (tmpGroup.getId().equals(group.getId())) {
+                subscriptions.set(groupIdx, group);
+                isNew = false;
+                break;
+            }
+            groupIdx ++;
+        }
 
-        Log.d("@@@", "Group: " + group.toString());
-        Log.d("@@@", "Subscriptions: " + subscriptions.toString());
-         */
+        if(isNew) {
+            this.subscriptions.add(group);
+        }
     }
 
     public boolean isError() {
@@ -107,3 +95,4 @@ public class SubscriptionsResponse {
         isLoading = loading;
     }
 }
+

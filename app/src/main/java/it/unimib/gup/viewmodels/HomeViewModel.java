@@ -10,6 +10,7 @@ import it.unimib.gup.repository.groups.Repository;
 public class HomeViewModel extends ViewModel {
 
     private final Repository mRepository;
+    private MutableLiveData<SubscriptionsResponse> mSubscriptions;
     private MutableLiveData<SubscriptionsResponse> mPostsLiveData;
 
     public HomeViewModel() {
@@ -17,15 +18,15 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void fetchSubscriptions() {
-        mPostsLiveData = mRepository.getSubscriptions();
+        mSubscriptions = mRepository.getSubscriptions();
     }
 
     public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
-        if(mPostsLiveData == null) {
+        if(mSubscriptions == null) {
             fetchSubscriptions();
         }
 
-        return mPostsLiveData;
+        return mSubscriptions;
     }
 
 }
