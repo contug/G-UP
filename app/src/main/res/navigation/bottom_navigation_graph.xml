@@ -64,10 +64,6 @@
         <argument
             android:name="group"
             app:argType="it.unimib.gup.model.Group" />
-        <action
-            app:popUpTo="@id/groupDetailsFragment"
-            android:id="@+id/action_createPostFragment_to_groupDetailsFragment2"
-            app:destination="@id/groupDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/createMeetingFragment"
