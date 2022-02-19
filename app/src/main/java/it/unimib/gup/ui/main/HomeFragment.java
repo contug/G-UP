@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
             public void onChanged(SubscriptionsResponse subscriptionsResponse) {
                 mHomePosts.clear();
 
-                if (subscriptionsResponse.getGroups() != null) {
+                if (subscriptionsResponse.getHomePosts() != null) {
                     mHomePosts.addAll(subscriptionsResponse.getHomePosts());
                 }
                 adapter.notifyDataSetChanged();

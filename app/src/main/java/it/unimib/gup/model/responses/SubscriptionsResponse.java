@@ -53,17 +53,18 @@ public class SubscriptionsResponse {
         List<HomePost> homePosts = new ArrayList<HomePost>();
 
         for (Group tmpGroup : subscriptions) {
-            for (Post tmpPost : tmpGroup.getPosts().values()) {
+            if (tmpGroup.getPosts() != null) {
+                for (Post tmpPost : tmpGroup.getPosts().values()) {
+                    HomePost tmpHomePost = new HomePost(
+                            tmpGroup.getId(),
+                            tmpGroup.getName(),
+                            tmpGroup.getColor(),
+                            tmpPost.getAuthor(),
+                            tmpPost.getText(),
+                            new Date());
 
-                HomePost tmpHomePost = new HomePost(
-                        tmpGroup.getId(),
-                        tmpGroup.getName(),
-                        tmpGroup.getColor(),
-                        tmpPost.getAuthor(),
-                        tmpPost.getText(),
-                        new Date());
-
-                homePosts.add(tmpHomePost);
+                    homePosts.add(tmpHomePost);
+                }
             }
 
         }
