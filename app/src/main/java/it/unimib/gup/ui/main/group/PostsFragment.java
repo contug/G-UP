@@ -77,7 +77,7 @@ public class PostsFragment extends Fragment {
 
 
 
-        mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+        mGroupDetailsViewModel.getGroupForPosts().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(GroupResponse groupResponse) {

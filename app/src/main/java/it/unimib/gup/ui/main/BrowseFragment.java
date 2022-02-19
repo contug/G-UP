@@ -90,7 +90,12 @@ public class BrowseFragment extends Fragment {
 
                         Navigation.findNavController(view).navigate(action);
                     }
-                });
+                }, new BrowseGroupsRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Group group) {
+                mBrowseGroupViewModel.subscribe(group.getId());
+            }
+        });
 
         mBrowseGroupsRecyclerView.setAdapter(adapter);
 

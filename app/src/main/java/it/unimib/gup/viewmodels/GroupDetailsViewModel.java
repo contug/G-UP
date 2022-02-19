@@ -30,6 +30,10 @@ public class GroupDetailsViewModel extends ViewModel {
         return mGroupLiveData;
     }
 
+    public MutableLiveData<GroupResponse> getGroupForPosts() {
+        return mGroupLiveData;
+    }
+
     public String getAuthorName(Post post) {
         Log.d("@@@", "id -> " + post.getAuthor());
         User user  = mRepository.getUserById(post.getAuthor()).getUser();

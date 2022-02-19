@@ -15,7 +15,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.R;
@@ -30,12 +33,14 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     private List<Group> mGroupList;
     private List<Group> mGroupListAll;
     private final OnItemClickListener mOnItemClickListener;
+    private final OnItemClickListener mOnSubscribeClickListener;
 
 
-    public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener) {
+    public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener, OnItemClickListener OnSubscribeClickListener) {
         this.mGroupList = groupList;
         mGroupListAll = mGroupList;
         this.mOnItemClickListener = onItemClickListener;
+        this.mOnSubscribeClickListener = OnSubscribeClickListener;
     }
 
     public void setGroupListAll(List<Group> groupListAll) {
@@ -106,10 +111,17 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.description.setText(group.getDescription());
             this.categoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
 
+            String uId = FirebaseAuth.getInstance().getUid();
+            HashMap<String, String> userList = group.getMembers();
+            if(userList.containsKey(uId)){
+                Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
+                recyclerViewItemButton.setVisibility(View.GONE);
+            }
+
             this.subscribeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(group);
+                    mOnSubscribeClickListener.onItemClick(group);
                 }
             });
 

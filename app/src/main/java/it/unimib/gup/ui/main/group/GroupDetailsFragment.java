@@ -64,15 +64,6 @@ public class GroupDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_details, container, false);
 
-
-        mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
-            @Override
-            public void onChanged(GroupResponse groupResponse) {
-                //Log.d("@@@", "GroupDetails: " + groupResponse.getGroup().toString());
-            }
-        });
-
-
         final TextView textViewGroupName = view.findViewById(R.id.details_groups_group_name);
         final View viewGroupColor = view.findViewById(R.id.details_groups_group_circle);
         final FrameLayout frameLayoutCategoryContainer = view.findViewById(R.id.details_groups_category_container);
@@ -80,12 +71,25 @@ public class GroupDetailsFragment extends Fragment {
         final TextView textViewSubCount = view.findViewById(R.id.subscriber_count);
         final TextView textViewGroupDescription = view.findViewById(R.id.details_groups_description);
 
-        textViewGroupName.setText(group.getName());
-        viewGroupColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getColor())));
-        frameLayoutCategoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
-        textViewGroupCategory.setText(group.getCategory().getName());
-        textViewSubCount.setText(String.valueOf(group.getMembersCount()));
-        textViewGroupDescription.setText(group.getDescription());
+
+        mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+            @Override
+            public void onChanged(GroupResponse groupResponse) {
+                //Log.d("@@@", "GroupDetails: " + groupResponse.getGroup().toString());
+                if (groupResponse.getGroup() != null) {
+                    Group tmpGroup = groupResponse.getGroup();
+
+                    textViewGroupName.setText(tmpGroup.getName());
+                    viewGroupColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(tmpGroup.getColor())));
+                    frameLayoutCategoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(tmpGroup.getCategory().getColor())));
+                    textViewGroupCategory.setText(tmpGroup.getCategory().getName());
+                    textViewSubCount.setText(String.valueOf(tmpGroup.getMembersCount()));
+                    textViewGroupDescription.setText(tmpGroup.getDescription());
+                }
+
+            }
+        });
+
 
         final TabLayout tabLayout = view.findViewById(R.id.details_tab_layout);
         final ViewPager2 viewPager2 = view.findViewById(R.id.details_view_pager);

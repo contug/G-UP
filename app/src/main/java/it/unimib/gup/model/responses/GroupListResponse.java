@@ -6,10 +6,10 @@ import java.util.List;
 import it.unimib.gup.model.Group;
 
 public class GroupListResponse {
-    private List<Group> groups = new ArrayList<>();
+    private List<Group> groups;
     private boolean isError;
     private boolean isLoading;
-    
+
     public List<Group> getGroups() {
         return groups;
     }

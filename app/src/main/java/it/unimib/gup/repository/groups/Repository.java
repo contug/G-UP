@@ -5,7 +5,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,7 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.acl.Owner;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.model.Category;
@@ -133,11 +137,29 @@ public class Repository {
 
         DatabaseReference pushedGroup = groupsCollection.push();
 
-        Group newGroup = new Group(pushedGroup.getKey(), name, description, category, null, null, null);
+        String ownerId = mAuth.getUid();
+
+        HashMap<String, String> members = new HashMap<>();
+        members.put(ownerId, ownerId);
+
+        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, members, null, null);
 
         pushedGroup.setValue(newGroup);
 
         return newGroup;
+    }
+
+    public void subscribe(String groupId) {
+        String memberId = mAuth.getUid();
+
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(memberId).
+                setValue(memberId).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d(TAG, "onComplete: ciao");
+            }
+        });
+
     }
 
     public void removeGroup(String id) {
@@ -145,8 +167,7 @@ public class Repository {
     }
 
     public void addPost(String groupId, String text) {
-        DatabaseReference mFirebaseDatabase = FirebaseDatabase.
-                getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
+
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(mAuth.getUid()).get().
                 addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override

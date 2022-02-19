@@ -26,5 +26,9 @@ public class BrowseGroupsViewModel extends ViewModel {
         return mGroupsLiveData;
     }
 
+    public void subscribe(String groupId) {
+        mRepository.subscribe(groupId);
+    }
+
 
 }
