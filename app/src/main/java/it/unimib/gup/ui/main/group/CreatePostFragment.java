@@ -2,8 +2,6 @@ package it.unimib.gup.ui.main.group;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,25 +12,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.Post;
-import it.unimib.gup.model.User;
-import it.unimib.gup.utils.Constants;
+import it.unimib.gup.viewmodels.CreatePostViewModel;
 
 
 public class CreatePostFragment extends Fragment {
 
-    public GroupViewModel groupViewModel;
+    public CreatePostViewModel mCreatePostViewModel;
 
     public CreatePostFragment() {
         // Required empty public constructor
@@ -42,7 +31,9 @@ public class CreatePostFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("CreatePost", "onCreate");
-        groupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        mCreatePostViewModel = new ViewModelProvider(requireActivity()).get(CreatePostViewModel.class);
+
+
     }
 
     @Override
@@ -50,6 +41,7 @@ public class CreatePostFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_post, container, false);
         Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
+
 
         final EditText postMessage = view.findViewById(R.id.edit_text_create_post);
         final Button buttonCreatePost = view.findViewById(R.id.button_create_post);
@@ -59,7 +51,10 @@ public class CreatePostFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String text = postMessage.getText().toString();
-                groupViewModel.addPost(group.getId(), text);
+                if(!text.isEmpty()) {
+                    mCreatePostViewModel.addPost(group.getId(), text);
+                    requireActivity().onBackPressed();
+                }
             }
         });
 

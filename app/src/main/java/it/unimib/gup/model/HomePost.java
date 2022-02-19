@@ -8,9 +8,9 @@ public class HomePost {
     private String groupColor;
     private String author;
     private String text;
-    private Date date;
+    private String date;
 
-    public HomePost(String groupId, String groupName, String groupColor, String author, String text, Date date) {
+    public HomePost(String groupId, String groupName, String groupColor, String author, String text, String date) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.groupColor = groupColor;
@@ -59,11 +59,11 @@ public class HomePost {
         this.text = text;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

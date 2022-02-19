@@ -1,6 +1,5 @@
 package it.unimib.gup.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Post;
+import it.unimib.gup.repository.groups.Repository;
 
 public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<PostsRecyclerViewAdapter.NotesListViewHolder> {
 
@@ -55,13 +55,12 @@ public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<PostsRecycler
 
         private final TextView author;
         private final TextView text;
-
+        private Repository mRepository;
 
         public NotesListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.author = itemView.findViewById(R.id.post_author);
             this.text = itemView.findViewById(R.id.post_text);
-
         }
 
         public void bind(Post post) {

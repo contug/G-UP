@@ -1,12 +1,11 @@
 package it.unimib.gup.ui.main.group;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,44 +13,39 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.PostsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
-import it.unimib.gup.ui.main.BrowseFragmentDirections;
+import it.unimib.gup.model.responses.GroupResponse;
+import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 
 public class PostsFragment extends Fragment {
 
     private static final String TAG = "PostsFragment";
 
-    /* ELIMINARE */
+
+    private TextView mEmptyState;
+
     private List<Post> mPosts;
-    private GroupViewModel mGroupViewModel;
-    private Group groupBundle;
-    /* --------- */
+    private GroupDetailsViewModel mGroupDetailsViewModel;
+    private Group group;
 
     private PostsRecyclerViewAdapter adapter;
 
-    public PostsFragment() {
-        // Required empty public constructor
-    }
+    public PostsFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mPosts = new ArrayList<>();
-
-        mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
-        groupBundle = GroupDetailsFragmentArgs.fromBundle(getParentFragment().getArguments()).getGroup();
+        mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
     }
 
     @Override
@@ -72,20 +66,30 @@ public class PostsFragment extends Fragment {
                 });
         mPostsRecyclerView.setAdapter(adapter);
 
-        mGroupViewModel.getGroup(groupBundle.getId()).observe(getViewLifecycleOwner(), new Observer<Group>() {
+
+        mEmptyState = view.findViewById(R.id.text_view_posts_empty);
+
+        mGroupDetailsViewModel.getGroupNoFetch().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(Group group) {
+            public void onChanged(GroupResponse groupResponse) {
+
                 mPosts.clear();
 
-                List<Post> list = new ArrayList<>(group.getPosts().values());
+                if (groupResponse.getGroup().getPosts() != null) {
+                    mEmptyState.setVisibility(View.GONE);
+                    List<Post> list = new ArrayList<>(groupResponse.getGroup().getPosts().values());
 
-                mPosts.addAll(list);
+                    mPosts.addAll(list);
+                } else {
+
+                    mEmptyState.setVisibility(View.VISIBLE);
+                }
 
                 adapter.notifyDataSetChanged();
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 }

@@ -1,26 +1,16 @@
-package it.unimib.gup.model;
+package it.unimib.gup.model.responses;
 
 import java.util.List;
 
-public class GroupsResponse {
+import it.unimib.gup.model.Group;
+
+public class GroupListResponse {
     private List<Group> groups;
     private boolean isError;
     private boolean isLoading;
 
     public List<Group> getGroups() {
         return groups;
-    }
-
-    public Group getGroup(String id) {
-        Group tmpGroup = new Group();
-        for (Group group : groups) {
-            if (group.getId().equals(id)) {
-                tmpGroup = group;
-                break;
-            }
-        }
-
-        return tmpGroup;
     }
 
     public void setGroups(List<Group> groups) {

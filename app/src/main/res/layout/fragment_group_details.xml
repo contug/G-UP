@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/group_details_image_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:src="@drawable/study"

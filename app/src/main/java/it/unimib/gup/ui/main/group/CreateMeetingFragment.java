@@ -3,6 +3,7 @@ package it.unimib.gup.ui.main.group;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -11,24 +12,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.viewmodels.CreateMeetingViewModel;
 
 public class CreateMeetingFragment extends Fragment {
+
+    public CreateMeetingViewModel mCreateMeetingViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        mCreateMeetingViewModel = new ViewModelProvider(requireActivity()).get(CreateMeetingViewModel.class);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_meeting, container, false);
-        Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
+
+        Group groupBundle = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
 
         final Spinner spinnerMeetingType = view.findViewById(R.id.spinner_create_meeting);
 
@@ -44,6 +54,29 @@ public class CreateMeetingFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+
+        Button mCreateMeetngButton = view.findViewById(R.id.button_create_meeting);
+        EditText mMeetingUrl = view.findViewById(R.id.input_text_link_or_position);
+        EditText mMeetingDate = view.findViewById(R.id.editTextDate);
+
+        mCreateMeetngButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String type = "";
+                if(spinnerMeetingType.getSelectedItemId() == 1) {
+                    type = "online";
+                } else if(spinnerMeetingType.getSelectedItemId() == 2) {
+                    type = "offline";
+                }
+                String info = mMeetingUrl.getText().toString();
+                String date = mMeetingDate.getText().toString();
+                if(!info.isEmpty() && !date.isEmpty() && !type.isEmpty()) {
+                    mCreateMeetingViewModel.addMeeting(groupBundle.getId(), type, info, date);
+                    requireActivity().onBackPressed();
+                }
             }
         });
 

@@ -1,10 +1,7 @@
 package it.unimib.gup.adapter;
 
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.R;
@@ -30,12 +30,15 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     private List<Group> mGroupList;
     private List<Group> mGroupListAll;
     private final OnItemClickListener mOnItemClickListener;
+    private final OnItemClickListener mOnSubscribeClickListener;
 
 
-    public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener) {
+    public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener, OnItemClickListener OnSubscribeClickListener) {
         this.mGroupList = groupList;
-        mGroupListAll = mGroupList;
+        this.mGroupListAll = groupList;
+
         this.mOnItemClickListener = onItemClickListener;
+        this.mOnSubscribeClickListener = OnSubscribeClickListener;
     }
 
     public void setGroupListAll(List<Group> groupListAll) {
@@ -45,13 +48,14 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     public int setFilteredList(String text) {
         List<Group> filteredList = new ArrayList<>();
 
+        mGroupList.clear();
         for (Group group : mGroupListAll) {
             if (group.getName().toLowerCase().startsWith(text.toLowerCase()) || group.getCategory().getName().toLowerCase().startsWith(text.toLowerCase()) ) {
                 filteredList.add(group);
             }
         }
 
-        mGroupList = filteredList;
+        mGroupList.addAll(filteredList);
         notifyDataSetChanged();
 
         return filteredList.size();
@@ -96,7 +100,6 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.category = itemView.findViewById(R.id.browse_groups_category_text);
             this.categoryContainer = itemView.findViewById(R.id.browse_groups_category_container);
             this.subscribeButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
-
         }
 
         public void bind(Group group) {
@@ -106,17 +109,32 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.description.setText(group.getDescription());
             this.categoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
 
+            String uId = FirebaseAuth.getInstance().getUid();
+            HashMap<String, String> userList = group.getMembers();
+            if (userList != null) {
+                if(userList.containsKey(uId)){
+                    Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
+                    recyclerViewItemButton.setVisibility(View.GONE);
+                }
+            }
+
             this.subscribeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(group);
+                    mOnSubscribeClickListener.onItemClick(group);
                 }
             });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(group);
+                    String uId = FirebaseAuth.getInstance().getUid();
+                    HashMap<String, String> userList = group.getMembers();
+                    if (userList != null) {
+                        if(userList.containsKey(uId)){
+                            mOnItemClickListener.onItemClick(group);
+                        }
+                    }
                 }
             });
         }

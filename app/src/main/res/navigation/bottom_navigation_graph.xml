@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_browse_to_groupDetailsFragment"
             app:destination="@id/groupDetailsFragment" />
+        <action
+            android:id="@+id/action_browse_to_groupDetailsFragment2"
+            app:destination="@id/groupDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupDetailsFragment"

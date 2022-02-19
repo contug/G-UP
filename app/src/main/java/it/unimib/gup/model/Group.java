@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class Group implements Parcelable {
@@ -13,16 +12,18 @@ public class Group implements Parcelable {
     private String name;
     private String description;
     private Category category;
-    private List<String> members;
-    private List<Meeting> meetings;
+    private HashMap<String, String> members;
+    private HashMap<String, Meeting> meetings;
     private HashMap<String, Post> posts;
     private String color;
+    private String owner;
 
     public Group() {
         // For JSON mapping
     }
 
-    public Group(String id, String name, String description, Category category, List<String> members, List<Meeting> meetings, HashMap<String, Post> posts) {
+
+    public Group(String id, String owner, String name, String description, Category category, HashMap<String, String> members, HashMap<String, Meeting> meetings, HashMap<String, Post> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,6 +31,7 @@ public class Group implements Parcelable {
         this.members = members;
         this.meetings = meetings;
         this.posts = posts;
+        this.owner = owner;
 
         Random obj = new Random();
         int rand_num = obj.nextInt(0xffffff + 1);
@@ -38,27 +40,12 @@ public class Group implements Parcelable {
         this.color = colorCode;
     }
 
-
-    protected Group(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        description = in.readString();
-        category = in.readParcelable(Category.class.getClassLoader());
-        members = in.createStringArrayList();
-        color = in.readString();
+    public int getMembersCount() {
+        if (members == null) {
+            return 0;
+        }
+        return getMembers().size();
     }
-
-    public static final Creator<Group> CREATOR = new Creator<Group>() {
-        @Override
-        public Group createFromParcel(Parcel in) {
-            return new Group(in);
-        }
-
-        @Override
-        public Group[] newArray(int size) {
-            return new Group[size];
-        }
-    };
 
     public String getId() {
         return id;
@@ -92,26 +79,19 @@ public class Group implements Parcelable {
         this.category = category;
     }
 
-    public List<String> getMembers() {
+    public HashMap<String, String> getMembers() {
         return members;
     }
 
-    public int getMembersCount() {
-        if (members == null) {
-            return 0;
-        }
-        return getMembers().size();
-    }
-
-    public void setMembers(List<String> members) {
+    public void setMembers(HashMap<String, String> members) {
         this.members = members;
     }
 
-    public List<Meeting> getMeetings() {
+    public HashMap<String, Meeting> getMeetings() {
         return meetings;
     }
 
-    public void setMeetings(List<Meeting> meetings) {
+    public void setMeetings(HashMap<String, Meeting> meetings) {
         this.meetings = meetings;
     }
 
@@ -131,6 +111,14 @@ public class Group implements Parcelable {
         this.color = color;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -138,14 +126,55 @@ public class Group implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(description);
-        dest.writeParcelable(category, flags);
-        dest.writeStringList(members);
-        //dest.writeStringList(posts);
-        dest.writeString(color);
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeParcelable(this.category, flags);
+        dest.writeSerializable(this.members);
+        dest.writeSerializable(this.meetings);
+        dest.writeSerializable(this.posts);
+        dest.writeString(this.color);
+        dest.writeString(this.owner);
     }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readString();
+        this.name = source.readString();
+        this.description = source.readString();
+        this.category = source.readParcelable(Category.class.getClassLoader());
+        this.members = (HashMap<String, String>) source.readSerializable();
+        this.meetings = new HashMap<String, Meeting>();
+        //source.readList(this.meetings, <Meeting.class.getClassLoader());
+        this.posts = (HashMap<String, Post>) source.readSerializable();
+        this.color = source.readString();
+        this.owner = source.readString();
+    }
+
+    protected Group(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.description = in.readString();
+        this.category = in.readParcelable(Category.class.getClassLoader());
+        this.members = (HashMap<String, String>) in.readSerializable();
+        this.meetings = new HashMap<String, Meeting>();
+        //in.readList(this.meetings, Meeting.class.getClassLoader());
+        this.posts = (HashMap<String, Post>) in.readSerializable();
+        this.color = in.readString();
+        this.owner = in.readString();
+    }
+
+    public static final Creator<Group> CREATOR = new Creator<Group>() {
+        @Override
+        public Group createFromParcel(Parcel source) {
+            return new Group(source);
+        }
+
+        @Override
+        public Group[] newArray(int size) {
+            return new Group[size];
+        }
+    };
+
 
     @Override
     public String toString() {
@@ -158,6 +187,7 @@ public class Group implements Parcelable {
                 ", meetings=" + meetings +
                 ", posts=" + posts +
                 ", color='" + color + '\'' +
+                ", owner='" + owner + '\'' +
                 '}';
     }
 }

@@ -23,17 +23,18 @@ import com.google.android.material.snackbar.Snackbar;
 import it.unimib.gup.R;
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.viewmodels.CreateGroupViewModel;
 
 public class CreateGroupFragment extends Fragment {
 
     public static final String TAG = "CREATE_GROUP_ACTIVITY";
 
-    private GroupViewModel mGroupViewModel;
+    private CreateGroupViewModel mCreateGroupViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGroupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        mCreateGroupViewModel = new ViewModelProvider(requireActivity()).get(CreateGroupViewModel.class);
     }
 
     @Nullable
@@ -69,31 +70,16 @@ public class CreateGroupFragment extends Fragment {
                 String categoryNameGroup = spinnerCategoryGroup.getSelectedItem().toString();
                 String descriptionGroup = editTextDescriptionGroup.getText().toString();
                 if (!nameGroup.isEmpty() && spinnerCategoryGroup.getSelectedItemPosition() != 0) {
-                    Group newGroup = mGroupViewModel.addGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
+                    Group newGroup = mCreateGroupViewModel.addGroup(nameGroup, descriptionGroup, new Category(categoryNameGroup));
 
                     CreateGroupFragmentDirections.ActionCreateGroupFragmentToGroupDetailsFragment action =
                             CreateGroupFragmentDirections.actionCreateGroupFragmentToGroupDetailsFragment(newGroup);
                     Navigation.findNavController(view).navigate(action);
-
-                    /*
-                    Bundle bundle = new Bundle();
-                    FragmentManager fm = requireActivity().getSupportFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    bundle.putParcelable("group", newGroup);
-                    ft.replace(R.id.fragment_container_view, new GroupDetailsFragment(), bundle.toString()).addToBackStack(null).commit();
-
-
-                    FragmentManager mFragmentManager = requireActivity().getSupportFragmentManager();
-
-                    mFragmentManager.beginTransaction().replace(R.id.fragment_container_view, new GroupDetailsFragment());
-                     */
-
                 } else {
                     Snackbar.make(requireActivity().findViewById(android.R.id.content), "Insert Name and Category", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
-
 
         return view;
     }
