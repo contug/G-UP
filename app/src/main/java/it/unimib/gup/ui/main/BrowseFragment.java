@@ -60,7 +60,6 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onChanged(GroupListResponse listGroupResponse) {
                 mGroups.clear();
-
                 if (listGroupResponse.getGroups() != null) {
                     mGroups.addAll(listGroupResponse.getGroups());
                     adapter.setGroupListAll(listGroupResponse.getGroups());
@@ -105,14 +104,16 @@ public class BrowseFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.setFilteredList(newText);
-
-                if (adapter.getItemCount() == 0) {
-                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
-                } else {
-                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
+                if (!newText.isEmpty()) {
+                    adapter.setFilteredList(newText);
+                    if (adapter.getItemCount() == 0) {
+                        view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
+                    } else {
+                        view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
+                    }
+                    return true;
                 }
-                return true;
+                return false;
             }
         });
 
