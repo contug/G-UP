@@ -17,8 +17,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -39,6 +41,8 @@ public class GroupDetailsFragment extends Fragment {
 
     private Group group;
 
+
+
     public GroupDetailsFragment() {
         // Required empty public constructor
     }
@@ -46,6 +50,7 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
 
@@ -63,6 +68,10 @@ public class GroupDetailsFragment extends Fragment {
         final TextView textViewGroupCategory = view.findViewById(R.id.details_groups_category_text);
         final TextView textViewSubCount = view.findViewById(R.id.subscriber_count);
         final TextView textViewGroupDescription = view.findViewById(R.id.details_groups_description);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.group_details_image_view);
+        Glide.with(this).load("https://images.unsplash.com/photo-1530099486328-e021101a494a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDA0Njh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDUyOTA5ODc&ixlib=rb-1.2.1&q=80&w=1080").
+                into(imageView);
 
 
         mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {

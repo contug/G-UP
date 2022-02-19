@@ -128,7 +128,13 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(group);
+                    String uId = FirebaseAuth.getInstance().getUid();
+                    HashMap<String, String> userList = group.getMembers();
+                    if (userList != null) {
+                        if(userList.containsKey(uId)){
+                            mOnItemClickListener.onItemClick(group);
+                        }
+                    }
                 }
             });
         }
