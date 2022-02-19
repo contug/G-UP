@@ -75,7 +75,7 @@ public class GroupDetailsFragment extends Fragment {
         mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @Override
             public void onChanged(GroupResponse groupResponse) {
-                //Log.d("@@@", "GroupDetails: " + groupResponse.getGroup().toString());
+
                 if (groupResponse.getGroup() != null) {
                     Group tmpGroup = groupResponse.getGroup();
 

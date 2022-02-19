@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,6 +59,9 @@ public class CreatePostFragment extends Fragment {
                 String text = postMessage.getText().toString();
                 if(!text.isEmpty()) {
                     mCreatePostViewModel.addPost(group.getId(), text);
+                    CreatePostFragmentDirections.ActionCreatePostFragmentToGroupDetailsFragment2 action =
+                            CreatePostFragmentDirections.actionCreatePostFragmentToGroupDetailsFragment2(group);
+                    Navigation.findNavController(view).navigate(action);
                 }
             }
         });
