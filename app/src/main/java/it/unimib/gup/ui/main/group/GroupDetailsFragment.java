@@ -30,6 +30,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.DetailsGroupAdapter;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.model.responses.GroupResponse;
+import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 
 public class GroupDetailsFragment extends Fragment {
 
@@ -37,7 +39,7 @@ public class GroupDetailsFragment extends Fragment {
 
     private final String[] tabs = {"Posts", "Meetings"};
 
-    private GroupViewModel mGroupViewModel;
+    private GroupDetailsViewModel mGroupDetailsViewModel;
 
     private Group group;
 
@@ -49,11 +51,12 @@ public class GroupDetailsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
+        mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
 
         group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
 
-        mGroupViewModel.setCurrentGroupId(group.getId());
+        Log.d("@@@", "Gorup bundle " + group.getName());
+
     }
 
     @Override
@@ -62,9 +65,14 @@ public class GroupDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_details, container, false);
 
 
+        mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+            @Override
+            public void onChanged(GroupResponse groupResponse) {
+                //Log.d("@@@", "GroupDetails: " + groupResponse.getGroup().toString());
+            }
+        });
 
 
-        // --------- Prova di salvataggio sul database ------------
         final TextView textViewGroupName = view.findViewById(R.id.details_groups_group_name);
         final View viewGroupColor = view.findViewById(R.id.details_groups_group_circle);
         final FrameLayout frameLayoutCategoryContainer = view.findViewById(R.id.details_groups_category_container);
@@ -81,9 +89,9 @@ public class GroupDetailsFragment extends Fragment {
 
         final TabLayout tabLayout = view.findViewById(R.id.details_tab_layout);
         final ViewPager2 viewPager2 = view.findViewById(R.id.details_view_pager);
+
         DetailsGroupAdapter detailsGroupAdapter = new DetailsGroupAdapter(this, 2);
         viewPager2.setAdapter(detailsGroupAdapter);
-        // ----------- Fino a qua
 
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -115,9 +123,6 @@ public class GroupDetailsFragment extends Fragment {
         });
 
 
-
-
-        // Inflate the layout for this fragment
         return view;
     }
 }

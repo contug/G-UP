@@ -1,7 +1,9 @@
 package it.unimib.gup.ui.main.group;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,20 +28,23 @@ import it.unimib.gup.model.Group;
 import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.model.User;
+import it.unimib.gup.model.responses.GroupResponse;
+import it.unimib.gup.model.responses.UserResponse;
 import it.unimib.gup.ui.main.BrowseFragmentDirections;
+import it.unimib.gup.viewmodels.GroupDetailsPostsViewModel;
+import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 
 public class PostsFragment extends Fragment {
 
     private static final String TAG = "PostsFragment";
 
     private List<Post> mPosts;
-    private GroupViewModel mGroupViewModel;
+    private GroupDetailsViewModel mGroupDetailsViewModel;
+    private Group group;
 
     private PostsRecyclerViewAdapter adapter;
 
-    public PostsFragment() {
-        // Required empty public constructor
-    }
+    public PostsFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,9 @@ public class PostsFragment extends Fragment {
 
         mPosts = new ArrayList<>();
 
-        mGroupViewModel = ViewModelProviders.of(requireActivity()).get(GroupViewModel.class);
+        mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
+
+        group = GroupDetailsFragmentArgs.fromBundle(getParentFragment().getArguments()).getGroup();
     }
 
     @Override
@@ -68,27 +75,25 @@ public class PostsFragment extends Fragment {
                 });
         mPostsRecyclerView.setAdapter(adapter);
 
-        mGroupViewModel.getGroup(mGroupViewModel.getCurrentGroupId()).observe(getViewLifecycleOwner(), new Observer<Group>() {
+
+
+        mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(Group group) {
+            public void onChanged(GroupResponse groupResponse) {
+
                 mPosts.clear();
 
-                if(group.getPosts() != null) {
-
-                    List<Post> list = new ArrayList<>(group.getPosts().values());
-
-                    for (Post post : list) {
-                        User tmpUser = mGroupViewModel.getUser(post.getAuthor());
-                        post.setAuthor(tmpUser.getFirstName() + " " + tmpUser.getLastName());
-                    }
+                if (groupResponse.getGroup().getPosts() != null) {
+                    List<Post> list = new ArrayList<>(groupResponse.getGroup().getPosts().values());
 
                     mPosts.addAll(list);
                 }
+
                 adapter.notifyDataSetChanged();
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 }

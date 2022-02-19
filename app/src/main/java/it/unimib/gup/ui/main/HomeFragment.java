@@ -1,12 +1,10 @@
 package it.unimib.gup.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,30 +16,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.HomePost;
-import it.unimib.gup.ui.main.group.CreateGroupFragment;
-import it.unimib.gup.ui.main.group.GroupViewModel;
 
 public class HomeFragment extends Fragment {
 
     private static final String TAG ="HomeFragment";
 
-    /* ELIMINARE */
     private List<HomePost> mHomePosts;
-    /* --------- */
 
     private HomePostsRecyclerViewAdapter adapter;
-
-    private GroupViewModel mGroupViewModel;
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -53,9 +40,6 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "onCreate: ");
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
-
-
-        mGroupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
 
     }
 

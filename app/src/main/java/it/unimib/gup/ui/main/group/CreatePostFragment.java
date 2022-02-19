@@ -1,5 +1,7 @@
 package it.unimib.gup.ui.main.group;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,11 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.Post;
+import it.unimib.gup.utils.SharedPreferencesProvider;
+import it.unimib.gup.viewmodels.CreatePostViewModel;
 
 
 public class CreatePostFragment extends Fragment {
 
-    public GroupViewModel groupViewModel;
+    public CreatePostViewModel mCreatePostViewModel;
+
 
     public CreatePostFragment() {
         // Required empty public constructor
@@ -31,7 +36,9 @@ public class CreatePostFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("CreatePost", "onCreate");
-        groupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        mCreatePostViewModel = new ViewModelProvider(requireActivity()).get(CreatePostViewModel.class);
+
+
     }
 
     @Override
@@ -40,6 +47,7 @@ public class CreatePostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_post, container, false);
         Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
 
+
         final EditText postMessage = view.findViewById(R.id.edit_text_create_post);
         final Button buttonCreatePost = view.findViewById(R.id.button_create_post);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -47,13 +55,10 @@ public class CreatePostFragment extends Fragment {
         buttonCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String author = mAuth.getUid();
                 String text = postMessage.getText().toString();
                 if(!text.isEmpty()) {
-                    Post post = new Post(author, text);
-                    groupViewModel.addPost(group.getId(), post);
+                    mCreatePostViewModel.addPost(group.getId(), text);
                 }
-
             }
         });
 
