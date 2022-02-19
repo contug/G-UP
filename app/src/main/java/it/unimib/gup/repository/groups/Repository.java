@@ -211,26 +211,28 @@ public class Repository {
         SubscriptionsResponse response = new SubscriptionsResponse();
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
                 addValueEventListener(new ValueEventListener() {
-                    HashMap<String, String> subscriptions = new HashMap<>();
+                    List<String> subscriptions = new ArrayList<String>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        subscriptions = snapshot.getValue(HashMap.class);
-                        Log.d("@@@", "subscriptions" + subscriptions.toString());
-                        for(String tmp : subscriptions.keySet()) {
-                            mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(tmp).
-                                    addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Group group = snapshot.getValue(Group.class);
-                                            response.addSubscription(tmp, group);
-                                        }
+                        if( subscriptions != null) {
+                            for(DataSnapshot snapshotChild : snapshot.getChildren()) {
+                                String groupId = snapshotChild.getKey();
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-                                        }
-                                    });
+                                mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
+                                        addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
+                                                Group group = snapshotGroup.getValue(Group.class);
+                                                response.addSubscription(group);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                            }
+                                        });
+                            }
+                            responseLiveData.postValue(response);
                         }
-                        responseLiveData.postValue(response);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {

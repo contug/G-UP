@@ -4,31 +4,28 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import it.unimib.gup.model.responses.GroupListResponse;
+import it.unimib.gup.model.responses.SubscriptionsResponse;
 import it.unimib.gup.repository.groups.Repository;
 
 public class HomeViewModel extends ViewModel {
 
     private final Repository mRepository;
-    private MutableLiveData<GroupListResponse> mGroupsLiveData;
+    private MutableLiveData<SubscriptionsResponse> mPostsLiveData;
 
     public HomeViewModel() {
         mRepository = new Repository();
     }
 
-    public void fetchGroups() {
-        mGroupsLiveData = mRepository.getGroups();
+    public void fetchSubscriptions() {
+        mPostsLiveData = mRepository.getSubscriptions();
     }
 
-    public MutableLiveData<GroupListResponse> getGroups() {
-        if(mGroupsLiveData == null) {
-            fetchGroups();
+    public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
+        if(mPostsLiveData == null) {
+            fetchSubscriptions();
         }
-        return mGroupsLiveData;
-    }
 
-    public void subscribe(String groupId) {
-        mRepository.subscribe(groupId);
+        return mPostsLiveData;
     }
-
 
 }

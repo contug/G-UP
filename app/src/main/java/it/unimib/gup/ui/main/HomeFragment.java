@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,13 +21,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.model.HomePost;
+import it.unimib.gup.model.Post;
 import it.unimib.gup.model.responses.GroupListResponse;
+import it.unimib.gup.model.responses.SubscriptionsResponse;
+import it.unimib.gup.viewmodels.BrowseGroupsViewModel;
+import it.unimib.gup.viewmodels.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 
@@ -36,6 +43,8 @@ public class HomeFragment extends Fragment {
 
     private HomePostsRecyclerViewAdapter adapter;
 
+    private HomeViewModel mHomeViewModel;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -44,9 +53,11 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
-        // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
 
+        mHomeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+
+        mHomePosts = new ArrayList<HomePost>();
     }
 
 
@@ -57,21 +68,21 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         RecyclerView mHomePostsRecyclerView = view.findViewById(R.id.home_posts_recycler_view);
+
         mHomePostsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        final Observer<GroupListResponse> observer = new Observer<GroupListResponse>() {
-            @SuppressLint("NotifyDataSetChanged")
+        mHomeViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
             @Override
-            public void onChanged(GroupListResponse listGroupResponse) {
-                List<Group> mGroups = new ArrayList<>();
-                if (listGroupResponse.getGroups() != null) {
-                    mGroups.addAll(listGroupResponse.getGroups());
-                    adapter.notifyDataSetChanged();
-                }
+            public void onChanged(SubscriptionsResponse subscriptionsResponse) {
+                mHomePosts.clear();
 
+                if (subscriptionsResponse.getGroups() != null) {
+                    mHomePosts.addAll(subscriptionsResponse.getHomePosts());
+                }
+                adapter.notifyDataSetChanged();
             }
-        };
+        });
 
         adapter = new HomePostsRecyclerViewAdapter(mHomePosts,
                 new HomePostsRecyclerViewAdapter.OnItemClickListener() {
@@ -80,6 +91,7 @@ public class HomeFragment extends Fragment {
                         Log.d(TAG, "onItemClick: " + post);
                     }
                 });
+
         mHomePostsRecyclerView.setAdapter(adapter);
 
         if(adapter.getItemCount() == 0){

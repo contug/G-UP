@@ -23,12 +23,11 @@ public class BrowseGroupsViewModel extends ViewModel {
         if(mGroupsLiveData == null) {
             fetchGroups();
         }
+
         return mGroupsLiveData;
     }
 
     public void subscribe(String groupId) {
         mRepository.subscribe(groupId);
     }
-
-
 }
