@@ -1,11 +1,7 @@
 package it.unimib.gup.model.responses;
 
-import android.util.Log;
-
-import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.model.Group;
@@ -26,6 +22,7 @@ public class SubscriptionsResponse {
         return subscriptions;
     }
 
+/*
     public List<Post> getPosts() {
         List<Post> posts = new ArrayList<Post>();
 
@@ -37,6 +34,8 @@ public class SubscriptionsResponse {
 
         return posts;
     }
+
+ */
 
     public List<HomePost> getHomePosts() {
         List<HomePost> homePosts = new ArrayList<HomePost>();
@@ -50,7 +49,7 @@ public class SubscriptionsResponse {
                             tmpGroup.getColor(),
                             tmpPost.getAuthor(),
                             tmpPost.getText(),
-                            new Date()
+                            new Date().toString()
                     );
 
                     homePosts.add(tmpHomePost);

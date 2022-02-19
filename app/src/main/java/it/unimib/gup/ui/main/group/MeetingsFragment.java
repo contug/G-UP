@@ -1,23 +1,17 @@
 package it.unimib.gup.ui.main.group;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import it.unimib.gup.R;
-import it.unimib.gup.model.Meeting;
 import it.unimib.gup.model.responses.GroupResponse;
 import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 

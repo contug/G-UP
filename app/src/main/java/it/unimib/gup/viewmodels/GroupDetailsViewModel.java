@@ -1,11 +1,7 @@
 package it.unimib.gup.viewmodels;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import java.util.HashMap;
 
 import it.unimib.gup.model.Post;
 import it.unimib.gup.model.User;
@@ -34,9 +30,4 @@ public class GroupDetailsViewModel extends ViewModel {
         return mGroupLiveData;
     }
 
-    public String getAuthorName(Post post) {
-        User user  = mRepository.getUserById(post.getAuthor()).getUser();
-
-        return user.getFirstName() + " " + user.getLastName();
-    }
 }

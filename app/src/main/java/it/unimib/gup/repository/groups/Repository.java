@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -188,7 +189,7 @@ public class Repository {
                     public void onSuccess(@NonNull DataSnapshot snapshot) {
                         User currentUser = snapshot.getValue(User.class);
                         if(!text.isEmpty()) {
-                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text);
+                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text, new Date().toString());
                             DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
                                     child(Constants.POST_COLLECTION).push();
                             post.setId(pushedPost.getKey());

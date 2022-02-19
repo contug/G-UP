@@ -24,16 +24,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.AccountGroupsRecyclerViewAdapter;
-import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.Meeting;
-import it.unimib.gup.model.Post;
 import it.unimib.gup.ui.authentication.AuthenticationActivity;
 import it.unimib.gup.ui.authentication.UserViewModel;
 import it.unimib.gup.utils.SharedPreferencesProvider;

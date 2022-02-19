@@ -3,8 +3,6 @@ package it.unimib.gup.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
-
 public class Category implements Parcelable {
 
     private String name;

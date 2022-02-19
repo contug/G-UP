@@ -1,6 +1,5 @@
 package it.unimib.gup.model.responses;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.unimib.gup.model.Group;

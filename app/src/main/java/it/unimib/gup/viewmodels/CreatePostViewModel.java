@@ -3,8 +3,6 @@ package it.unimib.gup.viewmodels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import it.unimib.gup.model.Category;
-import it.unimib.gup.model.Group;
 import it.unimib.gup.model.responses.GroupListResponse;
 import it.unimib.gup.repository.groups.Repository;
 

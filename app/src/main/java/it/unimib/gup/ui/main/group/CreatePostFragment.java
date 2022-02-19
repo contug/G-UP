@@ -1,12 +1,9 @@
 package it.unimib.gup.ui.main.group;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.Post;
-import it.unimib.gup.utils.SharedPreferencesProvider;
 import it.unimib.gup.viewmodels.CreatePostViewModel;
 
 

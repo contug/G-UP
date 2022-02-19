@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import it.unimib.gup.R;
 import it.unimib.gup.model.AuthenticationResponse;
 import it.unimib.gup.model.User;
-import it.unimib.gup.repository.user.IUserRepository;
 import it.unimib.gup.utils.Constants;
 import it.unimib.gup.utils.SharedPreferencesProvider;
 

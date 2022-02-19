@@ -1,10 +1,7 @@
 package it.unimib.gup.adapter;
 
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +20,6 @@ import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.User;
 
 public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<BrowseGroupsRecyclerViewAdapter.BrowseGroupsListViewHolder> {
 
@@ -52,13 +48,14 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     public int setFilteredList(String text) {
         List<Group> filteredList = new ArrayList<>();
 
+        mGroupList.clear();
         for (Group group : mGroupListAll) {
             if (group.getName().toLowerCase().startsWith(text.toLowerCase()) || group.getCategory().getName().toLowerCase().startsWith(text.toLowerCase()) ) {
                 filteredList.add(group);
             }
         }
 
-        mGroupList = filteredList;
+        mGroupList.addAll(filteredList);
         notifyDataSetChanged();
 
         return filteredList.size();
@@ -114,9 +111,11 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
 
             String uId = FirebaseAuth.getInstance().getUid();
             HashMap<String, String> userList = group.getMembers();
-            if(userList.containsKey(uId)){
-                Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
-                recyclerViewItemButton.setVisibility(View.GONE);
+            if (userList != null) {
+                if(userList.containsKey(uId)){
+                    Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
+                    recyclerViewItemButton.setVisibility(View.GONE);
+                }
             }
 
             this.subscribeButton.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,5 @@
 package it.unimib.gup.ui.main;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,18 +20,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.HomePostsRecyclerViewAdapter;
-import it.unimib.gup.model.Group;
 import it.unimib.gup.model.HomePost;
-import it.unimib.gup.model.Post;
-import it.unimib.gup.model.responses.GroupListResponse;
 import it.unimib.gup.model.responses.SubscriptionsResponse;
-import it.unimib.gup.viewmodels.BrowseGroupsViewModel;
 import it.unimib.gup.viewmodels.HomeViewModel;
 
 public class HomeFragment extends Fragment {

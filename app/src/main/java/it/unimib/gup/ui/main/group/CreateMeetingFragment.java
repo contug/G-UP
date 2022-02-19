@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -18,12 +17,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
 import it.unimib.gup.viewmodels.CreateMeetingViewModel;
-import it.unimib.gup.viewmodels.CreatePostViewModel;
 
 public class CreateMeetingFragment extends Fragment {
 

@@ -6,21 +6,22 @@ public class Post {
     private String authorName;
     private String author;
     private String text;
+    private String data;
 
     public Post() {
 
     }
 
-    public Post(String id, String authorId, String authorName, String text) {
-        this.id = id;
-        this.authorId = authorId;
-        this.authorName = authorName;
-        this.text = text;
-    }
-
-    public Post(String author, String text) {
-        this.author = author;
-        this.text = text;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id='" + id + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", author='" + author + '\'' +
+                ", text='" + text + '\'' +
+                ", data='" + data + '\'' +
+                '}';
     }
 
     public String getId() {
@@ -63,15 +64,18 @@ public class Post {
         this.text = text;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id='" + id + '\'' +
-                ", authorId='" + authorId + '\'' +
-                ", authorName='" + authorName + '\'' +
-                ", author='" + author + '\'' +
-                ", text='" + text + '\'' +
-                '}';
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Post(String author, String text, String data) {
+        this.author = author;
+        this.text = text;
+        this.data = data;
     }
 }
 

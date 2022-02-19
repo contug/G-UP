@@ -97,6 +97,8 @@ public class BrowseFragment extends Fragment {
         mBrowseGroupsRecyclerView.setAdapter(adapter);
 
         searchView = view.findViewById(R.id.searchView);
+
+        Log.d(TAG, "onClick: ");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -105,16 +107,13 @@ public class BrowseFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!newText.isEmpty()) {
-                    adapter.setFilteredList(newText);
-                    if (adapter.getItemCount() == 0) {
-                        view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
-                    } else {
-                        view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
-                    }
-                    return true;
+                adapter.setFilteredList(newText);
+                if (adapter.getItemCount() == 0) {
+                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.VISIBLE);
+                } else {
+                    view.findViewById(R.id.browse_no_results_container).setVisibility(View.GONE);
                 }
-                return false;
+                return true;
             }
         });
 

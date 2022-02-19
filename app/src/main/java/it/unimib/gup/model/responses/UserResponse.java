@@ -1,7 +1,5 @@
 package it.unimib.gup.model.responses;
 
-import java.util.List;
-
 import it.unimib.gup.model.User;
 
 public class UserResponse {
