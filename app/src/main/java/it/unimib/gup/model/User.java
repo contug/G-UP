@@ -1,5 +1,6 @@
 package it.unimib.gup.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -8,13 +9,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private List<String> groupSubscriptions;
+    private HashMap<String, String> groupSubscriptions;
 
     public User() {
         // For JSON mapping
     }
 
-    public User(String id, String firstName, String lastName, String email, List<String> groupSubscriptions) {
+    public User(String id, String firstName, String lastName, String email, HashMap<String, String> groupSubscriptions) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +55,11 @@ public class User {
         this.email = email;
     }
 
-    public List<String> getGroupSubscriptions() {
+    public HashMap<String, String> getGroupSubscriptions() {
         return groupSubscriptions;
     }
 
-    public void setGroupSubscriptions(List<String> groupSubscriptions) {
+    public void setGroupSubscriptions(HashMap<String, String> groupSubscriptions) {
         this.groupSubscriptions = groupSubscriptions;
     }
 

@@ -55,9 +55,6 @@ public class BrowseFragment extends Fragment {
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.browse_groups_recycler_view);
         mBrowseGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-
-
         final Observer<GroupListResponse> observer = new Observer<GroupListResponse>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

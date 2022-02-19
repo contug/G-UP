@@ -19,5 +19,4 @@ public class CreatePostViewModel extends ViewModel {
     public void addPost(String groupId, String text) {
         mRepository.addPost(groupId, text);
     }
-
 }

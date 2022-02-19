@@ -143,9 +143,9 @@ public class Repository {
         HashMap<String, String> members = new HashMap<>();
         members.put(ownerId, ownerId);
 
-        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, members, null, null);
-
+        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, null, null, null);
         pushedGroup.setValue(newGroup);
+        subscribe(pushedGroup.getKey());
 
         return newGroup;
     }
@@ -160,6 +160,8 @@ public class Repository {
                 Log.d(TAG, "onComplete: ciao");
             }
         });
+
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(memberId).child("subscripions").child(groupId).setValue(groupId);
     }
 
     public void unsubscribe(String groupId) {

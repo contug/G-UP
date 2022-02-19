@@ -38,7 +38,8 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
 
     public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener, OnItemClickListener OnSubscribeClickListener) {
         this.mGroupList = groupList;
-        mGroupListAll = mGroupList;
+        this.mGroupListAll = groupList;
+
         this.mOnItemClickListener = onItemClickListener;
         this.mOnSubscribeClickListener = OnSubscribeClickListener;
     }
@@ -101,7 +102,6 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.category = itemView.findViewById(R.id.browse_groups_category_text);
             this.categoryContainer = itemView.findViewById(R.id.browse_groups_category_container);
             this.subscribeButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
-
         }
 
         public void bind(Group group) {
