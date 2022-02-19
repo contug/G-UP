@@ -23,6 +23,7 @@ import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.model.User;
 
 public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<BrowseGroupsRecyclerViewAdapter.BrowseGroupsListViewHolder> {
 

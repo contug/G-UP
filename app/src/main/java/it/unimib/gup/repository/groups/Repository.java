@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +26,7 @@ import it.unimib.gup.model.responses.GroupResponse;
 import it.unimib.gup.model.responses.GroupListResponse;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.model.User;
+import it.unimib.gup.model.responses.SubscriptionsResponse;
 import it.unimib.gup.model.responses.UserListResponse;
 import it.unimib.gup.model.responses.UserResponse;
 import it.unimib.gup.utils.Constants;
@@ -157,11 +157,11 @@ public class Repository {
                 setValue(memberId).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "onComplete: ciao");
+                Log.d(TAG, "onComplete: subscribed");
             }
         });
 
-        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(memberId).child("subscripions").child(groupId).setValue(groupId);
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(memberId).child("subscriptions").child(groupId).setValue(groupId);
     }
 
     public void unsubscribe(String groupId) {
@@ -203,5 +203,39 @@ public class Repository {
 
         mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("meetings").child(type).setValue(tmpMeeting);
 
+    }
+
+    public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
+        String uId = mAuth.getUid();
+        MutableLiveData<SubscriptionsResponse> responseLiveData = new MutableLiveData<>();
+        SubscriptionsResponse response = new SubscriptionsResponse();
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
+                addValueEventListener(new ValueEventListener() {
+                    HashMap<String, String> subscriptions = new HashMap<>();
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        subscriptions = snapshot.getValue(HashMap.class);
+                        Log.d("@@@", "subscriptions" + subscriptions.toString());
+                        for(String tmp : subscriptions.keySet()) {
+                            mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(tmp).
+                                    addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Group group = snapshot.getValue(Group.class);
+                                            response.addSubscription(tmp, group);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
+                        }
+                        responseLiveData.postValue(response);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+        return responseLiveData;
     }
 }
