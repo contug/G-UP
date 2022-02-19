@@ -74,10 +74,7 @@ public class CreateMeetingFragment extends Fragment {
                 String date = mMeetingDate.getText().toString();
                 if(!info.isEmpty() && !date.isEmpty() && !type.isEmpty()) {
                     mCreateMeetingViewModel.addMeeting(groupBundle.getId(), type, info, date);
-
-                    CreatePostFragmentDirections.ActionCreatePostFragmentToGroupDetailsFragment2 action =
-                            CreatePostFragmentDirections.actionCreatePostFragmentToGroupDetailsFragment2(groupBundle);
-                    Navigation.findNavController(view).navigate(action);
+                    requireActivity().onBackPressed();
                 }
             }
         });

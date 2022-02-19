@@ -65,8 +65,10 @@ public class MeetingsFragment extends Fragment {
 
                 if(groupResponse.getGroup().getMeetings() != null) {
                     if(groupResponse.getGroup().getMeetings().get("online") != null) {
+                        Log.d("@@@", groupResponse.getGroup().getMeetings().get("online").toString());
+
                         mOnlineMeetingContainer.setVisibility(View.VISIBLE);
-                        mOnlineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("online").getDate().toString());
+                        mOnlineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("online").getDate());
                         mOnlineMeetingDate.setText(groupResponse.getGroup().getMeetings().get("online").getUrl());
                     } else {
                         mOnlineMeetingContainer.setVisibility(View.GONE);
