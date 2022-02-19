@@ -98,7 +98,6 @@ public class BrowseFragment extends Fragment {
 
         searchView = view.findViewById(R.id.searchView);
 
-        Log.d(TAG, "onClick: ");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
