@@ -5,12 +5,7 @@ import java.util.Date;
 
 public class Meeting {
 
-    public enum MeetingType  {
-        online,
-        offline
-    }
-
-    private MeetingType type;
+    private String type;
     private String date;
     private String url;
 
@@ -18,17 +13,17 @@ public class Meeting {
         // For JSON mapping
     }
 
-    public Meeting(MeetingType type, String date, String url) {
+    public Meeting(String type, String date, String url) {
         this.type = type;
         this.date = date;
         this.url = url;
     }
 
-    public MeetingType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(MeetingType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

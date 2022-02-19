@@ -22,6 +22,7 @@ import java.util.List;
 
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.model.Meeting;
 import it.unimib.gup.model.responses.GroupResponse;
 import it.unimib.gup.model.responses.GroupListResponse;
 import it.unimib.gup.model.Post;
@@ -159,11 +160,22 @@ public class Repository {
                 Log.d(TAG, "onComplete: ciao");
             }
         });
-
     }
 
-    public void removeGroup(String id) {
+    public void unsubscribe(String groupId) {
+        String memberId = mAuth.getUid();
 
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(memberId).
+                removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d(TAG, "onComplete: ciao");
+            }
+        });
+    }
+
+    public void deleteGroup(String groupId) {
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).removeValue();
     }
 
     public void addPost(String groupId, String text) {
@@ -182,5 +194,12 @@ public class Repository {
                         }
                     }
                 });
+    }
+
+    public void addMeeting(String groupId, String type, String text, String date) {
+        Meeting tmpMeeting = new Meeting(type, text, date);
+
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("meetings").child(type).setValue(tmpMeeting);
+
     }
 }

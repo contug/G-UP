@@ -28,7 +28,6 @@ public class CreatePostFragment extends Fragment {
 
     public CreatePostViewModel mCreatePostViewModel;
 
-
     public CreatePostFragment() {
         // Required empty public constructor
     }

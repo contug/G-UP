@@ -3,7 +3,6 @@ package it.unimib.gup.ui.main.group;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,24 +13,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.PostsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
-import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
-import it.unimib.gup.model.User;
 import it.unimib.gup.model.responses.GroupResponse;
-import it.unimib.gup.model.responses.UserResponse;
-import it.unimib.gup.ui.main.BrowseFragmentDirections;
-import it.unimib.gup.viewmodels.GroupDetailsPostsViewModel;
 import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 
 public class PostsFragment extends Fragment {
@@ -51,10 +41,7 @@ public class PostsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mPosts = new ArrayList<>();
-
         mGroupDetailsViewModel = ViewModelProviders.of(requireActivity()).get(GroupDetailsViewModel.class);
-
-        group = GroupDetailsFragmentArgs.fromBundle(getParentFragment().getArguments()).getGroup();
     }
 
     @Override
@@ -77,7 +64,7 @@ public class PostsFragment extends Fragment {
 
 
 
-        mGroupDetailsViewModel.getGroupForPosts().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
+        mGroupDetailsViewModel.getGroupNoFetch().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(GroupResponse groupResponse) {

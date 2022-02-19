@@ -15,7 +15,7 @@ public class Group implements Parcelable {
     private String description;
     private Category category;
     private HashMap<String, String> members;
-    private List<Meeting> meetings;
+    private HashMap<String, Meeting> meetings;
     private HashMap<String, Post> posts;
     private String color;
     private String owner;
@@ -25,7 +25,7 @@ public class Group implements Parcelable {
     }
 
 
-    public Group(String id, String owner, String name, String description, Category category, HashMap<String, String> members, List<Meeting> meetings, HashMap<String, Post> posts) {
+    public Group(String id, String owner, String name, String description, Category category, HashMap<String, String> members, HashMap<String, Meeting> meetings, HashMap<String, Post> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -89,11 +89,11 @@ public class Group implements Parcelable {
         this.members = members;
     }
 
-    public List<Meeting> getMeetings() {
+    public HashMap<String, Meeting> getMeetings() {
         return meetings;
     }
 
-    public void setMeetings(List<Meeting> meetings) {
+    public void setMeetings(HashMap<String, Meeting> meetings) {
         this.meetings = meetings;
     }
 
@@ -133,7 +133,7 @@ public class Group implements Parcelable {
         dest.writeString(this.description);
         dest.writeParcelable(this.category, flags);
         dest.writeSerializable(this.members);
-        dest.writeList(this.meetings);
+        dest.writeSerializable(this.meetings);
         dest.writeSerializable(this.posts);
         dest.writeString(this.color);
         dest.writeString(this.owner);
@@ -145,8 +145,8 @@ public class Group implements Parcelable {
         this.description = source.readString();
         this.category = source.readParcelable(Category.class.getClassLoader());
         this.members = (HashMap<String, String>) source.readSerializable();
-        this.meetings = new ArrayList<Meeting>();
-        source.readList(this.meetings, Meeting.class.getClassLoader());
+        this.meetings = new HashMap<String, Meeting>();
+        //source.readList(this.meetings, <Meeting.class.getClassLoader());
         this.posts = (HashMap<String, Post>) source.readSerializable();
         this.color = source.readString();
         this.owner = source.readString();
@@ -158,8 +158,8 @@ public class Group implements Parcelable {
         this.description = in.readString();
         this.category = in.readParcelable(Category.class.getClassLoader());
         this.members = (HashMap<String, String>) in.readSerializable();
-        this.meetings = new ArrayList<Meeting>();
-        in.readList(this.meetings, Meeting.class.getClassLoader());
+        this.meetings = new HashMap<String, Meeting>();
+        //in.readList(this.meetings, Meeting.class.getClassLoader());
         this.posts = (HashMap<String, Post>) in.readSerializable();
         this.color = in.readString();
         this.owner = in.readString();
@@ -176,4 +176,20 @@ public class Group implements Parcelable {
             return new Group[size];
         }
     };
+
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", members=" + members +
+                ", meetings=" + meetings +
+                ", posts=" + posts +
+                ", color='" + color + '\'' +
+                ", owner='" + owner + '\'' +
+                '}';
+    }
 }
