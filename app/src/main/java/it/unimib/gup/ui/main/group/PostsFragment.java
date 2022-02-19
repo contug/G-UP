@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,9 @@ import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 public class PostsFragment extends Fragment {
 
     private static final String TAG = "PostsFragment";
+
+
+    private TextView mEmptyState;
 
     private List<Post> mPosts;
     private GroupDetailsViewModel mGroupDetailsViewModel;
@@ -63,6 +67,7 @@ public class PostsFragment extends Fragment {
         mPostsRecyclerView.setAdapter(adapter);
 
 
+        mEmptyState = view.findViewById(R.id.text_view_posts_empty);
 
         mGroupDetailsViewModel.getGroupNoFetch().observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -72,9 +77,13 @@ public class PostsFragment extends Fragment {
                 mPosts.clear();
 
                 if (groupResponse.getGroup().getPosts() != null) {
+                    mEmptyState.setVisibility(View.GONE);
                     List<Post> list = new ArrayList<>(groupResponse.getGroup().getPosts().values());
 
                     mPosts.addAll(list);
+                } else {
+
+                    mEmptyState.setVisibility(View.VISIBLE);
                 }
 
                 adapter.notifyDataSetChanged();

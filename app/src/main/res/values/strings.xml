@@ -89,5 +89,7 @@
     <string name="member_of_some_groups">You are member of</string>
     <string name="group">group</string>
     <string name="groups">groups</string>
+    <string name="no_meetings_found">No meetings found.</string>
+    <string name="no_posts_found">No posts found.</string>
 
 </resources>

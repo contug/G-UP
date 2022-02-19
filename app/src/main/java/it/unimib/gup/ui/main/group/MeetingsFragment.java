@@ -23,6 +23,8 @@ import it.unimib.gup.viewmodels.GroupDetailsViewModel;
 
 public class MeetingsFragment extends Fragment {
 
+    private TextView mEmptyState;
+
     private View mOnlineMeetingContainer;
     private TextView mOnlineMeetingDate;
     private TextView mOnlineMeetingInfo;
@@ -50,6 +52,8 @@ public class MeetingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_meetings, container, false);
 
+        mEmptyState = view.findViewById(R.id.text_view_meetings_empty);
+
         mOnlineMeetingContainer = view.findViewById(R.id.meeting_online);
         mOnlineMeetingDate = view.findViewById(R.id.meeting_online_date);
         mOnlineMeetingInfo = view.findViewById(R.id.meeting_online_text);
@@ -62,6 +66,7 @@ public class MeetingsFragment extends Fragment {
             @Override
             public void onChanged(GroupResponse groupResponse) {
                 if(groupResponse.getGroup().getMeetings() != null) {
+                    mEmptyState.setVisibility(View.GONE);
                     if(groupResponse.getGroup().getMeetings().get("online") != null) {
                         mOnlineMeetingContainer.setVisibility(View.VISIBLE);
 
@@ -80,6 +85,7 @@ public class MeetingsFragment extends Fragment {
                         mOfflineMeetingContainer.setVisibility(View.GONE);
                     }
                 } else {
+                    mEmptyState.setVisibility(View.VISIBLE);
                     mOnlineMeetingContainer.setVisibility(View.GONE);
                     mOfflineMeetingContainer.setVisibility(View.GONE);
                 }
