@@ -29,7 +29,7 @@
             android:background="@drawable/edit_text_shape"
             android:entries="@array/meeting_type"
             android:minHeight="48dp"
-            android:paddingStart="8dp"
+            android:paddingHorizontal="8dp"
             android:layout_marginTop="32dp"
             android:spinnerMode="dropdown"
             android:theme="@style/SpinnerTheme"
@@ -56,27 +56,26 @@
             android:hint="@string/link_or_address"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:textSize="18sp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinner_create_meeting" />
 
-        <EditText
-            android:id="@+id/editTextDate"
+        <TextView
+            android:id="@+id/text_view_date_meeting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/edit_text_shape"
             android:fontFamily="@font/manrope_regular"
             android:hint="@string/date"
-            android:inputType="date"
+            android:gravity="center_vertical"
             android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:textSize="18sp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_text_link_or_position" />
+            app:layout_constraintTop_toBottomOf="@id/input_text_link_or_position"
+            />
 
         <Button
             android:id="@+id/button_create_meeting"
@@ -93,7 +92,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date_meeting" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

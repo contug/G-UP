@@ -218,8 +218,8 @@ public class Repository {
                 });
     }
 
-    public void addMeeting(String groupId, String type, String text, String date) {
-        Meeting tmpMeeting = new Meeting(type, text, date);
+    public void addMeeting(String groupId, String type, String date, String url) {
+        Meeting tmpMeeting = new Meeting(type, date, url);
 
         mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("meetings").child(type).setValue(tmpMeeting);
     }
