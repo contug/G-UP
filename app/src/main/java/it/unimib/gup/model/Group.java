@@ -142,62 +142,6 @@ public class Group implements Parcelable {
         this.owner = owner;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.id);
-        dest.writeString(this.name);
-        dest.writeString(this.description);
-        dest.writeParcelable(this.category, flags);
-        dest.writeSerializable(this.members);
-        dest.writeSerializable(this.meetings);
-        dest.writeSerializable(this.posts);
-        dest.writeString(this.color);
-        dest.writeString(this.owner);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.id = source.readString();
-        this.name = source.readString();
-        this.description = source.readString();
-        this.category = source.readParcelable(Category.class.getClassLoader());
-        this.members = (HashMap<String, String>) source.readSerializable();
-        this.meetings = new HashMap<String, Meeting>();
-        //source.readList(this.meetings, <Meeting.class.getClassLoader());
-        this.posts = (HashMap<String, Post>) source.readSerializable();
-        this.color = source.readString();
-        this.owner = source.readString();
-    }
-
-    protected Group(Parcel in) {
-        this.id = in.readString();
-        this.name = in.readString();
-        this.description = in.readString();
-        this.category = in.readParcelable(Category.class.getClassLoader());
-        this.members = (HashMap<String, String>) in.readSerializable();
-        this.meetings = new HashMap<String, Meeting>();
-        //in.readList(this.meetings, Meeting.class.getClassLoader());
-        this.posts = (HashMap<String, Post>) in.readSerializable();
-        this.color = in.readString();
-        this.owner = in.readString();
-    }
-
-    public static final Creator<Group> CREATOR = new Creator<Group>() {
-        @Override
-        public Group createFromParcel(Parcel source) {
-            return new Group(source);
-        }
-
-        @Override
-        public Group[] newArray(int size) {
-            return new Group[size];
-        }
-    };
-
 
     @Override
     public String toString() {
@@ -213,4 +157,63 @@ public class Group implements Parcelable {
                 ", owner='" + owner + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeString(this.imageUrl);
+        dest.writeParcelable(this.category, flags);
+        dest.writeSerializable(this.members);
+        dest.writeSerializable(this.posts);
+        dest.writeString(this.color);
+        dest.writeString(this.owner);
+        dest.writeLong(this.createdAt);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readString();
+        this.name = source.readString();
+        this.description = source.readString();
+        this.imageUrl = source.readString();
+        this.category = source.readParcelable(Category.class.getClassLoader());
+        this.members = (HashMap<String, String>) source.readSerializable();
+        this.meetings = (HashMap<String, Meeting>) source.readSerializable();
+        this.posts = (HashMap<String, Post>) source.readSerializable();
+        this.color = source.readString();
+        this.owner = source.readString();
+        this.createdAt = source.readLong();
+    }
+
+    protected Group(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.description = in.readString();
+        this.imageUrl = in.readString();
+        this.category = in.readParcelable(Category.class.getClassLoader());
+        this.members = (HashMap<String, String>) in.readSerializable();
+        this.meetings = (HashMap<String, Meeting>) in.readSerializable();
+        this.posts = (HashMap<String, Post>) in.readSerializable();
+        this.color = in.readString();
+        this.owner = in.readString();
+        this.createdAt = in.readLong();
+    }
+
+    public static final Creator<Group> CREATOR = new Creator<Group>() {
+        @Override
+        public Group createFromParcel(Parcel source) {
+            return new Group(source);
+        }
+
+        @Override
+        public Group[] newArray(int size) {
+            return new Group[size];
+        }
+    };
 }
