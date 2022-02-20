@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,14 +25,17 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimib.gup.R;
 import it.unimib.gup.adapter.AccountGroupsRecyclerViewAdapter;
 import it.unimib.gup.model.Group;
+import it.unimib.gup.model.responses.SubscriptionsResponse;
 import it.unimib.gup.ui.authentication.AuthenticationActivity;
 import it.unimib.gup.ui.authentication.UserViewModel;
 import it.unimib.gup.utils.SharedPreferencesProvider;
+import it.unimib.gup.viewmodels.HomeViewModel;
 
 public class AccountFragment extends Fragment {
 
@@ -40,6 +44,7 @@ public class AccountFragment extends Fragment {
     private TextView textViewAccountFragment;
 
     private UserViewModel mUserViewModel;
+    private HomeViewModel mHomeViewModel;
 
     private List<Group> mGroups;
 
@@ -54,7 +59,8 @@ public class AccountFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
-
+        mHomeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        mGroups = new ArrayList<>();
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
 
@@ -76,7 +82,6 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onItemClick(Group group) {
                         Log.d(TAG, "onItemClick: " + group);
-                        requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
                         AccountFragmentDirections.ActionAccountToGroupDetailsFragment
                                 action = AccountFragmentDirections.actionAccountToGroupDetailsFragment(group);
                         Navigation.findNavController(view).navigate(action);
@@ -84,12 +89,27 @@ public class AccountFragment extends Fragment {
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
 
+        mHomeViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
+            @Override
+            public void onChanged(SubscriptionsResponse subscriptionsResponse) {
+                Log.d(TAG, "onChanged: ");
+                mGroups.clear();
+
+                if (subscriptionsResponse.getGroups() != null) {
+                    mGroups.addAll(subscriptionsResponse.getGroups());
+                }
+                 if (adapter.getItemCount() == 1) {
+                    textViewAccountFragment.setText(R.string.member_of_one_group);
+                } else {
+                    textViewAccountFragment.setText("You are member of " + adapter.getItemCount() + " groups");
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         if (adapter.getItemCount() == 0) {
             textViewAccountFragment.setText(R.string.not_a_member);
-        } else if (adapter.getItemCount() == 1) {
-            textViewAccountFragment.setText(R.string.member_of_some_groups + 1 + R.string.group);
-        } else {
-            textViewAccountFragment.setText(R.string.member_of_some_groups + adapter.getItemCount() + R.string.groups);
         }
 
         return view;

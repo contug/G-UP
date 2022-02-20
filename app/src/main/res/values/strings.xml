@@ -87,6 +87,7 @@
     <string name="you_are_member_container">You are member</string>
     <string name="not_a_member">You are not part of any group. Go find one!</string>
     <string name="member_of_some_groups">You are member of</string>
+    <string name="member_of_one_group">Your are member of one group</string>
     <string name="group">group</string>
     <string name="groups">groups</string>
     <string name="no_meetings_found">No meetings found.</string>

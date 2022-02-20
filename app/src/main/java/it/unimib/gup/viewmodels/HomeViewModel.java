@@ -1,5 +1,7 @@
 package it.unimib.gup.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,6 +16,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mRepository = new Repository();
+        Log.d("TAG", "HomeViewModel: created");
     }
 
     public void fetchSubscriptions() {
