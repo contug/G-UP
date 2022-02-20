@@ -155,7 +155,8 @@ public class GroupDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_item_leave_group) {
             mGroupDetailsViewModel.leaveGroup(group.getId());
-            requireActivity().onBackPressed();
+
+            Navigation.findNavController(getView()).navigate(R.id.action_groupDetailsFragment_to_account);
         }
 
         return super.onOptionsItemSelected(item);

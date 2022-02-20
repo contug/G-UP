@@ -55,6 +55,11 @@
         <action
             android:id="@+id/action_groupDetailsFragment_to_createMeetingFragment"
             app:destination="@id/createMeetingFragment" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_account"
+            app:destination="@id/account"
+            app:popUpTo="@id/groupDetailsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/createPostFragment"
