@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.group.CreateGroupFragment"
-        android:paddingHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -16,6 +15,7 @@
 
 
             <ImageView
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/create_group_image"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
@@ -27,6 +27,7 @@
                 app:srcCompat="@drawable/ic_undraw_conversation_re_c26v" />
 
             <EditText
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/edit_text_create_group_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/create_group_image" />
 
             <Spinner
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/spinner_create_group_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -57,6 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@id/edit_text_create_group_name" />
 
             <ImageView
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/create_group_category_spinner_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,6 +70,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <EditText
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/edit_text_create_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,6 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@id/spinner_create_group_category" />
 
             <Button
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/button_create_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
