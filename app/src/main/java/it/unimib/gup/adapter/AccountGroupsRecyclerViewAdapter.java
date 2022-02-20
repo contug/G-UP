@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import it.unimib.gup.R;
@@ -63,11 +65,14 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
             this.name = itemView.findViewById(R.id.account_group_name);
 
 
+
         }
 
         public void bind(Group group) {
-            //this.image.setImageBitmap(group.getName());
             this.name.setText(group.getName());
+            Glide.with(itemView).load(group.getImageUrl()).
+                    into(image);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

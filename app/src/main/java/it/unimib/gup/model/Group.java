@@ -11,6 +11,7 @@ public class Group implements Parcelable {
     private String id;
     private String name;
     private String description;
+    private String imageUrl;
     private Category category;
     private HashMap<String, String> members;
     private HashMap<String, Meeting> meetings;
@@ -23,10 +24,11 @@ public class Group implements Parcelable {
     }
 
 
-    public Group(String id, String owner, String name, String description, Category category, HashMap<String, String> members, HashMap<String, Meeting> meetings, HashMap<String, Post> posts) {
+    public Group(String id, String owner, String name, String description, String imageUrl, Category category, HashMap<String, String> members, HashMap<String, Meeting> meetings, HashMap<String, Post> posts) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.imageUrl = imageUrl;
         this.category = category;
         this.members = members;
         this.meetings = meetings;
@@ -69,6 +71,14 @@ public class Group implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Category getCategory() {

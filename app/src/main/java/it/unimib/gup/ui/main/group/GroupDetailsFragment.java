@@ -72,8 +72,9 @@ public class GroupDetailsFragment extends Fragment {
         final TextView textViewGroupDescription = view.findViewById(R.id.details_groups_description);
 
         ImageView imageView = (ImageView) view.findViewById(R.id.group_details_image_view);
-        Glide.with(this).load("https://images.unsplash.com/photo-1530099486328-e021101a494a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDA0Njh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDUyOTA5ODc&ixlib=rb-1.2.1&q=80&w=1080").
-                into(imageView);
+
+        GroupDetailsFragment thisRef = this;
+
 
 
         mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
@@ -89,6 +90,9 @@ public class GroupDetailsFragment extends Fragment {
                     textViewGroupCategory.setText(tmpGroup.getCategory().getName());
                     textViewSubCount.setText(String.valueOf(tmpGroup.membersCount()));
                     textViewGroupDescription.setText(tmpGroup.getDescription());
+
+                    Glide.with(thisRef).load(tmpGroup.getImageUrl()).
+                            into(imageView);
                 }
 
             }

@@ -3,6 +3,7 @@ package it.unimib.gup.repository.groups;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,9 +31,16 @@ import it.unimib.gup.model.responses.GroupListResponse;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.model.User;
 import it.unimib.gup.model.responses.SubscriptionsResponse;
+import it.unimib.gup.model.responses.UnsplashResponse;
 import it.unimib.gup.model.responses.UserListResponse;
 import it.unimib.gup.model.responses.UserResponse;
 import it.unimib.gup.utils.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Converter;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Repository {
 
@@ -144,7 +154,26 @@ public class Repository {
         HashMap<String, String> members = new HashMap<>();
         members.put(ownerId, ownerId);
 
-        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, category, members, null, null);
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .baseUrl("https://api.unsplash.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Unsplash unsplash = retrofit.create(Unsplash.class);
+
+        Call<List<UnsplashResponse>> randomImageCall =  unsplash.randomImage("6QGh7CkiCS64jtYidL66AxgpoPi16B0eqiLCqasVLB4");
+
+        UnsplashResponse response = new UnsplashResponse();
+        try {
+             response = randomImageCall.execute().body().get(0);
+        } catch (IOException e) {
+            Log.d("@@@", "addGroup: " + e.toString());
+            e.printStackTrace();
+        }
+
+
+        Group newGroup = new Group(pushedGroup.getKey(), ownerId, name, description, response.getRegularImage(), category, members, null, null);
         pushedGroup.setValue(newGroup);
         subscribe(pushedGroup.getKey());
 
