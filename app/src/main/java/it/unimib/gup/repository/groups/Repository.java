@@ -9,7 +9,10 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -258,7 +261,7 @@ public class Repository {
         return responseLiveData;
     }
 
-    public void editUser(String oldFirstName, String oldLastName, String newFirstName, String newLastName, String newEmail) {
+    public void editUser(String oldFirstName, String oldLastName, String newFirstName, String newLastName) {
         String uId = mAuth.getUid();
 
         String mNewFirstName;
@@ -275,11 +278,6 @@ public class Repository {
             mNewLastName = newLastName;
         } else {
             mNewLastName = oldLastName;
-        }
-
-        if(!newEmail.trim().isEmpty()) {
-            mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("email").setValue(newEmail);
-            mAuth.getCurrentUser().updateEmail(newEmail);
         }
 
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").

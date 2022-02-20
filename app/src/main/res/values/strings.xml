@@ -94,5 +94,6 @@
     <string name="no_posts_found">No posts found.</string>
     <string name="edit_group">Edit group</string>
     <string name="leave_group">Leave group</string>
+    <string name="insert_your_new_profile_information">Insert your new profile information</string>
 
 </resources>

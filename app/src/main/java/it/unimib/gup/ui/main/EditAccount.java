@@ -18,11 +18,11 @@ import it.unimib.gup.R;
 import it.unimib.gup.viewmodels.AccountViewModel;
 import it.unimib.gup.viewmodels.HomeViewModel;
 
-public class ModifyAccount extends Fragment {
+public class EditAccount extends Fragment {
 
     AccountViewModel mAccountViewModel;
 
-    public ModifyAccount() {
+    public EditAccount() {
         // Required empty public constructor
 
 
@@ -43,7 +43,6 @@ public class ModifyAccount extends Fragment {
 
         EditText firstNameRef = view.findViewById(R.id.name_modify);
         EditText lastNameRef = view.findViewById(R.id.surname_modify);
-        EditText emailRef = view.findViewById(R.id.email_modify);
 
         Button buttonRef = view.findViewById(R.id.button_modify_account);
 
@@ -52,11 +51,10 @@ public class ModifyAccount extends Fragment {
             public void onClick(View v) {
                 String firstName = firstNameRef.getText().toString();
                 String lastName = lastNameRef.getText().toString();
-                String email = emailRef.getText().toString();
-                if(firstName.isEmpty() && lastName.isEmpty() && email.isEmpty()) {
+                if(firstName.isEmpty() && lastName.isEmpty()) {
                     updateUIForFailure();
                 } else {
-                    mAccountViewModel.editUser(firstName, lastName, email);
+                    mAccountViewModel.editUser(firstName, lastName);
                     requireActivity().onBackPressed();
                 }
 

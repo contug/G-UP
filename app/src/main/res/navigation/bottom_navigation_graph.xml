@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/modifyAccount"
-        android:name="it.unimib.gup.ui.main.ModifyAccount"
+        android:name="it.unimib.gup.ui.main.EditAccount"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_modify_account" />
     <fragment

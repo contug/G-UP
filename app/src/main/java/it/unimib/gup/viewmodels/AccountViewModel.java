@@ -31,8 +31,8 @@ public class AccountViewModel extends ViewModel {
         return mSubscriptionsLiveData;
     }
 
-    public void editUser(String newFirstName, String newLastName, String newEmail) {
+    public void editUser(String newFirstName, String newLastName) {
         User tmpUser = mUser.getUser();
-        mRepository.editUser(tmpUser.getFirstName(), tmpUser.getLastName(), newFirstName, newLastName, newEmail);
+        mRepository.editUser(tmpUser.getFirstName(), tmpUser.getLastName(), newFirstName, newLastName);
     }
 }
