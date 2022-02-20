@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 ;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.HomePost;
@@ -60,7 +63,7 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
         private final TextView groupName;
         private final TextView author;
         private final TextView text;
-        // private final TextView date;
+        private final TextView date;
 
         public HomePostsListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +72,8 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
             this.groupName = itemView.findViewById(R.id.home_post_group_name);
             this.author = itemView.findViewById(R.id.home_post_author);
             this.text = itemView.findViewById(R.id.home_post_text);
+
+            this.date = itemView.findViewById(R.id.home_post_date);
         }
 
         public void bind(HomePost post) {
@@ -76,6 +81,8 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
             this.groupName.setText(post.getGroupName());
             this.author.setText(post.getAuthor());
             this.text.setText(post.getText());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ITALY);
+            this.date.setText(dateFormat.format(new Date(post.getDate())));
 
 
             this.postContainer.setOnClickListener(new View.OnClickListener() {

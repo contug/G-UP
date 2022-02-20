@@ -42,13 +42,15 @@
 
         <TextView
             android:id="@id/details_groups_group_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/manrope_semibold"
             android:textColor="@color/white"
+            android:breakStrategy="simple"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintBottom_toBottomOf="@+id/details_groups_group_circle"
-            app:layout_constraintLeft_toRightOf="@+id/details_groups_group_circle"
+            app:layout_constraintEnd_toStartOf="@+id/details_groups_category_container"
+            app:layout_constraintStart_toEndOf="@+id/details_groups_group_circle"
             app:layout_constraintTop_toTopOf="@+id/details_groups_group_circle" />
 
         <FrameLayout

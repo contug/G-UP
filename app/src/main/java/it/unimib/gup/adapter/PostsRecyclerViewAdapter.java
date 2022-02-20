@@ -8,7 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import it.unimib.gup.R;
 import it.unimib.gup.model.Post;
@@ -55,17 +58,20 @@ public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<PostsRecycler
 
         private final TextView author;
         private final TextView text;
-        private Repository mRepository;
+        private final TextView date;
 
         public NotesListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.author = itemView.findViewById(R.id.post_author);
             this.text = itemView.findViewById(R.id.post_text);
+            this.date = itemView.findViewById(R.id.post_date);
         }
 
         public void bind(Post post) {
             this.author.setText(post.getAuthor());
             this.text.setText(post.getText());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ITALY);
+            this.date.setText(dateFormat.format(new Date(post.getData())));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
