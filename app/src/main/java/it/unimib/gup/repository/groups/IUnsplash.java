@@ -11,6 +11,6 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 interface Unsplash {
-    @GET("/photos/random?count=1&query=library&orientation=landscape")
+    @GET("/photos/random?count=1&query=books&orientation=landscape")
     Call<List<UnsplashResponse>> randomImage(@Query("client_id") String authorization);
 }

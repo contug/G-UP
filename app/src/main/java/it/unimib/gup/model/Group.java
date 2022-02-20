@@ -3,6 +3,7 @@ package it.unimib.gup.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -18,6 +19,7 @@ public class Group implements Parcelable {
     private HashMap<String, Post> posts;
     private String color;
     private String owner;
+    private long createdAt;
 
     public Group() {
         // For JSON mapping
@@ -34,12 +36,23 @@ public class Group implements Parcelable {
         this.meetings = meetings;
         this.posts = posts;
         this.owner = owner;
+        this.createdAt = new Date().getTime();
 
         Random obj = new Random();
         int rand_num = obj.nextInt(0xffffff + 1);
         String colorCode = String.format("#%06x", rand_num);
 
+
+
         this.color = colorCode;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int membersCount() {
