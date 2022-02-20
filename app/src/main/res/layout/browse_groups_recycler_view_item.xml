@@ -61,9 +61,7 @@
                 android:fontFamily="@font/manrope_semibold"
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                android:textAllCaps="true"
-
-                android:text="Computer science" />
+                android:textAllCaps="true" />
         </FrameLayout>
         <TextView
             android:id="@+id/browse_groups_description_label"
@@ -106,7 +104,7 @@
 
             android:letterSpacing="0.0"
 
-            android:text="Subscribe"
+            android:text="@string/subscribe"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

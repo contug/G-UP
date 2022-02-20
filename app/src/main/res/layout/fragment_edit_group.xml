@@ -98,9 +98,7 @@
             android:insetBottom="0dp"
             android:letterSpacing="0.05"
             android:paddingVertical="8dp"
-
             android:text="@string/apply"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

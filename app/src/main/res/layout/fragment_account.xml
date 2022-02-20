@@ -13,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="Your groups"
-        android:textSize="20dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/your_groups"
+        android:textSize="20sp"
         android:fontFamily="@font/manrope_semibold"
         android:textColor="@color/gray_800"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,8 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/account_your_groups_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="RtlSymmetry" />
 
     <ImageView
     android:id="@+id/account_teamwork_image"

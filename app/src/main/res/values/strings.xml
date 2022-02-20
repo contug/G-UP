@@ -43,7 +43,7 @@
     <string name="fos_social_sciences">Social Sciences</string>
     <string name="fos_others">Others</string>
 
-    <string name="home_no_results">No posts found...</string>
+    <string name="home_no_results">No posts found.</string>
 
     <string name="create_group_button">Create group</string>
 
@@ -95,5 +95,10 @@
     <string name="edit_group">Edit group</string>
     <string name="leave_group">Leave group</string>
     <string name="insert_your_new_profile_information">Insert your new profile information</string>
+    <string name="your_groups">Your groups</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="posts">Posts</string>
+    <string name="meetings">Meetings</string>
+    <string name="online">Online</string>
 
 </resources>

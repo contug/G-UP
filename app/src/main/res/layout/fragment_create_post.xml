@@ -36,7 +36,6 @@
             android:minHeight="48dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image_create_post" />
