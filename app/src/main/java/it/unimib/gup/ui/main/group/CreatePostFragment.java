@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import it.unimib.gup.R;
@@ -54,11 +55,17 @@ public class CreatePostFragment extends Fragment {
                 if(!text.isEmpty()) {
                     mCreatePostViewModel.addPost(group.getId(), text);
                     requireActivity().onBackPressed();
+                } else {
+                    updateUIForFailure();
                 }
             }
         });
 
         return view;
+    }
+
+    private void updateUIForFailure() {
+        Snackbar.make(requireActivity().findViewById(android.R.id.content), "Invalid Post", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

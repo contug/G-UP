@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
@@ -99,7 +100,7 @@ public class CreateMeetingFragment extends Fragment implements DatePickerDialog.
                     mCreateMeetingViewModel.addMeeting(groupBundle.getId(), type, info, date);
                     requireActivity().onBackPressed();
                 } else {
-                    Snackbar.make(view, "Invalid Meeting", Snackbar.LENGTH_SHORT).show();
+                    updateUIForFailure();
                 }
             }
         });
@@ -115,6 +116,10 @@ public class CreateMeetingFragment extends Fragment implements DatePickerDialog.
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+    }
+
+    private void updateUIForFailure() {
+        Snackbar.make(requireActivity().findViewById(android.R.id.content), "Invalid Meeting", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

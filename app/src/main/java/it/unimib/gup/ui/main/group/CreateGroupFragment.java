@@ -80,12 +80,16 @@ public class CreateGroupFragment extends Fragment {
                             CreateGroupFragmentDirections.actionCreateGroupFragmentToGroupDetailsFragment(newGroup);
                     Navigation.findNavController(view).navigate(action);
                 } else {
-                    Snackbar.make(requireActivity().findViewById(android.R.id.content), "Insert Name and Category", Snackbar.LENGTH_SHORT).show();
+                   updateUIForFailure();
                 }
             }
         });
 
         return view;
+    }
+
+    private void updateUIForFailure() {
+        Snackbar.make(requireActivity().findViewById(android.R.id.content), "Insert Name and Category", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
