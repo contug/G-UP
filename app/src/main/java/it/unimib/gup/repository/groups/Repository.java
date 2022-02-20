@@ -183,12 +183,7 @@ public class Repository {
         String memberId = mAuth.getUid();
 
         mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(memberId).
-                setValue(memberId).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "onComplete: subscribed");
-            }
-        });
+                setValue(memberId);
 
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(memberId).child("subscriptions").child(groupId).setValue(groupId);
     }
@@ -196,13 +191,9 @@ public class Repository {
     public void unsubscribe(String groupId) {
         String memberId = mAuth.getUid();
 
-        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(memberId).
-                removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "onComplete: membersCount");
-            }
-        });
+        String uId = mAuth.getUid();
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").child(groupId).removeValue();
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(uId).removeValue();
     }
 
     public void deleteGroup(String groupId) {
@@ -231,7 +222,6 @@ public class Repository {
         Meeting tmpMeeting = new Meeting(type, text, date);
 
         mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("meetings").child(type).setValue(tmpMeeting);
-
     }
 
     public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
@@ -265,12 +255,6 @@ public class Repository {
                     }
                 });
         return responseLiveData;
-    }
-
-    public void leaveGroup(String groupId) {
-        String uId = mAuth.getUid();
-        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").child(groupId).removeValue();
-        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(uId).removeValue();
     }
 
     public String getCurrentUserId() {

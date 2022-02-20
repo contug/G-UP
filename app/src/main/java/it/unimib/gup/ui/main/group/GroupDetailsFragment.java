@@ -152,7 +152,7 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_item_leave_group) {
-            mGroupDetailsViewModel.leaveGroup(group.getId());
+            mGroupDetailsViewModel.unsubscribe(group.getId());
 
             Navigation.findNavController(getView()).navigate(R.id.action_groupDetailsFragment_to_account);
         }
