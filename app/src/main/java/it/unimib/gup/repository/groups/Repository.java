@@ -321,6 +321,20 @@ public class Repository {
 
     }
 
+    public void editGroup(String groupId, String nameGroup, String descriptionGroup, Category category) {
+        DatabaseReference databaseReference = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId);
+        if (!nameGroup.isEmpty()) {
+            databaseReference.child("name").setValue(nameGroup);
+        }
+
+        if (!descriptionGroup.isEmpty()) {
+            databaseReference.child("description").setValue(descriptionGroup);
+        }
+        databaseReference.child("category").setValue(category);
+
+    }
+
+
     public String getCurrentUserId() {
         return mAuth.getUid();
     }

@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.group.EditGroupFragment">
+    tools:context=".ui.main.group.EditGroupFragment"
+    android:paddingHorizontal="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+
+        <ImageView
+            android:id="@+id/edit_group_image"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_undraw_text_field_htlv" />
+
+        <EditText
+            android:id="@+id/edit_text_edit_group_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_text_shape"
+            android:fontFamily="@font/manrope_regular"
+            android:hint="@string/name"
+            android:minHeight="48dp"
+            android:maxLength="25"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_group_image" />
+
+        <Spinner
+            android:id="@+id/spinner_edit_group_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_shape"
+            android:entries="@array/field_of_study_array"
+            android:minHeight="48dp"
+            android:paddingHorizontal="8dp"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_edit_group_name" />
+
+        <ImageView
+            android:id="@+id/edit_group_category_spinner_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_edit_group_category"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_edit_group_category"
+            app:layout_constraintTop_toTopOf="@+id/spinner_edit_group_category"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+        <EditText
+            android:id="@+id/edit_text_edit_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_shape"
+            android:fontFamily="@font/manrope_regular"
+            android:gravity="top"
+            android:hint="@string/description"
+            android:inputType="text|textMultiLine"
+            android:lines="6"
+            android:maxLength="128"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner_edit_group_category" />
+
+        <Button
+            android:id="@+id/button_edit_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="?colorPrimary"
+            android:fontFamily="@font/manrope_semibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:letterSpacing="0.05"
+            android:paddingVertical="8dp"
+
+            android:text="@string/apply"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_edit_description" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

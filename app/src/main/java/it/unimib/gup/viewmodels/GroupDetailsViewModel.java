@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Post;
 import it.unimib.gup.model.User;
 import it.unimib.gup.model.responses.GroupResponse;
@@ -29,6 +30,11 @@ public class GroupDetailsViewModel extends ViewModel {
     public MutableLiveData<GroupResponse> getGroup(String groupId) {
         fetchGroup(groupId);
         return mGroupLiveData;
+    }
+
+    public void editGroup(String nameGroup, String descriptionGroup, Category category) {
+        String groupId = mGroupLiveData.getValue().getGroup().getId();
+        mRepository.editGroup(groupId, nameGroup, descriptionGroup, category);
     }
 
     public void unsubscribe(String groupId) {

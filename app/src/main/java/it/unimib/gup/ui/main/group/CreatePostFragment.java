@@ -44,7 +44,7 @@ public class CreatePostFragment extends Fragment {
         Group group = CreatePostFragmentArgs.fromBundle(getArguments()).getGroup();
 
 
-        final EditText postMessage = view.findViewById(R.id.edit_text_create_post);
+        final EditText postMessage = view.findViewById(R.id.edit_text_create_description);
         final Button buttonCreatePost = view.findViewById(R.id.button_create_post);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 

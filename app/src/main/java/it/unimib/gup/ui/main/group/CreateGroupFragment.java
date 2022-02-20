@@ -49,7 +49,7 @@ public class CreateGroupFragment extends Fragment {
 
         final EditText editTextNameGroup = view.findViewById(R.id.edit_text_create_group_name);
         final Spinner spinnerCategoryGroup = view.findViewById(R.id.spinner_create_group_category);
-        final EditText editTextDescriptionGroup = view.findViewById(R.id.edit_text_create_post);
+        final EditText editTextDescriptionGroup = view.findViewById(R.id.edit_text_create_description);
         final Button buttonCreateGroup = view.findViewById(R.id.button_create_group);
 
         spinnerCategoryGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -153,8 +153,10 @@ public class GroupDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_item_leave_group) {
             mGroupDetailsViewModel.unsubscribe(group.getId());
-
             Navigation.findNavController(getView()).navigate(R.id.action_groupDetailsFragment_to_account);
+        } else if (item.getItemId() == R.id.menu_item_edit_group) {
+            requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
+            Navigation.findNavController(getView()).navigate(R.id.action_groupDetailsFragment_to_editGroupFragment);
         }
 
         return super.onOptionsItemSelected(item);
