@@ -4,17 +4,9 @@
     <string name="browse" translatable="false">Browse</string>
     <string name="account" translatable="false">Account</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_group">Add Group</string>
-    <string name="created_groups">Groups you manage</string>
-    <string name="my_groups">Groups I\'m in</string>
-    <string name="my_activities">My activities</string>
-    <string name="create_group">Create group</string>
-    <string name="back">Back</string>
 
-    <string name="name_group">Name your group</string>
     <string name="choose_fos">Choose a discipline</string>
-    <string name="field_of_study">Field of study</string>
 
     <string-array name="field_of_study_array">
         <item>@string/choose_fos</item>
@@ -45,18 +37,15 @@
 
     <string name="home_no_results">No posts found.</string>
 
-    <string name="create_group_button">Create group</string>
-
     <string name="browse_no_results">No groups found.</string>
     <string name="browse_reclycler_view_item_description_label">Description</string>
 
     <string name="description">Description</string>
-    <string name="describe_group">Describe your group</string>
     <string name="email_hint">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="login_text_view">Welcome back!</string>
-    <string name="login_sub_text">Login to your account with your credentials</string>
+    <string name="login_sub_text">Login to your account with your credentials.</string>
     <string name="signup_text_view">Let\'s get started!</string>
     <string name="signup_sub_text">Register to Group Up</string>
 
@@ -69,9 +58,6 @@
     <string name="invalid_auth_input">Insert Email and Password</string>
     <string name="logout">Logout</string>
 
-    <string name="fos_selection_title">Setting up</string>
-    <string name="fos_selection_subtitle">Select one or more disciplines</string>
-    <string name="category">Category</string>
     <string name="create">Create</string>
     <string name="details_groups_subscribers">Members</string>
     <string name="sign_in">Sign In</string>
@@ -84,10 +70,8 @@
     <string name="apply">Apply</string>
     <string name="edit_your_account">Edit your account</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="you_are_member_container">You are member</string>
-    <string name="not_a_member">You are not part of any group. Go find one!</string>
-    <string name="member_of_some_groups">You are member of</string>
-    <string name="member_of_one_group">Your are member of one group</string>
+    <string name="not_a_member">You are not part of any group.\nGo find one!</string>
+    <string name="member_of_one_group">You are member of one group</string>
     <string name="group">group</string>
     <string name="groups">groups</string>
     <string name="no_meetings_found">No meetings found.</string>
