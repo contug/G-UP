@@ -124,7 +124,7 @@ public class CreateMeetingFragment extends Fragment implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + month + "/" + year;
+        String date = dayOfMonth + "/" + (month + 1) + "/" + year;
 
         mMeetingDate.setText(date);
     }
