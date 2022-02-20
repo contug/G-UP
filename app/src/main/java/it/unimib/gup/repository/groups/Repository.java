@@ -209,14 +209,13 @@ public class Repository {
     public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
         String uId = mAuth.getUid();
         MutableLiveData<SubscriptionsResponse> responseLiveData = new MutableLiveData<>();
-        SubscriptionsResponse response = new SubscriptionsResponse();
         mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
                 addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        SubscriptionsResponse response = new SubscriptionsResponse();
                         for(DataSnapshot snapshotChild : snapshot.getChildren()) {
                             String groupId = snapshotChild.getKey();
-
                             mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
                                     addValueEventListener(new ValueEventListener() {
                                         @Override
@@ -231,12 +230,19 @@ public class Repository {
                                         }
                                     });
                         }
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
         return responseLiveData;
+    }
+
+    public void leaveGroup(String groupId) {
+        String uId = mAuth.getUid();
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").child(groupId).removeValue();
+        mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).child("members").child(uId).removeValue();
     }
 
     public String getCurrentUserId() {

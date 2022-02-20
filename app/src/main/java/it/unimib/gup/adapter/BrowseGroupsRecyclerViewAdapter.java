@@ -2,6 +2,7 @@ package it.unimib.gup.adapter;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,6 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
     public BrowseGroupsRecyclerViewAdapter(List<Group> groupList, OnItemClickListener onItemClickListener, OnItemClickListener OnSubscribeClickListener) {
         this.mGroupList = groupList;
         this.mGroupListAll = groupList;
-
         this.mOnItemClickListener = onItemClickListener;
         this.mOnSubscribeClickListener = OnSubscribeClickListener;
     }

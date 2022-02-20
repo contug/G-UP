@@ -60,7 +60,7 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onChanged(GroupListResponse listGroupResponse) {
                 mGroups.clear();
-
+                Log.d(TAG, "onChanged: ");
                 if (listGroupResponse.getGroups() != null) {
                     mGroups.addAll(listGroupResponse.getGroups());
                     adapter.setGroupListAll(listGroupResponse.getGroups());

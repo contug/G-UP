@@ -31,6 +31,10 @@ public class GroupDetailsViewModel extends ViewModel {
         return mGroupLiveData;
     }
 
+    public void leaveGroup(String groupId) {
+        mRepository.leaveGroup(groupId);
+    }
+
     public MutableLiveData<GroupResponse> getGroupNoFetch() {
         return mGroupLiveData;
     }

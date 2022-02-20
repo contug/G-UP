@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -54,10 +55,8 @@ public class GroupDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mGroupDetailsViewModel = new ViewModelProvider(requireActivity()).get(GroupDetailsViewModel.class);
         group = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroup();
-        if (group.getOwner().equals(mGroupDetailsViewModel.getCurrentUserId())) {
-            setHasOptionsMenu(true);
-            Log.d(TAG, "onCreate: " + mGroupDetailsViewModel.getCurrentUserId());
-        }
+        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -137,5 +136,24 @@ public class GroupDetailsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.group_details_menu, menu);
+        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem1 = menu.getItem(1);
+        if (group.getOwner().equals(mGroupDetailsViewModel.getCurrentUserId())) {
+            menuItem.setVisible(true);
+            menuItem1.setVisible(false);
+        } else {
+            menuItem.setVisible(false);
+            menuItem1.setVisible(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_item_leave_group) {
+            mGroupDetailsViewModel.leaveGroup(group.getId());
+            requireActivity().onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

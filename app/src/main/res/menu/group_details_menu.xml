@@ -6,4 +6,8 @@
         android:id="@+id/menu_item_edit_group"
         android:title="@string/edit_group"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_item_leave_group"
+        android:title="@string/leave_group"
+        app:showAsAction="never"/>
 </menu>
