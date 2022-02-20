@@ -109,14 +109,16 @@ public class BrowseGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Browse
             this.description.setText(group.getDescription());
             this.categoryContainer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(group.getCategory().getColor())));
 
+            Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
+
             String uId = FirebaseAuth.getInstance().getUid();
             HashMap<String, String> userList = group.getMembers();
             if (userList != null) {
                 if(userList.containsKey(uId)){
-                    Button recyclerViewItemButton = itemView.findViewById(R.id.browse_groups_subscribe_button);
                     recyclerViewItemButton.setVisibility(View.GONE);
                 }
-            }
+            } else
+                recyclerViewItemButton.setVisibility(View.VISIBLE);
 
             this.subscribeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
