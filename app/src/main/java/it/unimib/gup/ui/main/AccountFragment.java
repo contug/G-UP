@@ -98,7 +98,9 @@ public class AccountFragment extends Fragment {
                 if (subscriptionsResponse.getGroups() != null) {
                     mGroups.addAll(subscriptionsResponse.getGroups());
                 }
-                 if (adapter.getItemCount() == 1) {
+                if (adapter.getItemCount() == 0) {
+                    textViewAccountFragment.setText(R.string.not_a_member);
+                } else if (adapter.getItemCount() == 1) {
                     textViewAccountFragment.setText(R.string.member_of_one_group);
                 } else {
                     textViewAccountFragment.setText("You are member of " + adapter.getItemCount() + " groups");
