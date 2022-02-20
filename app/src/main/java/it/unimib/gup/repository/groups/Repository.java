@@ -218,7 +218,7 @@ public class Repository {
                     public void onSuccess(@NonNull DataSnapshot snapshot) {
                         User currentUser = snapshot.getValue(User.class);
                         if(!text.isEmpty()) {
-                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text, new Date().toString());
+                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text, new Date().getTime());
                             DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
                                     child(Constants.POST_COLLECTION).push();
                             post.setId(pushedPost.getKey());

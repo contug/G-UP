@@ -1,6 +1,8 @@
 package it.unimib.gup.model.responses;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -49,13 +51,26 @@ public class SubscriptionsResponse {
                             tmpGroup.getColor(),
                             tmpPost.getAuthor(),
                             tmpPost.getText(),
-                            new Date().toString()
+                            tmpPost.getData()
                     );
 
                     homePosts.add(tmpHomePost);
                 }
             }
         }
+
+        Collections.sort(homePosts, new Comparator<HomePost>() {
+            public int compare(HomePost o1, HomePost o2) {
+                // compare two instance of `Score` and return `int` as result.
+                if (o2.getDate() < o1.getDate()) {
+                    return -1;
+                } else if (o2.getDate() > o1.getDate()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
 
         return homePosts;
     }

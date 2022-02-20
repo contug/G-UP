@@ -63,9 +63,6 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
             super(itemView);
             this.image = itemView.findViewById(R.id.account_group_image);
             this.name = itemView.findViewById(R.id.account_group_name);
-
-
-
         }
 
         public void bind(Group group) {

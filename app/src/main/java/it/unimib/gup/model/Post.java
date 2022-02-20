@@ -6,7 +6,7 @@ public class Post {
     private String authorName;
     private String author;
     private String text;
-    private String data;
+    private long data;
 
     public Post() {
 
@@ -64,15 +64,15 @@ public class Post {
         this.text = text;
     }
 
-    public String getData() {
+    public long getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(long data) {
         this.data = data;
     }
 
-    public Post(String author, String text, String data) {
+    public Post(String author, String text, long data) {
         this.author = author;
         this.text = text;
         this.data = data;
