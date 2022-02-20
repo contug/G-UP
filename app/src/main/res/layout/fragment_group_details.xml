@@ -117,11 +117,11 @@
         <TextView
             android:id="@+id/details_groups_description"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintHeight_percent="0.4"
-            android:textSize="14dp"
+            android:textSize="14sp"
+            android:breakStrategy="simple"
              android:textColor="@color/white"
 
             app:layout_constraintEnd_toEndOf="parent"
