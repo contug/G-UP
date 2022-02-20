@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import it.unimib.gup.model.Category;
 import it.unimib.gup.model.Group;
@@ -50,7 +51,6 @@ public class Repository {
     private final FirebaseAuth mAuth;
 
     public Repository() {
-
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_DATABASE_URL).getReference();
     }
@@ -125,7 +125,8 @@ public class Repository {
         return response;
     }
 
-    public UserResponse getUserById(String userId) {
+    public UserResponse getUserById() {
+        String userId = mAuth.getUid();
         UserResponse response = new UserResponse();
 
 
@@ -255,6 +256,71 @@ public class Repository {
                     }
                 });
         return responseLiveData;
+    }
+
+    public void editUser(String oldFirstName, String oldLastName, String newFirstName, String newLastName, String newEmail) {
+        String uId = mAuth.getUid();
+
+        String mNewFirstName;
+        if(!newFirstName.trim().isEmpty()) {
+            mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("firstName").setValue(newFirstName);
+            mNewFirstName = newFirstName;
+        } else {
+            mNewFirstName = oldFirstName;
+        }
+
+        String mNewLastName;
+        if(!newLastName.trim().isEmpty()) {
+            mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("lastName").setValue(newLastName);
+            mNewLastName = newLastName;
+        } else {
+            mNewLastName = oldLastName;
+        }
+
+        if(!newEmail.trim().isEmpty()) {
+            mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("email").setValue(newEmail);
+            mAuth.getCurrentUser().updateEmail(newEmail);
+        }
+
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
+                addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot snapshotChild : snapshot.getChildren()) {
+                            String groupId = snapshotChild.getKey();
+                            mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
+                                    addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
+                                            Group group = snapshotGroup.getValue(Group.class);
+                                            for(String key: group.getPosts().keySet()) {
+                                                if(group.getPosts().get(key).getAuthor().toLowerCase()
+                                                        .equals((oldFirstName + " " + oldLastName).toLowerCase())){
+                                                    mFirebaseDatabase
+                                                            .child(Constants.GROUP_COLLECTION)
+                                                            .child(groupId)
+                                                            .child("posts")
+                                                            .child(key)
+                                                            .child("author")
+                                                            .setValue(mNewFirstName + " " + mNewLastName);
+                                                }
+                                            }
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
     }
 
     public String getCurrentUserId() {

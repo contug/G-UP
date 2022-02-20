@@ -1,5 +1,6 @@
 package it.unimib.gup.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -35,6 +36,7 @@ import it.unimib.gup.model.responses.SubscriptionsResponse;
 import it.unimib.gup.ui.authentication.AuthenticationActivity;
 import it.unimib.gup.ui.authentication.UserViewModel;
 import it.unimib.gup.utils.SharedPreferencesProvider;
+import it.unimib.gup.viewmodels.AccountViewModel;
 import it.unimib.gup.viewmodels.HomeViewModel;
 
 public class AccountFragment extends Fragment {
@@ -44,7 +46,7 @@ public class AccountFragment extends Fragment {
     private TextView textViewAccountFragment;
 
     private UserViewModel mUserViewModel;
-    private HomeViewModel mHomeViewModel;
+    private AccountViewModel mAccountViewModel;
 
     private List<Group> mGroups;
 
@@ -59,7 +61,7 @@ public class AccountFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
-        mHomeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        mAccountViewModel = new ViewModelProvider(requireActivity()).get(AccountViewModel.class);
         mGroups = new ArrayList<>();
         // It is necessary to specify that the toolbar has a custom menu
         setHasOptionsMenu(true);
@@ -89,7 +91,8 @@ public class AccountFragment extends Fragment {
                 });
         mBrowseGroupsRecyclerView.setAdapter(adapter);
 
-        mHomeViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
+        mAccountViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChanged(SubscriptionsResponse subscriptionsResponse) {
                 Log.d(TAG, "onChanged: ");

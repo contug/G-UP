@@ -3,33 +3,36 @@ package it.unimib.gup.viewmodels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import it.unimib.gup.model.User;
 import it.unimib.gup.model.responses.GroupListResponse;
+import it.unimib.gup.model.responses.SubscriptionsResponse;
+import it.unimib.gup.model.responses.UserResponse;
 import it.unimib.gup.repository.groups.Repository;
 
 public class AccountViewModel extends ViewModel {
-
     private final Repository mRepository;
-    private MutableLiveData<GroupListResponse> mGroupsLiveData;
+    private UserResponse mUser;
+    private MutableLiveData<SubscriptionsResponse> mSubscriptionsLiveData;
 
     public AccountViewModel() {
         mRepository = new Repository();
+        mUser = mRepository.getUserById();
     }
 
     public void fetchGroups() {
-        mGroupsLiveData = mRepository.getGroups();
+        mSubscriptionsLiveData = mRepository.getSubscriptions();
     }
 
-    public MutableLiveData<GroupListResponse> getGroups() {
-        if(mGroupsLiveData == null) {
+    public MutableLiveData<SubscriptionsResponse> getSubscriptions() {
+        if(mSubscriptionsLiveData == null) {
             fetchGroups();
         }
 
-        return mGroupsLiveData;
+        return mSubscriptionsLiveData;
     }
 
-    public void subscribe(String groupId) {
-        mRepository.subscribe(groupId);
+    public void editUser(String newFirstName, String newLastName, String newEmail) {
+        User tmpUser = mUser.getUser();
+        mRepository.editUser(tmpUser.getFirstName(), tmpUser.getLastName(), newFirstName, newLastName, newEmail);
     }
-
-
 }
