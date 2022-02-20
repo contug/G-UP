@@ -280,45 +280,35 @@ public class Repository {
             mNewLastName = oldLastName;
         }
 
-        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").
-                addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot snapshotChild : snapshot.getChildren()) {
-                            String groupId = snapshotChild.getKey();
-                            mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
-                                    addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshotGroup) {
-                                            Group group = snapshotGroup.getValue(Group.class);
-                                            for(String key: group.getPosts().keySet()) {
-                                                if(group.getPosts().get(key).getAuthor().toLowerCase()
-                                                        .equals((oldFirstName + " " + oldLastName).toLowerCase())){
-                                                    mFirebaseDatabase
-                                                            .child(Constants.GROUP_COLLECTION)
-                                                            .child(groupId)
-                                                            .child("posts")
-                                                            .child(key)
-                                                            .child("author")
-                                                            .setValue(mNewFirstName + " " + mNewLastName);
-                                                }
-                                            }
-
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-                                        }
-                                    });
+        mFirebaseDatabase.child(Constants.USER_COLLECTION).child(uId).child("subscriptions").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshotA) {
+                for(DataSnapshot snapshotChild : dataSnapshotA.getChildren()) {
+                    String groupId = snapshotChild.getKey();
+                    mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                        @Override
+                        public void onSuccess(DataSnapshot dataSnapshotB) {
+                            Group group = dataSnapshotB.getValue(Group.class);
+                            if(group.getPosts() != null)
+                            {
+                                for(String key: group.getPosts().keySet()) {
+                                    if(group.getPosts().get(key).getAuthor().toLowerCase()
+                                            .equals((oldFirstName + " " + oldLastName).toLowerCase())){
+                                        mFirebaseDatabase
+                                                .child(Constants.GROUP_COLLECTION)
+                                                .child(groupId)
+                                                .child("posts")
+                                                .child(key)
+                                                .child("author")
+                                                .setValue(mNewFirstName + " " + mNewLastName);
+                                    }
+                                }
+                            }
                         }
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
-
+                    });
+                }
+            }
+        });
     }
 
     public void editGroup(String groupId, String nameGroup, String descriptionGroup, Category category) {
