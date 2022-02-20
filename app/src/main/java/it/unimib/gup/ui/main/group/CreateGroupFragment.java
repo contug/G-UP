@@ -47,7 +47,6 @@ public class CreateGroupFragment extends Fragment {
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
         final EditText editTextNameGroup = view.findViewById(R.id.edit_text_create_group_name);
         final Spinner spinnerCategoryGroup = view.findViewById(R.id.spinner_create_group_category);
         final EditText editTextDescriptionGroup = view.findViewById(R.id.edit_text_create_post);

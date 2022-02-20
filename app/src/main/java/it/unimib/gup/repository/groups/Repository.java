@@ -168,7 +168,6 @@ public class Repository {
         try {
              response = randomImageCall.execute().body().get(0);
         } catch (IOException e) {
-            Log.d("@@@", "addGroup: " + e.toString());
             e.printStackTrace();
         }
 

@@ -75,8 +75,6 @@ public class GroupDetailsFragment extends Fragment {
 
         GroupDetailsFragment thisRef = this;
 
-
-
         mGroupDetailsViewModel.getGroup(group.getId()).observe(getViewLifecycleOwner(), new Observer<GroupResponse>() {
             @Override
             public void onChanged(GroupResponse groupResponse) {

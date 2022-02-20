@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:foreground="#BB000000"
+        android:foreground="#A5000000"
         app:layout_constraintTop_toTopOf="@+id/details_groups_container"
         app:layout_constraintBottom_toBottomOf="@+id/details_groups_container"
         app:layout_constraintStart_toStartOf="parent"

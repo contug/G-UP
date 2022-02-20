@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/study"
-                    android:foreground="#AA000000"
+                    android:foreground="#A5000000"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop" />
 
@@ -50,12 +50,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="16dp"
+            android:maxWidth="152dp"
+            android:breakStrategy="simple"
+            android:textAlignment="center"
+            android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Group name"
             android:translationZ="10dp"
             android:fontFamily="@font/manrope_semibold"
             android:textColor="@color/white" />

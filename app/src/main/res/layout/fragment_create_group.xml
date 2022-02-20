@@ -35,7 +35,8 @@
                 android:fontFamily="@font/manrope_regular"
                 android:hint="@string/name"
                 android:minHeight="48dp"
-                android:paddingStart="16dp"
+                android:maxLength="25"
+                android:paddingHorizontal="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/create_group_image" />
@@ -48,7 +49,7 @@
                 android:background="@drawable/edit_text_shape"
                 android:entries="@array/field_of_study_array"
                 android:minHeight="48dp"
-                android:paddingStart="8dp"
+                android:paddingHorizontal="8dp"
                 android:spinnerMode="dropdown"
                 android:theme="@style/SpinnerTheme"
                 app:layout_constraintEnd_toEndOf="parent"

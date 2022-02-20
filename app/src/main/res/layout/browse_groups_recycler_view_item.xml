@@ -29,15 +29,18 @@
 
         <TextView
             android:id="@id/browse_groups_group_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:breakStrategy="simple"
             android:fontFamily="@font/manrope_semibold"
-            android:text="Group Name"
             android:textColor="@color/gray_800"
+
             app:layout_constraintBottom_toBottomOf="@+id/browse_groups_group_circle"
-            app:layout_constraintLeft_toRightOf="@+id/browse_groups_group_circle"
-            app:layout_constraintTop_toTopOf="@+id/browse_groups_group_circle" />
+            app:layout_constraintEnd_toStartOf="@+id/browse_groups_category_container"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/browse_groups_group_circle"
+            app:layout_constraintTop_toTopOf="@+id/browse_groups_group_circle"/>
 
         <FrameLayout
             android:id="@+id/browse_groups_category_container"
