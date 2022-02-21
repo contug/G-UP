@@ -3,6 +3,7 @@ package it.unimib.gup.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
@@ -36,7 +37,7 @@ public class Group implements Parcelable {
         this.meetings = meetings;
         this.posts = posts;
         this.owner = owner;
-        this.createdAt = new Date().getTime();
+        this.createdAt = Instant.now().toEpochMilli();
 
         Random obj = new Random();
         int rand_num = obj.nextInt(0xffffff + 1);
