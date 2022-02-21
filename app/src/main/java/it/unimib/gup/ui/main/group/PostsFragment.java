@@ -78,7 +78,7 @@ public class PostsFragment extends Fragment {
 
                 if (groupResponse.getGroup().getPosts() != null) {
                     mEmptyState.setVisibility(View.GONE);
-                    List<Post> list = new ArrayList<>(groupResponse.getGroup().getPosts().values());
+                    List<Post> list = new ArrayList<>(groupResponse.getPosts());
 
                     mPosts.addAll(list);
                 } else {

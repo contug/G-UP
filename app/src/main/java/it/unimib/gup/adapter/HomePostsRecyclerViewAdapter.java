@@ -24,7 +24,7 @@ public class HomePostsRecyclerViewAdapter extends RecyclerView.Adapter<HomePosts
         void onItemClick(HomePost post);
     }
 
-    private List<HomePost> mPostList;
+    private final List<HomePost> mPostList;
 
     private final OnItemClickListener mOnItemClickListener;
 

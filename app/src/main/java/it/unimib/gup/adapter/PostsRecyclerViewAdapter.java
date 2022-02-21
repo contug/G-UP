@@ -23,7 +23,7 @@ public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<PostsRecycler
         void onItemClick(Post post);
     }
 
-    private List<Post> mPosts;
+    private final List<Post> mPosts;
     private final OnItemClickListener mOnItemClickListener;
 
 
