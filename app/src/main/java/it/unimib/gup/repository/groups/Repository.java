@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -212,7 +213,7 @@ public class Repository {
                     public void onSuccess(@NonNull DataSnapshot snapshot) {
                         User currentUser = snapshot.getValue(User.class);
                         if(!text.isEmpty()) {
-                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text, new Date().getTime());
+                            Post post = new Post(currentUser.getFirstName() + " " + currentUser.getLastName(), text, Instant.now().toEpochMilli());
                             DatabaseReference pushedPost = mFirebaseDatabase.child(Constants.GROUP_COLLECTION).child(groupId).
                                     child(Constants.POST_COLLECTION).push();
                             post.setId(pushedPost.getKey());

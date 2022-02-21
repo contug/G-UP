@@ -170,8 +170,6 @@ public class Group implements Parcelable {
         dest.writeString(this.description);
         dest.writeString(this.imageUrl);
         dest.writeParcelable(this.category, flags);
-        dest.writeSerializable(this.members);
-        dest.writeSerializable(this.posts);
         dest.writeString(this.color);
         dest.writeString(this.owner);
         dest.writeLong(this.createdAt);
@@ -183,9 +181,6 @@ public class Group implements Parcelable {
         this.description = source.readString();
         this.imageUrl = source.readString();
         this.category = source.readParcelable(Category.class.getClassLoader());
-        this.members = (HashMap<String, String>) source.readSerializable();
-        this.meetings = (HashMap<String, Meeting>) source.readSerializable();
-        this.posts = (HashMap<String, Post>) source.readSerializable();
         this.color = source.readString();
         this.owner = source.readString();
         this.createdAt = source.readLong();
@@ -197,9 +192,6 @@ public class Group implements Parcelable {
         this.description = in.readString();
         this.imageUrl = in.readString();
         this.category = in.readParcelable(Category.class.getClassLoader());
-        this.members = (HashMap<String, String>) in.readSerializable();
-        this.meetings = (HashMap<String, Meeting>) in.readSerializable();
-        this.posts = (HashMap<String, Post>) in.readSerializable();
         this.color = in.readString();
         this.owner = in.readString();
         this.createdAt = in.readLong();

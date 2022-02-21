@@ -1,5 +1,7 @@
 package it.unimib.gup.model.responses;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,7 +13,7 @@ import it.unimib.gup.model.HomePost;
 import it.unimib.gup.model.Post;
 
 public class SubscriptionsResponse {
-    private List<Group> subscriptions;
+    private final List<Group> subscriptions;
 
     private boolean isError;
     private boolean isLoading;
@@ -23,21 +25,6 @@ public class SubscriptionsResponse {
     public List<Group> getGroups() {
         return subscriptions;
     }
-
-/*
-    public List<Post> getPosts() {
-        List<Post> posts = new ArrayList<Post>();
-
-        for (Group tmpGroup : subscriptions) {
-            List<Post> tmpPosts = new ArrayList<Post>(tmpGroup.getPosts().values());
-
-            posts.addAll(tmpPosts);
-        }
-
-        return posts;
-    }
-
- */
 
     public List<HomePost> getHomePosts() {
         List<HomePost> homePosts = new ArrayList<HomePost>();
@@ -59,20 +46,11 @@ public class SubscriptionsResponse {
             }
         }
 
-        if (homePosts != null) {
-            Collections.sort(homePosts, new Comparator<HomePost>() {
-                public int compare(HomePost o1, HomePost o2) {
-                    // compare two instance of `Score` and return `int` as result.
-                    if (o2.getDate() < o1.getDate()) {
-                        return -1;
-                    } else if (o2.getDate() > o1.getDate()) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-            });
-        }
+        homePosts.sort(new Comparator<HomePost>() {
+            public int compare(HomePost o1, HomePost o2) {
+                return Long.compare(o2.getDate(), o1.getDate());
+            }
+        });
 
         return homePosts;
     }

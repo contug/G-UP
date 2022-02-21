@@ -43,14 +43,15 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mBrowseGroupViewModel = new ViewModelProvider(requireActivity()).get(BrowseGroupsViewModel.class);
+
         mGroups = new ArrayList<>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_browse, container, false);
         RecyclerView mBrowseGroupsRecyclerView = view.findViewById(R.id.browse_groups_recycler_view);
         mBrowseGroupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -60,7 +61,7 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onChanged(GroupListResponse listGroupResponse) {
                 mGroups.clear();
-                Log.d(TAG, "onChanged: ");
+                Log.d("@@@", "mBrowseGroupViewModel: onChanged");
                 if (listGroupResponse.getGroups() != null) {
                     mGroups.addAll(listGroupResponse.getGroups());
                     adapter.setGroupListAll(listGroupResponse.getGroups());
@@ -116,7 +117,6 @@ public class BrowseFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 }

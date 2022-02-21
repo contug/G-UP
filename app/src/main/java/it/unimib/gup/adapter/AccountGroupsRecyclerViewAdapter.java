@@ -22,7 +22,7 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
         void onItemClick(Group group);
     }
 
-    private List<Group> mGroupList;
+    private final List<Group> mGroupList;
     private final OnItemClickListener mOnItemClickListener;
 
 
@@ -58,7 +58,6 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
         private final ImageView image;
         private final TextView name;
 
-
         public BrowseGroupsListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.image = itemView.findViewById(R.id.account_group_image);
@@ -69,7 +68,6 @@ public class AccountGroupsRecyclerViewAdapter extends RecyclerView.Adapter<Accou
             this.name.setText(group.getName());
             Glide.with(itemView).load(group.getImageUrl()).
                     into(image);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

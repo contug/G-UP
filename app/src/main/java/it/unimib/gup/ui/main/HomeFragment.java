@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
     private HomeViewModel mHomeViewModel;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -67,8 +66,6 @@ public class HomeFragment extends Fragment {
         mHomeViewModel.getSubscriptions().observe(getViewLifecycleOwner(), new Observer<SubscriptionsResponse>() {
             @Override
             public void onChanged(SubscriptionsResponse subscriptionsResponse) {
-                Log.d("@@@", "Nuovo post!");
-
                 mHomePosts.clear();
 
                 if (subscriptionsResponse.getHomePosts() != null) {
@@ -102,7 +99,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        // Non sono sicuro se il super serva oppure no, ginelli l'ha tolto
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.home_fragment_menu, menu);
     }
@@ -110,7 +106,6 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: ");
-        // Listener for the items in the custom menu
         if (item.getItemId() == R.id.add_group) {
             requireActivity().findViewById(R.id.toolbar_text_view).setVisibility(View.GONE);
             Navigation.findNavController(getView()).navigate(R.id.createGroupFragment);
